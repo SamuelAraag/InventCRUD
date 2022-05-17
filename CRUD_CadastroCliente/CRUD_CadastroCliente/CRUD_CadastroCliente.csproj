@@ -58,6 +58,12 @@
     <Compile Include="FormAtualizarCliente.Designer.cs">
       <DependentUpon>FormAtualizarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDeletarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeletarCliente.Designer.cs">
+      <DependentUpon>FormDeletarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNovoCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAtualizarCliente.resx">
       <DependentUpon>FormAtualizarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeletarCliente.resx">
+      <DependentUpon>FormDeletarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNovoCliente.resx">
       <DependentUpon>FormNovoCliente.cs</DependentUpon>

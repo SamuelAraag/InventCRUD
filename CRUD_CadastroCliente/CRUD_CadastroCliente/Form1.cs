@@ -21,5 +21,23 @@ namespace CRUD_CadastroCliente
         {
 
         }
+
+        private void botaoNovo_Click(object sender, EventArgs e)
+        {
+            FormNovoCliente formNovoCliente = new FormNovoCliente();
+            formNovoCliente.ShowDialog();
+        }
+
+        private void botaoAtualizar_Click(object sender, EventArgs e)
+        {
+            FormAtualizarCliente formAtualizarCliente = new FormAtualizarCliente();
+            formAtualizarCliente.ShowDialog();
+        }
+
+        private void botaoDeletar_Click(object sender, EventArgs e)
+        {
+            FormDeletarCliente formDeletarCliente = new FormDeletarCliente();
+            formDeletarCliente.ShowDialog();
+        }
     }
 }

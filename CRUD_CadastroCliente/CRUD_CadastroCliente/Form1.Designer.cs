@@ -42,6 +42,7 @@
             this.botaoNovo.TabIndex = 0;
             this.botaoNovo.Text = "NOVO";
             this.botaoNovo.UseVisualStyleBackColor = true;
+            this.botaoNovo.Click += new System.EventHandler(this.botaoNovo_Click);
             // 
             // botaoAtualizar
             // 
@@ -51,6 +52,7 @@
             this.botaoAtualizar.TabIndex = 1;
             this.botaoAtualizar.Text = "ATUALIZAR";
             this.botaoAtualizar.UseVisualStyleBackColor = true;
+            this.botaoAtualizar.Click += new System.EventHandler(this.botaoAtualizar_Click);
             // 
             // botaoDeletar
             // 
@@ -60,6 +62,7 @@
             this.botaoDeletar.TabIndex = 2;
             this.botaoDeletar.Text = "DELETAR";
             this.botaoDeletar.UseVisualStyleBackColor = true;
+            this.botaoDeletar.Click += new System.EventHandler(this.botaoDeletar_Click);
             // 
             // caixaLista
             // 
