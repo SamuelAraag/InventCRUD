@@ -16,5 +16,10 @@ namespace CRUD_CadastroCliente
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
