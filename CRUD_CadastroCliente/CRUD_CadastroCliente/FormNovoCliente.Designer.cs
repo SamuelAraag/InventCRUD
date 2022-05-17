@@ -107,7 +107,7 @@
             // botaoSalvar
             // 
             this.botaoSalvar.BackColor = System.Drawing.Color.PaleGreen;
-            this.botaoSalvar.Location = new System.Drawing.Point(16, 457);
+            this.botaoSalvar.Location = new System.Drawing.Point(19, 372);
             this.botaoSalvar.Name = "botaoSalvar";
             this.botaoSalvar.Size = new System.Drawing.Size(149, 37);
             this.botaoSalvar.TabIndex = 8;
@@ -117,7 +117,7 @@
             // botaoSair
             // 
             this.botaoSair.BackColor = System.Drawing.Color.IndianRed;
-            this.botaoSair.Location = new System.Drawing.Point(208, 456);
+            this.botaoSair.Location = new System.Drawing.Point(208, 372);
             this.botaoSair.Name = "botaoSair";
             this.botaoSair.Size = new System.Drawing.Size(154, 38);
             this.botaoSair.TabIndex = 9;
@@ -128,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 520);
+            this.ClientSize = new System.Drawing.Size(388, 446);
             this.Controls.Add(this.botaoSair);
             this.Controls.Add(this.botaoSalvar);
             this.Controls.Add(this.caixaEmail);
