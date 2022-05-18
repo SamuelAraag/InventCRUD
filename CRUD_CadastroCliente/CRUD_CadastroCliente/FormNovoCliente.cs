@@ -16,5 +16,15 @@ namespace CRUD_CadastroCliente
         {
             InitializeComponent();
         }
+
+        private void botaoSalvar_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente();
+            cliente.Nome = caixaNome.Text;
+            cliente.CPF = Convert.ToInt32(caixaCPF.Text);
+            cliente.Telefone = Convert.ToInt32(caixaTelefone.Text);
+            cliente.Email = caixaEmail.Text;
+
+        }
     }
 }

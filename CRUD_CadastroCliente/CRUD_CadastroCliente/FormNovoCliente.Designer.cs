@@ -113,6 +113,7 @@
             this.botaoSalvar.TabIndex = 8;
             this.botaoSalvar.Text = "SALVAR";
             this.botaoSalvar.UseVisualStyleBackColor = false;
+            this.botaoSalvar.Click += new System.EventHandler(this.botaoSalvar_Click);
             // 
             // botaoSair
             // 

@@ -71,6 +71,7 @@
             this.caixaLista.Name = "caixaLista";
             this.caixaLista.Size = new System.Drawing.Size(464, 368);
             this.caixaLista.TabIndex = 3;
+            this.caixaLista.SelectedIndexChanged += new System.EventHandler(this.caixaLista_SelectedIndexChanged);
             // 
             // Form1
             // 

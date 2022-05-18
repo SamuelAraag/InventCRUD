@@ -39,5 +39,10 @@ namespace CRUD_CadastroCliente
             FormDeletarCliente formDeletarCliente = new FormDeletarCliente();
             formDeletarCliente.ShowDialog();
         }
+
+        private void caixaLista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
