@@ -21,8 +21,8 @@ namespace CRUD_CadastroCliente
         {
             Usuario usuario = new Usuario();
             usuario.Nome = caixaNome.Text;
-            usuario.CPF = caixaCPF.Text;
-            usuario.Telefone = caixaTelefone.Text;
+            usuario.CPF = caixaSenha.Text;
+            usuario.Telefone = caixaEmail.Text;
             usuario.Email = caixaEmail.Text;
 
             List<Usuario> usuarios = new List<Usuario>();

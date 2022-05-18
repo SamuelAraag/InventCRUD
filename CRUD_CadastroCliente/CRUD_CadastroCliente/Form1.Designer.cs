@@ -37,9 +37,9 @@
             // 
             // botaoNovo
             // 
-            this.botaoNovo.Location = new System.Drawing.Point(75, 43);
+            this.botaoNovo.Location = new System.Drawing.Point(505, 405);
             this.botaoNovo.Name = "botaoNovo";
-            this.botaoNovo.Size = new System.Drawing.Size(163, 58);
+            this.botaoNovo.Size = new System.Drawing.Size(91, 33);
             this.botaoNovo.TabIndex = 0;
             this.botaoNovo.Text = "NOVO";
             this.botaoNovo.UseVisualStyleBackColor = true;
@@ -47,9 +47,9 @@
             // 
             // botaoAtualizar
             // 
-            this.botaoAtualizar.Location = new System.Drawing.Point(75, 188);
+            this.botaoAtualizar.Location = new System.Drawing.Point(602, 405);
             this.botaoAtualizar.Name = "botaoAtualizar";
-            this.botaoAtualizar.Size = new System.Drawing.Size(163, 64);
+            this.botaoAtualizar.Size = new System.Drawing.Size(91, 33);
             this.botaoAtualizar.TabIndex = 1;
             this.botaoAtualizar.Text = "ATUALIZAR";
             this.botaoAtualizar.UseVisualStyleBackColor = true;
@@ -57,9 +57,9 @@
             // 
             // botaoDeletar
             // 
-            this.botaoDeletar.Location = new System.Drawing.Point(75, 341);
+            this.botaoDeletar.Location = new System.Drawing.Point(699, 405);
             this.botaoDeletar.Name = "botaoDeletar";
-            this.botaoDeletar.Size = new System.Drawing.Size(163, 70);
+            this.botaoDeletar.Size = new System.Drawing.Size(91, 33);
             this.botaoDeletar.TabIndex = 2;
             this.botaoDeletar.Text = "DELETAR";
             this.botaoDeletar.UseVisualStyleBackColor = true;
@@ -68,9 +68,9 @@
             // caixaLista
             // 
             this.caixaLista.FormattingEnabled = true;
-            this.caixaLista.Location = new System.Drawing.Point(295, 43);
+            this.caixaLista.Location = new System.Drawing.Point(12, 12);
             this.caixaLista.Name = "caixaLista";
-            this.caixaLista.Size = new System.Drawing.Size(464, 368);
+            this.caixaLista.Size = new System.Drawing.Size(778, 381);
             this.caixaLista.TabIndex = 3;
             this.caixaLista.SelectedIndexChanged += new System.EventHandler(this.caixaLista_SelectedIndexChanged);
             // 
