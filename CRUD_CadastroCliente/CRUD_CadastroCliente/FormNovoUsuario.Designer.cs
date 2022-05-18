@@ -37,11 +37,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.caixaDataNascimento = new System.Windows.Forms.MaskedTextBox();
-            this.caixaDataCriacao = new System.Windows.Forms.MaskedTextBox();
             this.botaoSalvar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.CaixaId = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -121,15 +121,6 @@
             this.caixaDataNascimento.TabIndex = 12;
             this.caixaDataNascimento.ValidatingType = typeof(System.DateTime);
             // 
-            // caixaDataCriacao
-            // 
-            this.caixaDataCriacao.Location = new System.Drawing.Point(104, 194);
-            this.caixaDataCriacao.Mask = "00/00/0000";
-            this.caixaDataCriacao.Name = "caixaDataCriacao";
-            this.caixaDataCriacao.Size = new System.Drawing.Size(86, 20);
-            this.caixaDataCriacao.TabIndex = 13;
-            this.caixaDataCriacao.ValidatingType = typeof(System.DateTime);
-            // 
             // botaoSalvar
             // 
             this.botaoSalvar.BackColor = System.Drawing.SystemColors.Control;
@@ -167,14 +158,22 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Id";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(104, 194);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(86, 20);
+            this.dateTimePicker1.TabIndex = 18;
+            // 
             // FormNovoUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 290);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.botaoSalvar);
-            this.Controls.Add(this.caixaDataCriacao);
             this.Controls.Add(this.caixaDataNascimento);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -207,10 +206,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.MaskedTextBox caixaDataNascimento;
-        private System.Windows.Forms.MaskedTextBox caixaDataCriacao;
         private System.Windows.Forms.Button botaoSalvar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox CaixaId;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

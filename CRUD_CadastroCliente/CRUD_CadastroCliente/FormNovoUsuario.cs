@@ -15,6 +15,7 @@ namespace CRUD_CadastroCliente
         public FormNovoUsuario()
         {
             InitializeComponent();
+            dateTimePicker1.Enabled=false;
         }
 
         private void botaoSalvar_Click(object sender, EventArgs e)
