@@ -1,6 +1,6 @@
 ﻿namespace CRUD_CadastroCliente
 {
-    partial class FormNovoCliente
+    partial class FormNovoUsuario
     {
         /// <summary>
         /// Required designer variable.

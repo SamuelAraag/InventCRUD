@@ -24,20 +24,20 @@ namespace CRUD_CadastroCliente
 
         private void botaoNovo_Click(object sender, EventArgs e)
         {
-            FormNovoCliente formNovoCliente = new FormNovoCliente();
-            formNovoCliente.ShowDialog();
+            FormNovoUsuario formNovoUsuario = new FormNovoUsuario();
+            formNovoUsuario.ShowDialog();
         }
 
         private void botaoAtualizar_Click(object sender, EventArgs e)
         {
-            FormAtualizarCliente formAtualizarCliente = new FormAtualizarCliente();
-            formAtualizarCliente.ShowDialog();
+            FormAtualizarUsuario formAtualizarUsuario = new FormAtualizarUsuario();
+            formAtualizarUsuario.ShowDialog();
         }
 
         private void botaoDeletar_Click(object sender, EventArgs e)
         {
-            FormDeletarCliente formDeletarCliente = new FormDeletarCliente();
-            formDeletarCliente.ShowDialog();
+            FormDeletarUsuario formDeletarUsuario = new FormDeletarUsuario();
+            formDeletarUsuario.ShowDialog();
         }
 
         private void caixaLista_SelectedIndexChanged(object sender, EventArgs e)

@@ -46,44 +46,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.cs" />
+    <Compile Include="Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAtualizarCliente.cs">
+    <Compile Include="FormAtualizarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAtualizarCliente.Designer.cs">
-      <DependentUpon>FormAtualizarCliente.cs</DependentUpon>
+    <Compile Include="FormAtualizarUsuario.Designer.cs">
+      <DependentUpon>FormAtualizarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDeletarCliente.cs">
+    <Compile Include="FormDeletarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDeletarCliente.Designer.cs">
-      <DependentUpon>FormDeletarCliente.cs</DependentUpon>
+    <Compile Include="FormDeletarUsuario.Designer.cs">
+      <DependentUpon>FormDeletarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormNovoCliente.cs">
+    <Compile Include="FormNovoUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormNovoCliente.Designer.cs">
-      <DependentUpon>FormNovoCliente.cs</DependentUpon>
+    <Compile Include="FormNovoUsuario.Designer.cs">
+      <DependentUpon>FormNovoUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAtualizarCliente.resx">
-      <DependentUpon>FormAtualizarCliente.cs</DependentUpon>
+    <EmbeddedResource Include="FormAtualizarUsuario.resx">
+      <DependentUpon>FormAtualizarUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDeletarCliente.resx">
-      <DependentUpon>FormDeletarCliente.cs</DependentUpon>
+    <EmbeddedResource Include="FormDeletarUsuario.resx">
+      <DependentUpon>FormDeletarUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormNovoCliente.resx">
-      <DependentUpon>FormNovoCliente.cs</DependentUpon>
+    <EmbeddedResource Include="FormNovoUsuario.resx">
+      <DependentUpon>FormNovoUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

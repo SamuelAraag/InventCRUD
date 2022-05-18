@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CRUD_CadastroCliente
 {
-    public partial class FormDeletarCliente : Form
+    public partial class FormDeletarUsuario : Form
     {
-        public FormDeletarCliente()
+        public FormDeletarUsuario()
         {
             InitializeComponent();
         }

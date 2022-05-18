@@ -12,3 +12,17 @@ D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroC
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.exe
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.pdb
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormDeletarCliente.resources
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.exe.config
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.exe
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.pdb
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.SuggestedBindingRedirects.cache
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.Form1.resources
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.Properties.Resources.resources
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.GenerateResource.cache
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.exe
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.pdb
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormAtualizarUsuario.resources
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormDeletarUsuario.resources
+C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormNovoUsuario.resources

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CRUD_CadastroCliente
 {
-    internal class Cliente
+    public class Usuario
     {
         public string Nome { get; set; }
-        public int CPF { get; set; }
-        public int Telefone { get; set; }
+        public string CPF { get; set; }
+        public string Telefone { get; set; }
         public string Email { get; set; }
 
     }

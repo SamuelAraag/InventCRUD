@@ -1,6 +1,6 @@
 ﻿namespace CRUD_CadastroCliente
 {
-    partial class FormDeletarCliente
+    partial class FormAtualizarUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.botaoDeletarCliente = new System.Windows.Forms.Button();
+            this.botaoSair = new System.Windows.Forms.Button();
+            this.botaoSalvar = new System.Windows.Forms.Button();
             this.caixaEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.caixaTelefone = new System.Windows.Forms.TextBox();
@@ -39,15 +40,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // botaoDeletarCliente
+            // botaoSair
             // 
-            this.botaoDeletarCliente.BackColor = System.Drawing.Color.IndianRed;
-            this.botaoDeletarCliente.Location = new System.Drawing.Point(109, 337);
-            this.botaoDeletarCliente.Name = "botaoDeletarCliente";
-            this.botaoDeletarCliente.Size = new System.Drawing.Size(154, 38);
-            this.botaoDeletarCliente.TabIndex = 19;
-            this.botaoDeletarCliente.Text = "DELETAR CLIENTE";
-            this.botaoDeletarCliente.UseVisualStyleBackColor = false;
+            this.botaoSair.BackColor = System.Drawing.Color.IndianRed;
+            this.botaoSair.Location = new System.Drawing.Point(208, 372);
+            this.botaoSair.Name = "botaoSair";
+            this.botaoSair.Size = new System.Drawing.Size(154, 38);
+            this.botaoSair.TabIndex = 19;
+            this.botaoSair.Text = "SAIR";
+            this.botaoSair.UseVisualStyleBackColor = false;
+            // 
+            // botaoSalvar
+            // 
+            this.botaoSalvar.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.botaoSalvar.Location = new System.Drawing.Point(19, 372);
+            this.botaoSalvar.Name = "botaoSalvar";
+            this.botaoSalvar.Size = new System.Drawing.Size(149, 37);
+            this.botaoSalvar.TabIndex = 18;
+            this.botaoSalvar.Text = "ATUALIZAR";
+            this.botaoSalvar.UseVisualStyleBackColor = false;
             // 
             // caixaEmail
             // 
@@ -113,12 +124,13 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "NOME";
             // 
-            // FormDeletarCliente
+            // FormAtualizarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 447);
-            this.Controls.Add(this.botaoDeletarCliente);
+            this.ClientSize = new System.Drawing.Size(388, 446);
+            this.Controls.Add(this.botaoSair);
+            this.Controls.Add(this.botaoSalvar);
             this.Controls.Add(this.caixaEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.caixaTelefone);
@@ -128,10 +140,10 @@
             this.Controls.Add(this.caixaNome);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MinimizeBox = false;
-            this.Name = "FormDeletarCliente";
+            this.MaximizeBox = false;
+            this.Name = "FormAtualizarCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DELETAR CLIENTE";
+            this.Text = "ATUALIZAR CLIENTE";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,7 +151,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button botaoDeletarCliente;
+        private System.Windows.Forms.Button botaoSair;
+        private System.Windows.Forms.Button botaoSalvar;
         private System.Windows.Forms.TextBox caixaEmail;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox caixaTelefone;

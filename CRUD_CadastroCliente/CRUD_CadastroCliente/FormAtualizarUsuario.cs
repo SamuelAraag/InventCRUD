@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CRUD_CadastroCliente
 {
-    public partial class FormAtualizarCliente : Form
+    public partial class FormAtualizarUsuario : Form
     {
-        public FormAtualizarCliente()
+        public FormAtualizarUsuario()
         {
             InitializeComponent();
         }

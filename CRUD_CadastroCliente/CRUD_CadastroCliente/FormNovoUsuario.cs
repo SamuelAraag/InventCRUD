@@ -10,20 +10,24 @@ using System.Windows.Forms;
 
 namespace CRUD_CadastroCliente
 {
-    public partial class FormNovoCliente : Form
+    public partial class FormNovoUsuario : Form
     {
-        public FormNovoCliente()
+        public FormNovoUsuario()
         {
             InitializeComponent();
         }
 
         private void botaoSalvar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente();
-            cliente.Nome = caixaNome.Text;
-            cliente.CPF = Convert.ToInt32(caixaCPF.Text);
-            cliente.Telefone = Convert.ToInt32(caixaTelefone.Text);
-            cliente.Email = caixaEmail.Text;
+            Usuario usuario = new Usuario();
+            usuario.Nome = caixaNome.Text;
+            usuario.CPF = caixaCPF.Text;
+            usuario.Telefone = caixaTelefone.Text;
+            usuario.Email = caixaEmail.Text;
+
+            List<Usuario> usuarios = new List<Usuario>();
+
+            usuarios.Add(usuario);
 
         }
     }

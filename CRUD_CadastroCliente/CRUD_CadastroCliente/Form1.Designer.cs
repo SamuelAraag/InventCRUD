@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.botaoNovo = new System.Windows.Forms.Button();
             this.botaoAtualizar = new System.Windows.Forms.Button();
             this.botaoDeletar = new System.Windows.Forms.Button();
@@ -82,8 +83,9 @@
             this.Controls.Add(this.botaoDeletar);
             this.Controls.Add(this.botaoAtualizar);
             this.Controls.Add(this.botaoNovo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "CADASTRO DO CLIENTE";
+            this.Text = "CADASTRO DE USUARIOS";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
