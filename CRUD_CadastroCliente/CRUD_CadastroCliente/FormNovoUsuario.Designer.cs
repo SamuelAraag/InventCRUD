@@ -41,7 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.CaixaId = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.caixaDataCriacao = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -130,6 +130,7 @@
             this.botaoSalvar.TabIndex = 14;
             this.botaoSalvar.Text = "Salvar";
             this.botaoSalvar.UseVisualStyleBackColor = false;
+            this.botaoSalvar.Click += new System.EventHandler(this.botaoSalvar_Click);
             // 
             // button1
             // 
@@ -140,6 +141,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // CaixaId
             // 
@@ -147,6 +149,7 @@
             this.CaixaId.Name = "CaixaId";
             this.CaixaId.Size = new System.Drawing.Size(86, 20);
             this.CaixaId.TabIndex = 17;
+            this.CaixaId.TextChanged += new System.EventHandler(this.CaixaId_TextChanged);
             // 
             // label6
             // 
@@ -158,20 +161,20 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Id";
             // 
-            // dateTimePicker1
+            // caixaDataCriacao
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(104, 194);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(86, 20);
-            this.dateTimePicker1.TabIndex = 18;
+            this.caixaDataCriacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.caixaDataCriacao.Location = new System.Drawing.Point(104, 194);
+            this.caixaDataCriacao.Name = "caixaDataCriacao";
+            this.caixaDataCriacao.Size = new System.Drawing.Size(86, 20);
+            this.caixaDataCriacao.TabIndex = 18;
             // 
             // FormNovoUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 290);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.caixaDataCriacao);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.botaoSalvar);
             this.Controls.Add(this.caixaDataNascimento);
@@ -190,6 +193,7 @@
             this.Name = "FormNovoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NOVO CLIENTE";
+            this.Load += new System.EventHandler(this.FormNovoUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,6 +214,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox CaixaId;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker caixaDataCriacao;
     }
 }
