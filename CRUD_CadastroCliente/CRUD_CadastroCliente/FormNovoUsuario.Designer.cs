@@ -192,7 +192,7 @@
             this.MaximizeBox = false;
             this.Name = "FormNovoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NOVO CLIENTE";
+            this.Text = "Novo Usuário";
             this.Load += new System.EventHandler(this.FormNovoUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

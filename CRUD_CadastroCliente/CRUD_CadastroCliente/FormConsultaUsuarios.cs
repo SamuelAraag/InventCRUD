@@ -13,6 +13,7 @@ namespace CRUD_CadastroCliente
 
     public partial class FormConsultaUsuarios : Form
     {
+        FormNovoUsuario usuario;
         public List<Usuario> ListaDeUsuariosSalvos { get; set; }
         public FormConsultaUsuarios()
         {
@@ -20,70 +21,89 @@ namespace CRUD_CadastroCliente
             ListaDeUsuariosSalvos = new List<Usuario>();
         }
 
-
         public void botaoNovo_Click(object sender, EventArgs e)
         {
             FormNovoUsuario formNovoUsuario = new FormNovoUsuario(null);
             DialogResult resultado = formNovoUsuario.ShowDialog(this);
 
+            int ultimoIdInserido = 0;
+            var idAtualASerInserido = 0;
 
             if (resultado == DialogResult.OK)
             {
-                int ultimoIdInserido = 0;
-                var idAtualASerInserido = 0;
-                //Iniciar o ID com 1
-
-                //se nao existir usuario inserido na lista ainda, iniciar a variavel do ultimoIdInserido
-                // como 1.
-
                 if (ListaDeUsuariosSalvos.Count == 0)
                 {
                     ultimoIdInserido = 0;
                 }
                 else
                 {
-                    // criar uma variavel e armazenar o valor do ultimo ID inserido.
                     ultimoIdInserido = ListaDeUsuariosSalvos.Last().Id;
-
                 }
                 idAtualASerInserido = ultimoIdInserido + 1;
 
-                //criar uma variavel do ID atual(que eu vou criar) que será inserido, que será alterado
-                // no UsuarioASerCadastrado.
-
-                //agora modificar o ID da variavel UsuarioASerCadastrado com o novo ID criado.
                 formNovoUsuario.UsuarioASerCadastrado.Id = idAtualASerInserido;
 
                 ListaDeUsuariosSalvos.Add(formNovoUsuario.UsuarioASerCadastrado);
                 listaUsuarios.DataSource = null;
                 listaUsuarios.DataSource = ListaDeUsuariosSalvos;
             }
-        
+
         }
-
-        private void botaoAtualizar_Click(object sender, EventArgs e)
+        public void botaoAtualizar_Click(object sender, EventArgs e)
         {
-            //carregar usuarios na lista
-            //listaUsuarios.Items.Add();
+            
+            try
+            {
+                //Selecionar usuario da lista usando index
+                var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
+                //transformar informações do usuario linha em objeto
+                var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
+                //Jogar essas informações na próxima tela, com todos os dados
+                FormNovoUsuario formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
+                formNovoUsuario.Text = "Atualizar Usuario";
+                DialogResult resultado = formNovoUsuario.ShowDialog(this);
+                listaUsuarios.DataSource = null;
+                listaUsuarios.DataSource = ListaDeUsuariosSalvos;
 
-            FormNovoUsuario formNovoUsuario = new FormNovoUsuario(null);
-            formNovoUsuario.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                //aqui vc vai abrir uma caixa de erro
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void botaoDeletar_Click(object sender, EventArgs e)
         {
             //Ao clicar, perguntar se quer excluir usuario selecionado na planilha
+            try
+            {
+                var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
+                var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
+                
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void caixaLista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //carregar usuarios padrão
-            //listaUsuarios.DataSource = Usuario;
         }
 
         private void botaoCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar? ", "Cuidado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+            }
+            else
+            {
+                this.Close();
+            }
         }
         public void Form1_Load(object sender, EventArgs e)
         {

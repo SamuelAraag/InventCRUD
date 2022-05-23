@@ -13,25 +13,34 @@ namespace CRUD_CadastroCliente
     public partial class FormNovoUsuario : Form
     {
         public Usuario UsuarioASerCadastrado { get; set; }
-
+        
         public FormNovoUsuario(Usuario usuario)
         {
+            //Salvando Usuario
             InitializeComponent();
             caixaDataCriacao.Enabled=false;
             CaixaId.Enabled = false;
+            CaixaId.Text = "*";
+            
 
-            //carregar usuarios
             if (usuario == null)
             {
                 UsuarioASerCadastrado = new Usuario();
             }
             else
             {
+                //Atualizando Usuario - Criando construtor
+                CaixaId.Text = usuario.Id.ToString();
+                caixaNome.Text = usuario.Nome;
+                caixaSenha.Text = usuario.Senha;
+                caixaEmail.Text = usuario.Email;
+                caixaDataNascimento.Text = usuario.DataNascimento;
+                caixaDataCriacao.Text = usuario.DataCriacao;
+
                 UsuarioASerCadastrado = usuario;
             }
 
         }
-       
 
         public void botaoSalvar_Click(object sender, EventArgs e)
         {
@@ -44,23 +53,19 @@ namespace CRUD_CadastroCliente
             DialogResult = DialogResult.OK;
 
             Close();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             Close();
         }
 
-        private void FormNovoUsuario_Load(object sender, EventArgs e)
+        public void FormNovoUsuario_Load(object sender, EventArgs e)
         {
-
         }
 
         private void CaixaId_TextChanged(object sender, EventArgs e)
         {
-            
         }
     }
 }

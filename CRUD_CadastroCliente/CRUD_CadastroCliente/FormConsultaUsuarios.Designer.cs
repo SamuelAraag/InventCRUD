@@ -40,7 +40,7 @@
             // 
             // botaoNovo
             // 
-            this.botaoNovo.Location = new System.Drawing.Point(553, 415);
+            this.botaoNovo.Location = new System.Drawing.Point(406, 359);
             this.botaoNovo.Name = "botaoNovo";
             this.botaoNovo.Size = new System.Drawing.Size(75, 23);
             this.botaoNovo.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             // botaoAtualizar
             // 
-            this.botaoAtualizar.Location = new System.Drawing.Point(634, 415);
+            this.botaoAtualizar.Location = new System.Drawing.Point(487, 359);
             this.botaoAtualizar.Name = "botaoAtualizar";
             this.botaoAtualizar.Size = new System.Drawing.Size(75, 23);
             this.botaoAtualizar.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // botaoDeletar
             // 
-            this.botaoDeletar.Location = new System.Drawing.Point(715, 415);
+            this.botaoDeletar.Location = new System.Drawing.Point(568, 359);
             this.botaoDeletar.Name = "botaoDeletar";
             this.botaoDeletar.Size = new System.Drawing.Size(75, 23);
             this.botaoDeletar.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // botaoOk
             // 
-            this.botaoOk.Location = new System.Drawing.Point(12, 415);
+            this.botaoOk.Location = new System.Drawing.Point(13, 359);
             this.botaoOk.Name = "botaoOk";
             this.botaoOk.Size = new System.Drawing.Size(75, 23);
             this.botaoOk.TabIndex = 4;
@@ -79,7 +79,7 @@
             // 
             // botaoCancelar
             // 
-            this.botaoCancelar.Location = new System.Drawing.Point(93, 415);
+            this.botaoCancelar.Location = new System.Drawing.Point(94, 359);
             this.botaoCancelar.Name = "botaoCancelar";
             this.botaoCancelar.Size = new System.Drawing.Size(75, 23);
             this.botaoCancelar.TabIndex = 5;
@@ -92,14 +92,14 @@
             this.listaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaUsuarios.Location = new System.Drawing.Point(12, 13);
             this.listaUsuarios.Name = "listaUsuarios";
-            this.listaUsuarios.Size = new System.Drawing.Size(776, 396);
+            this.listaUsuarios.Size = new System.Drawing.Size(630, 328);
             this.listaUsuarios.TabIndex = 6;
             // 
             // FormConsultaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(655, 396);
             this.Controls.Add(this.listaUsuarios);
             this.Controls.Add(this.botaoCancelar);
             this.Controls.Add(this.botaoOk);
@@ -108,7 +108,7 @@
             this.Controls.Add(this.botaoNovo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConsultaUsuarios";
-            this.Text = "CADASTRO DE USUARIOS";
+            this.Text = "Cadastro de usuários";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listaUsuarios)).EndInit();
             this.ResumeLayout(false);
