@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CRUD_CadastroCliente
+namespace CRUD_CadastroUsuario
 {
     public partial class FormNovoUsuario : Form
     {
@@ -20,8 +20,6 @@ namespace CRUD_CadastroCliente
             InitializeComponent();
             caixaDataCriacao.Enabled=false;
             CaixaId.Enabled = false;
-            CaixaId.Text = "*";
-            
 
             if (usuario == null)
             {
@@ -42,22 +40,47 @@ namespace CRUD_CadastroCliente
 
         }
 
-        public void botaoSalvar_Click(object sender, EventArgs e)
+        public void btnSalvar_Click(object sender, EventArgs e)
         {
+            string campoInvalido = "";
             UsuarioASerCadastrado.Nome = caixaNome.Text;
+            if (caixaNome.Text == campoInvalido)
+            {
+                MessageBox.Show("Campo Nome, Obrigatório");
+                return;
+            }
             UsuarioASerCadastrado.Senha = caixaSenha.Text;
+            if(caixaSenha.Text == campoInvalido)
+            {
+                MessageBox.Show("Campo Senha, Obrigatório");
+                return ;
+            }
             UsuarioASerCadastrado.Email = caixaEmail.Text;
+            if(caixaEmail.Text == campoInvalido)
+            {
+                MessageBox.Show("Campo Email, Obrigatório");
+                return;
+            }
             UsuarioASerCadastrado.DataNascimento = caixaDataNascimento.Text;
             UsuarioASerCadastrado.DataCriacao = caixaDataCriacao.Text;
 
             DialogResult = DialogResult.OK;
-
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCancelarNovoUsuario_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                if(MessageBox.Show("Deseja cancelar a conclusão do cadastro? ", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void FormNovoUsuario_Load(object sender, EventArgs e)
@@ -67,5 +90,6 @@ namespace CRUD_CadastroCliente
         private void CaixaId_TextChanged(object sender, EventArgs e)
         {
         }
+        
     }
 }

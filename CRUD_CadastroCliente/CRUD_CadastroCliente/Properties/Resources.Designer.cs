@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUD_CadastroCliente.Properties
+namespace CRUD_CadastroUsuario.Properties
 {
 
 

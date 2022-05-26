@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUD_CadastroCliente
+namespace CRUD_CadastroUsuario
 {
     public class Usuario
     {

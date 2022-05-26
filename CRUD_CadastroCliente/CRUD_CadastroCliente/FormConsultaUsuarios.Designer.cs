@@ -1,4 +1,4 @@
-﻿namespace CRUD_CadastroCliente
+﻿namespace CRUD_CadastroUsuario
 {
     partial class FormConsultaUsuarios
     {
@@ -46,7 +46,7 @@
             this.botaoNovo.TabIndex = 0;
             this.botaoNovo.Text = "Novo";
             this.botaoNovo.UseVisualStyleBackColor = true;
-            this.botaoNovo.Click += new System.EventHandler(this.botaoNovo_Click);
+            this.botaoNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // botaoAtualizar
             // 
@@ -56,7 +56,7 @@
             this.botaoAtualizar.TabIndex = 1;
             this.botaoAtualizar.Text = "Atualizar";
             this.botaoAtualizar.UseVisualStyleBackColor = true;
-            this.botaoAtualizar.Click += new System.EventHandler(this.botaoAtualizar_Click);
+            this.botaoAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // botaoDeletar
             // 
@@ -66,7 +66,7 @@
             this.botaoDeletar.TabIndex = 2;
             this.botaoDeletar.Text = "Deletar";
             this.botaoDeletar.UseVisualStyleBackColor = true;
-            this.botaoDeletar.Click += new System.EventHandler(this.botaoDeletar_Click);
+            this.botaoDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // botaoOk
             // 
@@ -76,6 +76,7 @@
             this.botaoOk.TabIndex = 4;
             this.botaoOk.Text = "Ok";
             this.botaoOk.UseVisualStyleBackColor = true;
+            this.botaoOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // botaoCancelar
             // 
@@ -85,7 +86,7 @@
             this.botaoCancelar.TabIndex = 5;
             this.botaoCancelar.Text = "Cancelar";
             this.botaoCancelar.UseVisualStyleBackColor = true;
-            this.botaoCancelar.Click += new System.EventHandler(this.botaoCancelar_Click);
+            this.botaoCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // listaUsuarios
             // 

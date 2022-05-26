@@ -1,4 +1,4 @@
-﻿namespace CRUD_CadastroCliente
+﻿namespace CRUD_CadastroUsuario
 {
     partial class FormNovoUsuario
     {
@@ -130,7 +130,7 @@
             this.botaoSalvar.TabIndex = 14;
             this.botaoSalvar.Text = "Salvar";
             this.botaoSalvar.UseVisualStyleBackColor = false;
-            this.botaoSalvar.Click += new System.EventHandler(this.botaoSalvar_Click);
+            this.botaoSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // button1
             // 
@@ -141,7 +141,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.btnCancelarNovoUsuario_Click);
             // 
             // CaixaId
             // 
