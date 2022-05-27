@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,13 +20,13 @@ namespace CRUD_CadastroUsuario
             InitializeComponent();
             ListaDeUsuariosSalvos = new List<Usuario>();
         }
-        public void btnNovo_Click(object sender, EventArgs e)
+        public void AoClicarEmNovo(object sender, EventArgs e)
         {
-            FormNovoUsuario formNovoUsuario = new FormNovoUsuario(null);
-            DialogResult resultado = formNovoUsuario.ShowDialog(this);
+            var formNovoUsuario = new FormNovoUsuario(null);
+            var resultado = formNovoUsuario.ShowDialog(this);
 
-            int ultimoIdInserido = 0;
-            int idAtualASerInserido = 0;
+            var ultimoIdInserido = 0;
+            var idAtualASerInserido = 0;
 
             if (resultado == DialogResult.OK)
             {
@@ -35,121 +36,125 @@ namespace CRUD_CadastroUsuario
                 }
                 else
                 {
-                    ultimoIdInserido = ListaDeUsuariosSalvos.Last().Id;
+                    ultimoIdInserido = ListaDeUsuariosSalvos
+                        .Last()
+                        .Id;
                 }
                 idAtualASerInserido = ultimoIdInserido + 1;
 
                 formNovoUsuario.UsuarioASerCadastrado.Id = idAtualASerInserido;
 
                 ListaDeUsuariosSalvos.Add(formNovoUsuario.UsuarioASerCadastrado);
-                protegerSenha_atualizarLista();
+                AtualizarLista();
             }
-
         }
-        public void btnAtualizar_Click(object sender, EventArgs e)
+        public void AoClicarEmAtualizar(object sender, EventArgs e)
         {
             try
             {
-                
                 if(listaUsuarios.Rows.Count == 0)
                 {
-                    MessageBox.Show("Nenhum usuário selecionado!");
+                    ExibirMensagem("Nenhum usuário selecionado!");
                 }
                 else
                 {
                     var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
-                    //transformar informações do usuario linha em objeto
                     var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    //Jogar essas informações na próxima tela, com todos os dados
-                    FormNovoUsuario formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
+                    var formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
                     if (usuarioSelecionado != null)
                     {
                         formNovoUsuario.Text = "Atualizar Usuario";
-                        DialogResult resultado = formNovoUsuario.ShowDialog(this);
-
-                        protegerSenha_atualizarLista();
+                        var resultado = formNovoUsuario.ShowDialog(this);
+                        AtualizarLista();
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro inesperado, tente novamente!");
+                ExibirMensagem("Erro inesperado, tente novamente!");
             }
         }
-        private void btnDeletar_Click(object sender, EventArgs e)
+        private void aoClicarEmDeletar(object sender, EventArgs e)
         {
             try
             {
-                //Tentar deletar o usuario
                 if (listaUsuarios.CurrentCell == null)
                 {
-                    MessageBox.Show("Nenhum usuário selecionado!");
+                    ExibirMensagem("Nenhum usuário selecionado!");
+                    throw new Exception("Nenhum usuário selecionado!");
+
                 }
                 else
                 {
                     var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    if (MessageBox.Show("Deseja realmente deletar o usuário? ", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
-                    {
-                    }
-                    else
+                    if (DezejaDeletarOUsuario())
                     {
                         ListaDeUsuariosSalvos.Remove(usuarioSelecionado);
-                        protegerSenha_atualizarLista();
+                        AtualizarLista();
                     }
                 }
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro inesperado, tente novamente!");
+                ExibirMensagem($"Erro inesperado, tente novamente! \n {ex.Message}");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar? ", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    Close();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Erro inesperado, tente novamente!");
-            }
-        } 
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private static bool DezejaDeletarOUsuario()
+        {
+            return MessageBox.Show("Deseja realmente deletar o usuário? ", 
+                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+        }
+
+        private void AoClicarEmCancelar(object sender, EventArgs e)
         {
             try
             {
-                if (MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
-                {
-                }
-                else
+                if (DeveSairDoSistema())
                 {
                     this.Close();
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro inesperado, tente novamente!");
+                ExibirMensagem("Erro inesperado, tente novamente!");
             }
-            
         }
-        public void protegerSenha_atualizarLista()
+
+        private static bool DeveSairDoSistema()
+        {
+            return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
+                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception)
+            {
+                ExibirMensagem("Erro inesperado, tente novamente!");
+            }
+        }
+
+        public void AtualizarLista()
         {
             listaUsuarios.DataSource = null;
             listaUsuarios.DataSource = ListaDeUsuariosSalvos;
-            this.listaUsuarios.Columns["Senha"].Visible = false;
+            listaUsuarios.Columns["Senha"].Visible = false;
         }
 
-        private void caixaLista_SelectedIndexChanged(object sender, EventArgs e)
+        private void ExibirMensagem(string mensagem)
         {
-        }
-        public void Form1_Load(object sender, EventArgs e)
-        {
+            MessageBox.Show(mensagem);
         }
     }
 }

@@ -40,33 +40,33 @@
             // 
             // botaoNovo
             // 
-            this.botaoNovo.Location = new System.Drawing.Point(406, 359);
+            this.botaoNovo.Location = new System.Drawing.Point(302, 359);
             this.botaoNovo.Name = "botaoNovo";
             this.botaoNovo.Size = new System.Drawing.Size(75, 23);
             this.botaoNovo.TabIndex = 0;
             this.botaoNovo.Text = "Novo";
             this.botaoNovo.UseVisualStyleBackColor = true;
-            this.botaoNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            this.botaoNovo.Click += new System.EventHandler(this.AoClicarEmNovo);
             // 
             // botaoAtualizar
             // 
-            this.botaoAtualizar.Location = new System.Drawing.Point(487, 359);
+            this.botaoAtualizar.Location = new System.Drawing.Point(383, 359);
             this.botaoAtualizar.Name = "botaoAtualizar";
             this.botaoAtualizar.Size = new System.Drawing.Size(75, 23);
             this.botaoAtualizar.TabIndex = 1;
             this.botaoAtualizar.Text = "Atualizar";
             this.botaoAtualizar.UseVisualStyleBackColor = true;
-            this.botaoAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            this.botaoAtualizar.Click += new System.EventHandler(this.AoClicarEmAtualizar);
             // 
             // botaoDeletar
             // 
-            this.botaoDeletar.Location = new System.Drawing.Point(568, 359);
+            this.botaoDeletar.Location = new System.Drawing.Point(464, 359);
             this.botaoDeletar.Name = "botaoDeletar";
             this.botaoDeletar.Size = new System.Drawing.Size(75, 23);
             this.botaoDeletar.TabIndex = 2;
             this.botaoDeletar.Text = "Deletar";
             this.botaoDeletar.UseVisualStyleBackColor = true;
-            this.botaoDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
+            this.botaoDeletar.Click += new System.EventHandler(this.aoClicarEmDeletar);
             // 
             // botaoOk
             // 
@@ -86,21 +86,21 @@
             this.botaoCancelar.TabIndex = 5;
             this.botaoCancelar.Text = "Cancelar";
             this.botaoCancelar.UseVisualStyleBackColor = true;
-            this.botaoCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.botaoCancelar.Click += new System.EventHandler(this.AoClicarEmCancelar);
             // 
             // listaUsuarios
             // 
             this.listaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaUsuarios.Location = new System.Drawing.Point(12, 13);
             this.listaUsuarios.Name = "listaUsuarios";
-            this.listaUsuarios.Size = new System.Drawing.Size(630, 328);
+            this.listaUsuarios.Size = new System.Drawing.Size(527, 328);
             this.listaUsuarios.TabIndex = 6;
             // 
             // FormConsultaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 396);
+            this.ClientSize = new System.Drawing.Size(553, 396);
             this.Controls.Add(this.listaUsuarios);
             this.Controls.Add(this.botaoCancelar);
             this.Controls.Add(this.botaoOk);
@@ -110,7 +110,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConsultaUsuarios";
             this.Text = "Cadastro de usuários";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listaUsuarios)).EndInit();
             this.ResumeLayout(false);
 
