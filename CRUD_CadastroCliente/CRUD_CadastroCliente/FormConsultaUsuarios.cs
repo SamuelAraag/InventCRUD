@@ -5,28 +5,27 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CRUD_CadastroCliente
+namespace CRUD_CadastroUsuario
 {
 
     public partial class FormConsultaUsuarios : Form
     {
-        FormNovoUsuario usuario;
         public List<Usuario> ListaDeUsuariosSalvos { get; set; }
         public FormConsultaUsuarios()
         {
             InitializeComponent();
             ListaDeUsuariosSalvos = new List<Usuario>();
         }
-
-        public void botaoNovo_Click(object sender, EventArgs e)
+        private void AoClicarEmNovo(object sender, EventArgs e)
         {
-            FormNovoUsuario formNovoUsuario = new FormNovoUsuario(null);
-            DialogResult resultado = formNovoUsuario.ShowDialog(this);
+            var formNovoUsuario = new FormNovoUsuario(null);
+            var resultado = formNovoUsuario.ShowDialog(this);
 
-            int ultimoIdInserido = 0;
+            var ultimoIdInserido = 0;
             var idAtualASerInserido = 0;
 
             if (resultado == DialogResult.OK)
@@ -37,78 +36,126 @@ namespace CRUD_CadastroCliente
                 }
                 else
                 {
-                    ultimoIdInserido = ListaDeUsuariosSalvos.Last().Id;
+                    ultimoIdInserido = ListaDeUsuariosSalvos
+                        .Last()
+                        .Id;
                 }
                 idAtualASerInserido = ultimoIdInserido + 1;
 
                 formNovoUsuario.UsuarioASerCadastrado.Id = idAtualASerInserido;
 
                 ListaDeUsuariosSalvos.Add(formNovoUsuario.UsuarioASerCadastrado);
-                listaUsuarios.DataSource = null;
-                listaUsuarios.DataSource = ListaDeUsuariosSalvos;
-            }
-
-        }
-        public void botaoAtualizar_Click(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                //Selecionar usuario da lista usando index
-                var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
-                //transformar informações do usuario linha em objeto
-                var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                //Jogar essas informações na próxima tela, com todos os dados
-                FormNovoUsuario formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
-                formNovoUsuario.Text = "Atualizar Usuario";
-                DialogResult resultado = formNovoUsuario.ShowDialog(this);
-                listaUsuarios.DataSource = null;
-                listaUsuarios.DataSource = ListaDeUsuariosSalvos;
-
-
-            }
-            catch (Exception ex)
-            {
-                //aqui vc vai abrir uma caixa de erro
-                MessageBox.Show(ex.Message);
+                AtualizarLista();
             }
         }
-
-        private void botaoDeletar_Click(object sender, EventArgs e)
+        private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
-            //Ao clicar, perguntar se quer excluir usuario selecionado na planilha
             try
             {
-                var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
-                var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                
-
+                if(listaUsuarios.Rows.Count == 0)
+                {
+                    ExibirMensagem("Nenhum usuário selecionado!");
+                }
+                else
+                {
+                    var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
+                    var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
+                    var formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
+                    if (usuarioSelecionado != null)
+                    {
+                        formNovoUsuario.Text = "Atualizar Usuario";
+                        var resultado = formNovoUsuario.ShowDialog(this);
+                        AtualizarLista();
+                    }
+                }
             }
             catch (Exception)
             {
-
-                throw;
+                ExibirMensagem("Erro inesperado, tente novamente!");
             }
         }
-
-        private void caixaLista_SelectedIndexChanged(object sender, EventArgs e)
+        private void aoClicarEmDeletar(object sender, EventArgs e)
         {
-        }
-
-        private void botaoCancelar_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar? ", "Cuidado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            try
             {
+                if (listaUsuarios.CurrentCell == null)
+                {
+                    ExibirMensagem("Nenhum usuário selecionado!");
+                    throw new Exception("Nenhum usuário selecionado!");
+
+                }
+                else
+                {
+                    var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
+                    var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
+                    if (DesejaDeletarOUsuario())
+                    {
+                        ListaDeUsuariosSalvos.Remove(usuarioSelecionado);
+                        AtualizarLista();
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.Close();
+                ExibirMensagem($"Erro inesperado, tente novamente! \n {ex.Message}");
             }
         }
-        public void Form1_Load(object sender, EventArgs e)
-        {
 
+        private static bool DesejaDeletarOUsuario()
+        {
+            return MessageBox.Show("Deseja realmente deletar o usuário? ", 
+                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
 
+        private void AoClicarEmCancelar(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DeveSairDoSistema())
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception)
+            {
+                ExibirMensagem("Erro inesperado, tente novamente!");
+            }
+        }
+
+
+        private void AoClicarEmOk(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DeveSairDoSistema())
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception)
+            {
+                ExibirMensagem("Erro inesperado, tente novamente!");
+            }
+        }
+
+        private static bool DeveSairDoSistema()
+        {
+            return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
+                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+        }
+
+        private void AtualizarLista()
+        {
+            listaUsuarios.DataSource = null;
+            listaUsuarios.DataSource = ListaDeUsuariosSalvos;
+            listaUsuarios.Columns["Senha"].Visible = false;
+        }
+
+        private void ExibirMensagem(string mensagem)
+        {
+            MessageBox.Show(mensagem);
+        }
     }
 }

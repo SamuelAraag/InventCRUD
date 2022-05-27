@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CRUD_CadastroCliente
+namespace CRUD_CadastroUsuario
 {
     internal static class Program
     {
