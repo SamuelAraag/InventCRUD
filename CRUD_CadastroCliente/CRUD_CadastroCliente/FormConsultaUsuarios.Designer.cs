@@ -76,7 +76,7 @@
             this.botaoOk.TabIndex = 4;
             this.botaoOk.Text = "Ok";
             this.botaoOk.UseVisualStyleBackColor = true;
-            this.botaoOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.botaoOk.Click += new System.EventHandler(this.AoClicarEmOk);
             // 
             // botaoCancelar
             // 
@@ -109,6 +109,7 @@
             this.Controls.Add(this.botaoNovo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConsultaUsuarios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de usuários";
             ((System.ComponentModel.ISupportInitialize)(this.listaUsuarios)).EndInit();
             this.ResumeLayout(false);

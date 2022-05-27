@@ -10,9 +10,7 @@ namespace CRUD_CadastroUsuario
         
         public FormNovoUsuario(Usuario usuario)
         {
-            InitializeComponent();
-            caixaDataCriacao.Enabled = false;
-            CaixaId.Enabled = false;
+            InicializarComponentes();
 
             if (usuario == null)
             {
@@ -30,7 +28,7 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-        public void AoClicarEmSalvar(object sender, EventArgs e)
+        private void AoClicarEmSalvar(object sender, EventArgs e)
         {
             try
             {
@@ -39,10 +37,23 @@ namespace CRUD_CadastroUsuario
                 UsuarioASerCadastrado.Email = caixaEmail.Text;
                 UsuarioASerCadastrado.Senha = caixaSenha.Text;
                 UsuarioASerCadastrado.Nome = caixaNome.Text;
+
+                //Validando datetime com exceção de data não existente
                 const string valorPadrao = "  /  /";
-                if (caixaDataNascimento.Text != valorPadrao)
+                //Teste validação da data
+                DateTime dt;
+                if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
                 {
-                    UsuarioASerCadastrado.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                    MessageBox.Show("Campo Data, Inválido!");
+                    caixaDataNascimento.Focus();
+                    return;
+                }
+                else
+                {
+                    if (caixaDataNascimento.Text != valorPadrao)
+                    {
+                        UsuarioASerCadastrado.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                    }
                 }
 
                 UsuarioASerCadastrado.DataCriacao = caixaDataCriacao.Text;
@@ -51,9 +62,8 @@ namespace CRUD_CadastroUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message); ;
+                MessageBox.Show(ex.Message);
             }
-            
         }
 
         private void ValidarCampos()
@@ -98,6 +108,12 @@ namespace CRUD_CadastroUsuario
             return MessageBox.Show("Deseja cancelar a conclusão do cadastro? ",
                 "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+        }
+        private void InicializarComponentes()
+        {
+            InitializeComponent();
+            caixaDataCriacao.Enabled = false;
+            CaixaId.Enabled = false;
         }
     }
 }

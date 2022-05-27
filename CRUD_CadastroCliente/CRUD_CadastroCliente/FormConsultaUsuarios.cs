@@ -20,7 +20,7 @@ namespace CRUD_CadastroUsuario
             InitializeComponent();
             ListaDeUsuariosSalvos = new List<Usuario>();
         }
-        public void AoClicarEmNovo(object sender, EventArgs e)
+        private void AoClicarEmNovo(object sender, EventArgs e)
         {
             var formNovoUsuario = new FormNovoUsuario(null);
             var resultado = formNovoUsuario.ShowDialog(this);
@@ -48,7 +48,7 @@ namespace CRUD_CadastroUsuario
                 AtualizarLista();
             }
         }
-        public void AoClicarEmAtualizar(object sender, EventArgs e)
+        private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace CRUD_CadastroUsuario
                 {
                     var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    if (DezejaDeletarOUsuario())
+                    if (DesejaDeletarOUsuario())
                     {
                         ListaDeUsuariosSalvos.Remove(usuarioSelecionado);
                         AtualizarLista();
@@ -101,7 +101,7 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-        private static bool DezejaDeletarOUsuario()
+        private static bool DesejaDeletarOUsuario()
         {
             return MessageBox.Show("Deseja realmente deletar o usuário? ", 
                 "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -123,18 +123,12 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-        private static bool DeveSairDoSistema()
-        {
-            return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
-                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
-        }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void AoClicarEmOk(object sender, EventArgs e)
         {
             try
             {
-                if (MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (DeveSairDoSistema())
                 {
                     this.Close();
                 }
@@ -145,7 +139,14 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-        public void AtualizarLista()
+        private static bool DeveSairDoSistema()
+        {
+            return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
+                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+        }
+
+        private void AtualizarLista()
         {
             listaUsuarios.DataSource = null;
             listaUsuarios.DataSource = ListaDeUsuariosSalvos;
