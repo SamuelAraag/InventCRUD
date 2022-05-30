@@ -3,15 +3,11 @@ D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroC
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.pdb
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.AssemblyReference.cache
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.SuggestedBindingRedirects.cache
-D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.Form1.resources
-D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormAtualizarCliente.resources
-D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormNovoCliente.resources
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.Properties.Resources.resources
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.GenerateResource.cache
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.CoreCompileInputs.cache
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.exe
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.pdb
-D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.FormDeletarCliente.resources
 C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.exe.config
 C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.exe
 C:\Users\USUARIO\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\CRUD_CadastroCliente.pdb
@@ -36,3 +32,5 @@ C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_Cadastro
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.pdb
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormConsultaUsuarios.resources
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormNovoUsuario.resources
+D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormConsultaUsuarios.resources
+D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormNovoUsuario.resources

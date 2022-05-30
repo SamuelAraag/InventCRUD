@@ -14,7 +14,7 @@ namespace CRUD_CadastroUsuario
 
             if (usuario == null)
             {
-                UsuarioASerCadastrado = new Usuario();
+                UsuarioASerCadastrado = Usuario.Instancia;
             }
             else
             {
