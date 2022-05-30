@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace CRUD_CadastroUsuario
 {
@@ -38,11 +39,9 @@ namespace CRUD_CadastroUsuario
                 UsuarioASerCadastrado.Senha = caixaSenha.Text;
                 UsuarioASerCadastrado.Nome = caixaNome.Text;
 
-                //Validando datetime com exceção de data não existente
                 const string valorPadrao = "  /  /";
-                //Teste validação da data
                 DateTime dt;
-                if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+                if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out dt))
                 {
                     MessageBox.Show("Campo Data, Inválido!");
                     caixaDataNascimento.Focus();
