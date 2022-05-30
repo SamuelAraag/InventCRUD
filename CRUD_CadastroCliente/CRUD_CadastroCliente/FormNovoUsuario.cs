@@ -6,7 +6,7 @@ namespace CRUD_CadastroUsuario
 {
     public partial class FormNovoUsuario : Form
     {
-        public Usuario UsuarioASerCadastrado { get; set; }
+        public Usuario Usuario { get; set; }
         
         public FormNovoUsuario(Usuario usuario)
         {
@@ -14,7 +14,7 @@ namespace CRUD_CadastroUsuario
 
             if (usuario == null)
             {
-                UsuarioASerCadastrado = Usuario.Instancia;
+                Usuario = new Usuario();
             }
             else
             {
@@ -24,7 +24,7 @@ namespace CRUD_CadastroUsuario
                 caixaEmail.Text = usuario.Email;
                 caixaDataNascimento.Text = usuario.DataNascimento.ToString();
                 caixaDataCriacao.Text = usuario.DataCriacao;
-                UsuarioASerCadastrado = usuario;
+                Usuario = usuario;
             }
         }
 
@@ -34,9 +34,9 @@ namespace CRUD_CadastroUsuario
             {
                 ValidarCampos();
 
-                UsuarioASerCadastrado.Email = caixaEmail.Text;
-                UsuarioASerCadastrado.Senha = caixaSenha.Text;
-                UsuarioASerCadastrado.Nome = caixaNome.Text;
+                Usuario.Email = caixaEmail.Text;
+                Usuario.Senha = caixaSenha.Text;
+                Usuario.Nome = caixaNome.Text;
 
                 //Validando datetime com exceção de data não existente
                 const string valorPadrao = "  /  /";
@@ -52,11 +52,11 @@ namespace CRUD_CadastroUsuario
                 {
                     if (caixaDataNascimento.Text != valorPadrao)
                     {
-                        UsuarioASerCadastrado.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                        Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
                     }
                 }
 
-                UsuarioASerCadastrado.DataCriacao = caixaDataCriacao.Text;
+                Usuario.DataCriacao = caixaDataCriacao.Text;
                 DialogResult = DialogResult.OK;
                 Close();
             }
