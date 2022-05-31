@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRUD_CadastroCliente;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,10 @@ namespace CRUD_CadastroUsuario
 
     public partial class FormConsultaUsuarios : Form
     {
-        public List<Usuario> ListaDeUsuariosSalvos { get; set; }
         public FormConsultaUsuarios()
         {
             InitializeComponent();
-            ListaDeUsuariosSalvos = new List<Usuario>();
+            Lista = new List<Usuario>();
         }
         private void AoClicarEmNovo(object sender, EventArgs e)
         {
@@ -42,9 +42,9 @@ namespace CRUD_CadastroUsuario
                 }
                 idAtualASerInserido = ultimoIdInserido + 1;
 
-                formNovoUsuario.UsuarioASerCadastrado.Id = idAtualASerInserido;
+                formNovoUsuario.Usuario.Id = idAtualASerInserido;
 
-                ListaDeUsuariosSalvos.Add(formNovoUsuario.UsuarioASerCadastrado);
+                ListaDeUsuariosSalvos.Add(formNovoUsuario.Usuario);
                 AtualizarLista();
             }
         }
