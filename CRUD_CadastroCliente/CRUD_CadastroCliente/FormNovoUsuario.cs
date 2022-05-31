@@ -1,7 +1,12 @@
 ﻿using System;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace CRUD_CadastroUsuario
 {
@@ -11,7 +16,10 @@ namespace CRUD_CadastroUsuario
         
         public FormNovoUsuario(Usuario usuario)
         {
-            InicializarComponentes();
+            //Salvando Usuario
+            InitializeComponent();
+            caixaDataCriacao.Enabled=false;
+            CaixaId.Enabled = false;
 
             if (usuario == null)
             {
@@ -19,79 +27,52 @@ namespace CRUD_CadastroUsuario
             }
             else
             {
+                //Atualizando Usuario - Criando construtor
                 CaixaId.Text = usuario.Id.ToString();
                 caixaNome.Text = usuario.Nome;
                 caixaSenha.Text = usuario.Senha;
                 caixaEmail.Text = usuario.Email;
-                caixaDataNascimento.Text = usuario.DataNascimento.ToString();
+                caixaDataNascimento.Text = usuario.DataNascimento;
                 caixaDataCriacao.Text = usuario.DataCriacao;
+
                 UsuarioASerCadastrado = usuario;
             }
+
         }
 
-        private void AoClicarEmSalvar(object sender, EventArgs e)
+        public void btnSalvar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                ValidarCampos();
-
-                UsuarioASerCadastrado.Email = caixaEmail.Text;
-                UsuarioASerCadastrado.Senha = caixaSenha.Text;
-                UsuarioASerCadastrado.Nome = caixaNome.Text;
-
-                const string valorPadrao = "  /  /";
-                DateTime dt;
-                if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out dt))
-                {
-                    MessageBox.Show("Campo Data, Inválido!");
-                    caixaDataNascimento.Focus();
-                    return;
-                }
-                else
-                {
-                    if (caixaDataNascimento.Text != valorPadrao)
-                    {
-                        UsuarioASerCadastrado.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-                    }
-                }
-
-                UsuarioASerCadastrado.DataCriacao = caixaDataCriacao.Text;
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void ValidarCampos()
-        {
-            var campoInvalido = "";
+            string campoInvalido = "";
+            UsuarioASerCadastrado.Nome = caixaNome.Text;
             if (caixaNome.Text == campoInvalido)
             {
-                throw new Exception("Campo Nome, Obrigatório");
+                MessageBox.Show("Campo Nome, Obrigatório");
+                return;
             }
-
-            if (caixaSenha.Text == campoInvalido)
+            UsuarioASerCadastrado.Senha = caixaSenha.Text;
+            if(caixaSenha.Text == campoInvalido)
             {
-                throw new Exception("Campo Senha, Obrigatório");
+                MessageBox.Show("Campo Senha, Obrigatório");
+                return ;
             }
-
-            var email = caixaEmail.Text;
-            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            var match = regex.Match(email);
-            if (!match.Success)
+            UsuarioASerCadastrado.Email = caixaEmail.Text;
+            if(caixaEmail.Text == campoInvalido)
             {
-                throw new Exception("Insira um email valido");
+                MessageBox.Show("Campo Email, Obrigatório");
+                return;
             }
+            UsuarioASerCadastrado.DataNascimento = caixaDataNascimento.Text;
+            UsuarioASerCadastrado.DataCriacao = caixaDataCriacao.Text;
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
-        private void AoClicarEmCancelar(object sender, EventArgs e)
+        private void btnCancelarNovoUsuario_Click(object sender, EventArgs e)
         {
             try
             {
-                if(DeveSairDaTela())
+                if(MessageBox.Show("Deseja cancelar a conclusão do cadastro? ", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     Close();
                 }
@@ -102,17 +83,13 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-        private bool DeveSairDaTela()
+        public void FormNovoUsuario_Load(object sender, EventArgs e)
         {
-            return MessageBox.Show("Deseja cancelar a conclusão do cadastro? ",
-                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
-        private void InicializarComponentes()
+
+        private void CaixaId_TextChanged(object sender, EventArgs e)
         {
-            InitializeComponent();
-            caixaDataCriacao.Enabled = false;
-            CaixaId.Enabled = false;
         }
+        
     }
 }

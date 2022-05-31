@@ -130,7 +130,7 @@
             this.botaoSalvar.TabIndex = 14;
             this.botaoSalvar.Text = "Salvar";
             this.botaoSalvar.UseVisualStyleBackColor = false;
-            this.botaoSalvar.Click += new System.EventHandler(this.AoClicarEmSalvar);
+            this.botaoSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // button1
             // 
@@ -141,7 +141,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.AoClicarEmCancelar);
+            this.button1.Click += new System.EventHandler(this.btnCancelarNovoUsuario_Click);
             // 
             // CaixaId
             // 
@@ -149,6 +149,7 @@
             this.CaixaId.Name = "CaixaId";
             this.CaixaId.Size = new System.Drawing.Size(86, 20);
             this.CaixaId.TabIndex = 17;
+            this.CaixaId.TextChanged += new System.EventHandler(this.CaixaId_TextChanged);
             // 
             // label6
             // 
@@ -192,6 +193,7 @@
             this.Name = "FormNovoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novo Usuário";
+            this.Load += new System.EventHandler(this.FormNovoUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
