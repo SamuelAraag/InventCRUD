@@ -38,9 +38,7 @@ namespace CRUD_CadastroUsuario
                 Usuario.Senha = caixaSenha.Text;
                 Usuario.Nome = caixaNome.Text;
 
-                //Validando datetime com exceção de data não existente
                 const string valorPadrao = "  /  /";
-                //Teste validação da data
                 DateTime dt;
                 if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
                 {

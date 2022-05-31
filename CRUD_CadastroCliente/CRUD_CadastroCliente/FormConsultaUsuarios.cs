@@ -19,18 +19,21 @@ namespace CRUD_CadastroUsuario
         {
             InitializeComponent();
         }
-        private void AoClicarEmNovo(object sender, EventArgs e)
+
+        public void AoClicarEmNovo(object sender, EventArgs e)
         {
             var formNovoUsuario = new FormNovoUsuario(null);
-            var resultado = formNovoUsuario.ShowDialog(this);
+            var resultado = formNovoUsuario.ShowDialog();
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+            var usuarioRepositorio = new UsuarioRepositorio();
+            var todosOsUsuarios = usuarioRepositorio.ObterTodos();
 
             var ultimoIdInserido = 0;
             var idAtualASerInserido = 0;
 
             if (resultado == DialogResult.OK)
             {
-                if (listaDeUsuarios.Count == 0)
+                if (todosOsUsuarios.Count == 0)
                 {
                     ultimoIdInserido = 0;
                 }
@@ -42,7 +45,7 @@ namespace CRUD_CadastroUsuario
 
                 formNovoUsuario.Usuario.Id = idAtualASerInserido;
 
-                listaDeUsuarios.Add(formNovoUsuario.Usuario);
+                usuarioRepositorio.AdicionarUsuario(formNovoUsuario.Usuario);
                 AtualizarLista();
             }
         }
@@ -50,7 +53,11 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
-                if(listaUsuarios.Rows.Count == 0)
+                var usuarioRepositorio = new UsuarioRepositorio();
+                var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+                
+
+                if(usuarioRepositorio.ObterTodos().Count == 0)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                 }
@@ -58,7 +65,10 @@ namespace CRUD_CadastroUsuario
                 {
                     var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    var formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
+                    var usuarioId = usuarioRepositorio.ObterPorId(usuarioSelecionado.Id);
+                    var formNovoUsuario = new FormNovoUsuario(usuarioId);
+
+
                     if (usuarioSelecionado != null)
                     {
                         formNovoUsuario.Text = "Atualizar Usuario";
@@ -76,6 +86,7 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
+                var usuarioRepositorio = new UsuarioRepositorio();
                 var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
                 if (listaUsuarios.CurrentCell == null)
                 {
@@ -89,7 +100,7 @@ namespace CRUD_CadastroUsuario
                     var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
                     if (DesejaDeletarOUsuario())
                     {
-                        listaDeUsuarios.Remove(usuarioSelecionado);
+                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado);
                         AtualizarLista();
                     }
                 }
@@ -99,7 +110,6 @@ namespace CRUD_CadastroUsuario
                 ExibirMensagem($"Erro inesperado, tente novamente! \n {ex.Message}");
             }
         }
-
         private static bool DesejaDeletarOUsuario()
         {
             return MessageBox.Show("Deseja realmente deletar o usuário? ", 
@@ -122,7 +132,6 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-
         private void AoClicarEmOk(object sender, EventArgs e)
         {
             try
@@ -137,7 +146,6 @@ namespace CRUD_CadastroUsuario
                 ExibirMensagem("Erro inesperado, tente novamente!");
             }
         }
-
         private static bool DeveSairDoSistema()
         {
             return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
@@ -145,7 +153,7 @@ namespace CRUD_CadastroUsuario
                 MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
 
-        private void AtualizarLista()
+        public void AtualizarLista()
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
             listaUsuarios.DataSource = null;
