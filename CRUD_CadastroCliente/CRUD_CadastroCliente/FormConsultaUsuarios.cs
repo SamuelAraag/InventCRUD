@@ -28,23 +28,11 @@ namespace CRUD_CadastroUsuario
             var usuarioRepositorio = new UsuarioRepositorio();
             var todosOsUsuarios = usuarioRepositorio.ObterTodos();
 
-            var ultimoIdInserido = 0;
-            var idAtualASerInserido = 0;
+            var idAtualASerInserido = ListaDeUsuarios.IdASerInserido();
 
             if (resultado == DialogResult.OK)
             {
-                if (todosOsUsuarios.Count == 0)
-                {
-                    ultimoIdInserido = 0;
-                }
-                else
-                {
-                    ultimoIdInserido = listaDeUsuarios.Last().Id;
-                }
-                idAtualASerInserido = ultimoIdInserido + 1;
-
                 formNovoUsuario.Usuario.Id = idAtualASerInserido;
-
                 usuarioRepositorio.AdicionarUsuario(formNovoUsuario.Usuario);
                 AtualizarLista();
             }

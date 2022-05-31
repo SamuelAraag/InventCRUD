@@ -32,7 +32,8 @@ namespace CRUD_CadastroCliente
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
             var usuarioBase = new Usuario();
 
-            listaDeUsuarios.ForEach(usuario =>
+            listaDeUsuarios.ForEach(usuario => 
+
             {
                 if (usuario.Id == id)
                 {
@@ -41,5 +42,7 @@ namespace CRUD_CadastroCliente
             });
             return usuarioBase;
         }
+
+        //Criar funcao atualizar usuario
     }
 }
