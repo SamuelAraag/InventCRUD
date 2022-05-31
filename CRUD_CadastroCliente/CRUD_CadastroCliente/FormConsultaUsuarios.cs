@@ -18,33 +18,31 @@ namespace CRUD_CadastroUsuario
         public FormConsultaUsuarios()
         {
             InitializeComponent();
-            Lista = new List<Usuario>();
         }
         private void AoClicarEmNovo(object sender, EventArgs e)
         {
             var formNovoUsuario = new FormNovoUsuario(null);
             var resultado = formNovoUsuario.ShowDialog(this);
+            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
 
             var ultimoIdInserido = 0;
             var idAtualASerInserido = 0;
 
             if (resultado == DialogResult.OK)
             {
-                if (ListaDeUsuariosSalvos.Count == 0)
+                if (listaDeUsuarios.Count == 0)
                 {
                     ultimoIdInserido = 0;
                 }
                 else
                 {
-                    ultimoIdInserido = ListaDeUsuariosSalvos
-                        .Last()
-                        .Id;
+                    ultimoIdInserido = listaDeUsuarios.Last().Id;
                 }
                 idAtualASerInserido = ultimoIdInserido + 1;
 
                 formNovoUsuario.Usuario.Id = idAtualASerInserido;
 
-                ListaDeUsuariosSalvos.Add(formNovoUsuario.Usuario);
+                listaDeUsuarios.Add(formNovoUsuario.Usuario);
                 AtualizarLista();
             }
         }
@@ -78,6 +76,7 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
+                var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
                 if (listaUsuarios.CurrentCell == null)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
@@ -90,7 +89,7 @@ namespace CRUD_CadastroUsuario
                     var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
                     if (DesejaDeletarOUsuario())
                     {
-                        ListaDeUsuariosSalvos.Remove(usuarioSelecionado);
+                        listaDeUsuarios.Remove(usuarioSelecionado);
                         AtualizarLista();
                     }
                 }
@@ -148,8 +147,9 @@ namespace CRUD_CadastroUsuario
 
         private void AtualizarLista()
         {
+            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
             listaUsuarios.DataSource = null;
-            listaUsuarios.DataSource = ListaDeUsuariosSalvos;
+            listaUsuarios.DataSource = listaDeUsuarios;
             listaUsuarios.Columns["Senha"].Visible = false;
         }
 
