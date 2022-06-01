@@ -1,14 +1,15 @@
-﻿using System;
+﻿using CRUD_CadastroCliente;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace CRUD_CadastroUsuario
 {
-    public partial class FormNovoUsuario : Form
+    public partial class FormularioNovoUsuario : Form
     {
         public Usuario Usuario { get; set; }
         
-        public FormNovoUsuario(Usuario usuario)
+        public FormularioNovoUsuario(Usuario usuario)
         {
             InicializarComponentes();
 
@@ -40,22 +41,24 @@ namespace CRUD_CadastroUsuario
 
                 const string valorPadrao = "  /  /";
                 DateTime dt;
-                if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+                if(caixaDataNascimento.Text == valorPadrao)
                 {
-                    MessageBox.Show("Campo Data, Inválido!");
-                    caixaDataNascimento.Focus();
-                    return;
+                    Usuario.DataNascimento = null;
                 }
                 else
                 {
-                    if (caixaDataNascimento.Text != valorPadrao)
+                    if((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
                     {
-                        Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                        MessageBox.Show("Campo Data, Inválido!");
+                        caixaDataNascimento.Focus();
+                        return;
                     }
-                }
+                    Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                } 
 
                 Usuario.DataCriacao = caixaDataCriacao.Text;
                 DialogResult = DialogResult.OK;
+
                 Close();
             }
             catch (Exception ex)

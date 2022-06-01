@@ -13,6 +13,12 @@ namespace CRUD_CadastroCliente
         public void AdicionarUsuario(Usuario usuario)
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+
+            //puxar id e mandar ele junto com o objeto
+            var proximoId = ListaDeUsuarios.ProximoId();
+            usuario.Id = proximoId;
+
+
             listaDeUsuarios.Add(usuario);
         }
 
@@ -44,5 +50,20 @@ namespace CRUD_CadastroCliente
         }
 
         //Criar funcao atualizar usuario
+        public void AtualizarUsuario(Usuario usuarioEditado)
+        {
+            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+            //Preciso fazer o metodo adicionar com as informações do Usuario
+            //Não pode salvar um novo usuario com as informaçoes antigas, muito menos salvar com o mesmo id
+            //Você vai conseguir fazer isso usando o index da lista
+            //retorna um id
+            listaDeUsuarios.ForEach(usuario =>
+            {
+                if (usuario.Id == usuarioEditado.Id)
+                {
+                    usuario = usuarioEditado;
+                }
+            });
+        }
     }
 }

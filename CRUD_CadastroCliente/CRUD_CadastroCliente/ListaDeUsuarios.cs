@@ -19,50 +19,31 @@ namespace CRUD_CadastroCliente
             return instancia;
         }
 
-        public static int IdASerInserido()
+        public static int ProximoId()
         {
-            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            var ultimoIdInserido = 0;
-            var idAtualASerInserido = 0;
-
-            if (listaDeUsuarios.Count == 0)
-            {
-                ultimoIdInserido = 0;
-            }
-            else
-            {
-                ultimoIdInserido = listaDeUsuarios.Last().Id;
-            }
-            idAtualASerInserido = ultimoIdInserido + 1;
-
-            return idAtualASerInserido;
+            var atual = instancia.Count() != 0 ? (instancia ?? new List<Usuario>()).Max(x => x.Id) : 0;
+            atual++;
+            return atual;
         }
 
         //public static int ProximoId()
         //{
-        //    var atual = (instancia ?? new List<Usuario>()).Max(x => x.Id);
-        //    return atual++ ;
+        //    var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+        //    var ultimoIdInserido = 0;
+        //    var idAtualASerInserido = 0;
+
+        //    if (listaDeUsuarios.Count == 0)
+        //    {
+        //        ultimoIdInserido = 0;
+        //    }
+        //    else
+        //    {
+        //        ultimoIdInserido = listaDeUsuarios.Last().Id;
+        //    }
+        //    idAtualASerInserido = ultimoIdInserido + 1;
+
+        //    return idAtualASerInserido;
         //}
 
     }
 }
-
-//criar id auto-incrementavel
-//public void AutoIncrementavel()
-//{
-//    var formNovoUsuario = new FormNovoUsuario(null);
-//    var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-//    var ultimoIdInserido = 0;
-//    var idAtualASerInserido = 0;
-
-//    if (listaDeUsuarios.Count == 0)
-//    {
-//        ultimoIdInserido = 0;
-//    }
-//    else
-//    {
-//        ultimoIdInserido = listaDeUsuarios.Last().Id;
-//    }
-//    idAtualASerInserido = ultimoIdInserido + 1;
-//    formNovoUsuario.Usuario.Id = idAtualASerInserido;
-//}
