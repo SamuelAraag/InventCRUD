@@ -1,13 +1,5 @@
 ﻿using CRUD_CadastroCliente;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CRUD_CadastroUsuario
@@ -22,40 +14,42 @@ namespace CRUD_CadastroUsuario
 
         public void AoClicarEmNovo(object sender, EventArgs e)
         {
-            var formNovoUsuario = new FormularioNovoUsuario(null);
-            var resultado = formNovoUsuario.ShowDialog();
-            var usuarioRepositorio = new UsuarioRepositorio();
-            //Isso deve estar no repositorio, no método adicionar
-            if (resultado == DialogResult.OK)
+            try
             {
-                usuarioRepositorio.AdicionarUsuario(formNovoUsuario.Usuario);
-                AtualizarLista();
+                var formNovoUsuario = new FormularioNovoUsuario(null);
+                var resultado = formNovoUsuario.ShowDialog();
+                var usuarioRepositorio = new UsuarioRepositorio();
+                if (resultado == DialogResult.OK)
+                {
+                    usuarioRepositorio.AdicionarUsuario(formNovoUsuario.Usuario);
+                    AtualizarLista();
+                }
             }
+            catch (Exception)
+            {
+                ExibirMensagem("Erro inesperado, tente novamente!");
+            }
+
         }
         private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
             try
             {
                 var usuarioRepositorio = new UsuarioRepositorio();
-
                 if(usuarioRepositorio.ObterTodos().Count == 0)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                 }
-
                 else
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-
-                    var usuarioDaLista = usuarioRepositorio.ObterPorId(usuarioSelecionado.Id);
-                    var formNovoUsuario = new FormularioNovoUsuario(usuarioDaLista);
+                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado);
 
                     if (usuarioSelecionado != null)
                     {
                         formNovoUsuario.Text = "Atualizar Usuario";
                         var resultado = formNovoUsuario.ShowDialog(this);
-
                         usuarioRepositorio.AtualizarUsuario(formNovoUsuario.Usuario);
                         AtualizarLista();
                     }
@@ -72,6 +66,8 @@ namespace CRUD_CadastroUsuario
             {
                 var usuarioRepositorio = new UsuarioRepositorio();
                 var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+                var usuario = new Usuario();
+
                 if (listaUsuariosGrid.CurrentCell == null)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
@@ -82,9 +78,10 @@ namespace CRUD_CadastroUsuario
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+
                     if (DesejaDeletarOUsuario())
                     {
-                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado);
+                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado.id);
                         AtualizarLista();
                     }
                 }

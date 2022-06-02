@@ -21,9 +21,8 @@ namespace CRUD_CadastroCliente
 
         public static int ProximoId()
         {
-            var atual = instancia.Count() != 0 ? (instancia ?? new List<Usuario>()).Max(x => x.Id) : 0;
-            atual++;
-            return atual;
+            var atual = instancia.Any()  ? ObterInstancia().Max(x => x.Id) : (int)decimal.Zero;
+            return ++atual;
         }
 
         //public static int ProximoId()
