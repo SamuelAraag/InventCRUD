@@ -1,2 +1,4 @@
 # InventCRUD
-Projeto CRUD, usando mais de uma tela
+Projeto CRUD, usando 2 telas!
+
+Banco de dados "em memória"
