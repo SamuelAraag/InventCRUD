@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRUD_CadastroUsuario
 {
@@ -14,5 +10,10 @@ namespace CRUD_CadastroUsuario
         public string Email { get; set; }
         public DateTime? DataNascimento { get; set; }
         public string DataCriacao { get; set; }
+
+        public object ShallowCopy()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

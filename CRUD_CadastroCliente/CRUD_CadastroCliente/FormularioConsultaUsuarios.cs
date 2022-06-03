@@ -29,8 +29,8 @@ namespace CRUD_CadastroUsuario
             {
                 ExibirMensagem("Erro inesperado, tente novamente!");
             }
-
         }
+
         private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
             try
@@ -44,13 +44,14 @@ namespace CRUD_CadastroUsuario
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado);
+                    var usuario = usuarioRepositorio.ObterPorId(usuarioSelecionado.Id).ShallowCopy() as Usuario;
+                    var formNovoUsuario = new FormularioNovoUsuario(usuario);
 
                     if (usuarioSelecionado != null)
                     {
                         formNovoUsuario.Text = "Atualizar Usuario";
                         var resultado = formNovoUsuario.ShowDialog(this);
-                        usuarioRepositorio.AtualizarUsuario(formNovoUsuario.Usuario);
+                        usuarioRepositorio.AtualizarUsuario(usuario);
                         AtualizarLista();
                     }
                 }
@@ -60,14 +61,14 @@ namespace CRUD_CadastroUsuario
                 ExibirMensagem("Erro inesperado, tente novamente!");
             }
         }
-        private void aoClicarEmDeletar(object sender, EventArgs e)
+
+        private void AoClicarEmDeletar(object sender, EventArgs e)
         {
             try
             {
                 var usuarioRepositorio = new UsuarioRepositorio();
                 var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
                 var usuario = new Usuario();
-
                 if (listaUsuariosGrid.CurrentCell == null)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
@@ -78,10 +79,9 @@ namespace CRUD_CadastroUsuario
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-
                     if (DesejaDeletarOUsuario())
                     {
-                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado.id);
+                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
                         AtualizarLista();
                     }
                 }

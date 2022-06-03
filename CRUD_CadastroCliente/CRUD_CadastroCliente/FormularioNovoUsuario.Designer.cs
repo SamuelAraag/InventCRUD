@@ -50,9 +50,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nome";
+            this.label1.Text = "Nome*";
             // 
             // caixaNome
             // 
@@ -66,12 +66,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Senha";
+            this.label2.Text = "Senha*";
             // 
             // caixaSenha
             // 
+            this.caixaSenha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.caixaSenha.Location = new System.Drawing.Point(104, 86);
             this.caixaSenha.Name = "caixaSenha";
             this.caixaSenha.PasswordChar = '*';
@@ -83,12 +84,13 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "E-mail";
+            this.label3.Text = "E-mail*";
             // 
             // caixaEmail
             // 
+            this.caixaEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.caixaEmail.Location = new System.Drawing.Point(104, 120);
             this.caixaEmail.Name = "caixaEmail";
             this.caixaEmail.Size = new System.Drawing.Size(258, 20);
@@ -123,6 +125,7 @@
             // 
             // botaoSalvar
             // 
+            this.botaoSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.botaoSalvar.BackColor = System.Drawing.SystemColors.Control;
             this.botaoSalvar.Location = new System.Drawing.Point(12, 254);
             this.botaoSalvar.Name = "botaoSalvar";
@@ -134,6 +137,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.Location = new System.Drawing.Point(104, 254);
             this.button1.Name = "button1";
@@ -168,7 +172,7 @@
             this.caixaDataCriacao.Size = new System.Drawing.Size(86, 20);
             this.caixaDataCriacao.TabIndex = 18;
             // 
-            // FormNovoUsuario
+            // FormularioNovoUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -189,7 +193,7 @@
             this.Controls.Add(this.label6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "FormNovoUsuario";
+            this.Name = "FormularioNovoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novo Usuário";
             this.ResumeLayout(false);

@@ -40,6 +40,7 @@
             // 
             // botaoNovo
             // 
+            this.botaoNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.botaoNovo.Location = new System.Drawing.Point(302, 359);
             this.botaoNovo.Name = "botaoNovo";
             this.botaoNovo.Size = new System.Drawing.Size(75, 23);
@@ -50,6 +51,7 @@
             // 
             // botaoAtualizar
             // 
+            this.botaoAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.botaoAtualizar.Location = new System.Drawing.Point(383, 359);
             this.botaoAtualizar.Name = "botaoAtualizar";
             this.botaoAtualizar.Size = new System.Drawing.Size(75, 23);
@@ -60,16 +62,18 @@
             // 
             // botaoDeletar
             // 
+            this.botaoDeletar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.botaoDeletar.Location = new System.Drawing.Point(464, 359);
             this.botaoDeletar.Name = "botaoDeletar";
             this.botaoDeletar.Size = new System.Drawing.Size(75, 23);
             this.botaoDeletar.TabIndex = 2;
             this.botaoDeletar.Text = "Deletar";
             this.botaoDeletar.UseVisualStyleBackColor = true;
-            this.botaoDeletar.Click += new System.EventHandler(this.aoClicarEmDeletar);
+            this.botaoDeletar.Click += new System.EventHandler(this.AoClicarEmDeletar);
             // 
             // botaoOk
             // 
+            this.botaoOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.botaoOk.Location = new System.Drawing.Point(13, 359);
             this.botaoOk.Name = "botaoOk";
             this.botaoOk.Size = new System.Drawing.Size(75, 23);
@@ -80,6 +84,7 @@
             // 
             // botaoCancelar
             // 
+            this.botaoCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.botaoCancelar.Location = new System.Drawing.Point(94, 359);
             this.botaoCancelar.Name = "botaoCancelar";
             this.botaoCancelar.Size = new System.Drawing.Size(75, 23);
@@ -88,15 +93,18 @@
             this.botaoCancelar.UseVisualStyleBackColor = true;
             this.botaoCancelar.Click += new System.EventHandler(this.AoClicarEmCancelar);
             // 
-            // listaUsuarios
+            // listaUsuariosGrid
             // 
+            this.listaUsuariosGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaUsuariosGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaUsuariosGrid.Location = new System.Drawing.Point(12, 13);
-            this.listaUsuariosGrid.Name = "listaUsuarios";
+            this.listaUsuariosGrid.Name = "listaUsuariosGrid";
             this.listaUsuariosGrid.Size = new System.Drawing.Size(527, 328);
             this.listaUsuariosGrid.TabIndex = 6;
             // 
-            // FormConsultaUsuarios
+            // FormularioConsultaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,7 +116,7 @@
             this.Controls.Add(this.botaoAtualizar);
             this.Controls.Add(this.botaoNovo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormConsultaUsuarios";
+            this.Name = "FormularioConsultaUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de usuários";
             ((System.ComponentModel.ISupportInitialize)(this.listaUsuariosGrid)).EndInit();

@@ -34,32 +34,14 @@ namespace CRUD_CadastroUsuario
             try
             {
                 ValidarCampos();
-
                 Usuario.Email = caixaEmail.Text;
                 Usuario.Senha = caixaSenha.Text;
                 Usuario.Nome = caixaNome.Text;
-
-                const string valorPadrao = "  /  /";
-                DateTime dt;
-                if(caixaDataNascimento.Text == valorPadrao)
-                {
-                    Usuario.DataNascimento = null;
-                }
-                else
-                {
-                    if((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
-                    {
-                        MessageBox.Show("Campo Data, Inválido!");
-                        caixaDataNascimento.Focus();
-                        return;
-                    }
-                    Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-                } 
-
                 Usuario.DataCriacao = caixaDataCriacao.Text;
-                DialogResult = DialogResult.OK;
-
-                Close();
+                if(DialogResult == DialogResult.OK)
+                {
+                    Close();
+                }
             }
             catch (Exception ex)
             {
@@ -78,6 +60,22 @@ namespace CRUD_CadastroUsuario
             if (caixaSenha.Text == campoInvalido)
             {
                 throw new Exception("Campo Senha, Obrigatório");
+            }
+            const string valorPadrao = "  /  /";
+            DateTime dt;
+            if (caixaDataNascimento.Text == valorPadrao)
+            {
+                Usuario.DataNascimento = null;
+            }
+            else
+            {
+                if ((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
+                {
+                    MessageBox.Show("Campo Data, Inválido!");
+                    caixaDataNascimento.Focus();
+                    return;
+                }
+                Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
             }
 
             var email = caixaEmail.Text;
