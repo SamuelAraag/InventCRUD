@@ -1,6 +1,5 @@
 ﻿using CRUD_CadastroUsuario;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CRUD_CadastroCliente
 {
@@ -17,34 +16,24 @@ namespace CRUD_CadastroCliente
         public void DeletarUsuario(int id)
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            var usuario = new Usuario();
-            var usuarioBase = 0;
-            usuarioBase = listaDeUsuarios.FindIndex(u => u.Id == id);
-            var idRemocao = id;
-
-            listaDeUsuarios.Remove(usuario);
+            var usuarioEncontrado = listaDeUsuarios.Find(u => u.Id == id);
+            listaDeUsuarios.Remove(usuarioEncontrado);
         }
 
-
-        //Criar funcao atualizar usuario
         public void AtualizarUsuario(Usuario usuarioEditado)
         {
-            //usar indicie que foi encontrado pelo ID para fazer atualização
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            //Encontrar pelo id
-            var idUsuario = usuarioEditado.Id;    
+            var indice = listaDeUsuarios.FindIndex(usuario => usuario.Id == usuarioEditado.Id);
+            listaDeUsuarios[indice] = usuarioEditado;
         }
 
-        public Usuario ObterPorId(Usuario usuario)
+        public Usuario ObterPorId(int id)
         {
-            //Usar metodo da list para encontrar o id diretamente
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            var usuarioBase = 0;
-            usuarioBase = listaDeUsuarios.FindIndex(u => u.Id == id);
-            var idUsuario = id; 
-
-            return usuario;
+            var usuarioBuscado = listaDeUsuarios.Find(u => u.Id == id);
+            return usuarioBuscado;
         }
+
         public List<Usuario> ObterTodos()
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();

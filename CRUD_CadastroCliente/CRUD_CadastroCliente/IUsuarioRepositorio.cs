@@ -1,9 +1,5 @@
-﻿using System;
-using CRUD_CadastroUsuario;
+﻿using CRUD_CadastroUsuario;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRUD_CadastroCliente
 {
@@ -11,10 +7,8 @@ namespace CRUD_CadastroCliente
     {
         void AdicionarUsuario(Usuario usuario);
         void DeletarUsuario(int id);
-        void AtualizarUsuario(Usuario usuario);
-        int ObterPorId(int id);
+        void AtualizarUsuario(Usuario usuarioEditado);
+        Usuario ObterPorId(int id);
         List<Usuario> ObterTodos();
-
-
     }
 }
