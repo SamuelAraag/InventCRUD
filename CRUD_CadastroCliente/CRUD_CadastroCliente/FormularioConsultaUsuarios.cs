@@ -1,68 +1,56 @@
 ﻿using CRUD_CadastroCliente;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CRUD_CadastroUsuario
 {
 
-    public partial class FormConsultaUsuarios : Form
+    public partial class FormularioConsultaUsuarios : Form
     {
-        public FormConsultaUsuarios()
+        public FormularioConsultaUsuarios()
         {
             InitializeComponent();
         }
-        private void AoClicarEmNovo(object sender, EventArgs e)
+
+        public void AoClicarEmNovo(object sender, EventArgs e)
         {
-            var formNovoUsuario = new FormNovoUsuario(null);
-            var resultado = formNovoUsuario.ShowDialog(this);
-            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-
-            var ultimoIdInserido = 0;
-            var idAtualASerInserido = 0;
-
-            if (resultado == DialogResult.OK)
+            try
             {
-                if (listaDeUsuarios.Count == 0)
+                var formNovoUsuario = new FormularioNovoUsuario(null);
+                var resultado = formNovoUsuario.ShowDialog();
+                var usuarioRepositorio = new UsuarioRepositorio();
+                if (resultado == DialogResult.OK)
                 {
-                    ultimoIdInserido = 0;
+                    usuarioRepositorio.AdicionarUsuario(formNovoUsuario.Usuario);
+                    AtualizarLista();
                 }
-                else
-                {
-                    ultimoIdInserido = listaDeUsuarios.Last().Id;
-                }
-                idAtualASerInserido = ultimoIdInserido + 1;
-
-                formNovoUsuario.Usuario.Id = idAtualASerInserido;
-
-                listaDeUsuarios.Add(formNovoUsuario.Usuario);
-                AtualizarLista();
             }
+            catch (Exception)
+            {
+                ExibirMensagem("Erro inesperado, tente novamente!");
+            }
+
         }
         private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
             try
             {
-                if(listaUsuarios.Rows.Count == 0)
+                var usuarioRepositorio = new UsuarioRepositorio();
+                if(usuarioRepositorio.ObterTodos().Count == 0)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                 }
                 else
                 {
-                    var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
-                    var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    var formNovoUsuario = new FormNovoUsuario(usuarioSelecionado);
+                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado);
+
                     if (usuarioSelecionado != null)
                     {
                         formNovoUsuario.Text = "Atualizar Usuario";
                         var resultado = formNovoUsuario.ShowDialog(this);
+                        usuarioRepositorio.AtualizarUsuario(formNovoUsuario.Usuario);
                         AtualizarLista();
                     }
                 }
@@ -76,8 +64,11 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
+                var usuarioRepositorio = new UsuarioRepositorio();
                 var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-                if (listaUsuarios.CurrentCell == null)
+                var usuario = new Usuario();
+
+                if (listaUsuariosGrid.CurrentCell == null)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                     throw new Exception("Nenhum usuário selecionado!");
@@ -85,11 +76,12 @@ namespace CRUD_CadastroUsuario
                 }
                 else
                 {
-                    var indexSelecionado = listaUsuarios.CurrentCell.RowIndex;
-                    var usuarioSelecionado = listaUsuarios.Rows[indexSelecionado].DataBoundItem as Usuario;
+                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+
                     if (DesejaDeletarOUsuario())
                     {
-                        listaDeUsuarios.Remove(usuarioSelecionado);
+                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado.id);
                         AtualizarLista();
                     }
                 }
@@ -99,7 +91,6 @@ namespace CRUD_CadastroUsuario
                 ExibirMensagem($"Erro inesperado, tente novamente! \n {ex.Message}");
             }
         }
-
         private static bool DesejaDeletarOUsuario()
         {
             return MessageBox.Show("Deseja realmente deletar o usuário? ", 
@@ -122,7 +113,6 @@ namespace CRUD_CadastroUsuario
             }
         }
 
-
         private void AoClicarEmOk(object sender, EventArgs e)
         {
             try
@@ -137,7 +127,6 @@ namespace CRUD_CadastroUsuario
                 ExibirMensagem("Erro inesperado, tente novamente!");
             }
         }
-
         private static bool DeveSairDoSistema()
         {
             return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
@@ -145,12 +134,12 @@ namespace CRUD_CadastroUsuario
                 MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
 
-        private void AtualizarLista()
+        public void AtualizarLista()
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            listaUsuarios.DataSource = null;
-            listaUsuarios.DataSource = listaDeUsuarios;
-            listaUsuarios.Columns["Senha"].Visible = false;
+            listaUsuariosGrid.DataSource = null;
+            listaUsuariosGrid.DataSource = listaDeUsuarios;
+            listaUsuariosGrid.Columns["Senha"].Visible = false;
         }
 
         private void ExibirMensagem(string mensagem)

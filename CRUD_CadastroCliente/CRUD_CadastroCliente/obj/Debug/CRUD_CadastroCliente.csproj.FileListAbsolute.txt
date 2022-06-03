@@ -30,7 +30,7 @@ C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_Cadastro
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.CoreCompileInputs.cache
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.exe
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.pdb
-C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormConsultaUsuarios.resources
-C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormNovoUsuario.resources
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormConsultaUsuarios.resources
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormNovoUsuario.resources
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormularioConsultaUsuarios.resources
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormularioNovoUsuario.resources

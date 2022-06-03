@@ -1,6 +1,6 @@
 ﻿namespace CRUD_CadastroUsuario
 {
-    partial class FormConsultaUsuarios
+    partial class FormularioConsultaUsuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConsultaUsuarios));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsultaUsuarios));
             this.botaoNovo = new System.Windows.Forms.Button();
             this.botaoAtualizar = new System.Windows.Forms.Button();
             this.botaoDeletar = new System.Windows.Forms.Button();
             this.botaoOk = new System.Windows.Forms.Button();
             this.botaoCancelar = new System.Windows.Forms.Button();
-            this.listaUsuarios = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.listaUsuarios)).BeginInit();
+            this.listaUsuariosGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.listaUsuariosGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // botaoNovo
@@ -90,18 +90,18 @@
             // 
             // listaUsuarios
             // 
-            this.listaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaUsuarios.Location = new System.Drawing.Point(12, 13);
-            this.listaUsuarios.Name = "listaUsuarios";
-            this.listaUsuarios.Size = new System.Drawing.Size(527, 328);
-            this.listaUsuarios.TabIndex = 6;
+            this.listaUsuariosGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaUsuariosGrid.Location = new System.Drawing.Point(12, 13);
+            this.listaUsuariosGrid.Name = "listaUsuarios";
+            this.listaUsuariosGrid.Size = new System.Drawing.Size(527, 328);
+            this.listaUsuariosGrid.TabIndex = 6;
             // 
             // FormConsultaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 396);
-            this.Controls.Add(this.listaUsuarios);
+            this.Controls.Add(this.listaUsuariosGrid);
             this.Controls.Add(this.botaoCancelar);
             this.Controls.Add(this.botaoOk);
             this.Controls.Add(this.botaoDeletar);
@@ -111,7 +111,7 @@
             this.Name = "FormConsultaUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de usuários";
-            ((System.ComponentModel.ISupportInitialize)(this.listaUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaUsuariosGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -123,7 +123,7 @@
         private System.Windows.Forms.Button botaoDeletar;
         private System.Windows.Forms.Button botaoOk;
         private System.Windows.Forms.Button botaoCancelar;
-        private System.Windows.Forms.DataGridView listaUsuarios;
+        private System.Windows.Forms.DataGridView listaUsuariosGrid;
     }
 }
 

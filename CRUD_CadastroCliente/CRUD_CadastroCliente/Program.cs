@@ -16,7 +16,7 @@ namespace CRUD_CadastroUsuario
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormConsultaUsuarios());
+            Application.Run(new FormularioConsultaUsuarios());
         }
     }
 }
