@@ -38,10 +38,8 @@ namespace CRUD_CadastroUsuario
                 Usuario.Senha = caixaSenha.Text;
                 Usuario.Nome = caixaNome.Text;
                 Usuario.DataCriacao = caixaDataCriacao.Text;
-                if(DialogResult == DialogResult.OK)
-                {
-                    Close();
-                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -61,6 +59,13 @@ namespace CRUD_CadastroUsuario
             {
                 throw new Exception("Campo Senha, Obrigatório");
             }
+            var email = caixaEmail.Text;
+            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            var match = regex.Match(email);
+            if (!match.Success)
+            {
+                throw new Exception("Insira um email valido!");
+            }
             const string valorPadrao = "  /  /";
             DateTime dt;
             if (caixaDataNascimento.Text == valorPadrao)
@@ -71,19 +76,9 @@ namespace CRUD_CadastroUsuario
             {
                 if ((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
                 {
-                    MessageBox.Show("Campo Data, Inválido!");
-                    caixaDataNascimento.Focus();
-                    return;
+                    throw new Exception("Insira uma data valida!");
                 }
                 Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-            }
-
-            var email = caixaEmail.Text;
-            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            var match = regex.Match(email);
-            if (!match.Success)
-            {
-                throw new Exception("Insira um email valido");
             }
         }
 
