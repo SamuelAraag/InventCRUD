@@ -1,15 +1,21 @@
 ﻿using CRUD_CadastroCliente;
 using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace CRUD_CadastroUsuario
 {
 
     public partial class FormularioConsultaUsuarios : Form
     {
+        //Instanciar o repositorio com o banco de dados
+        UsuarioRepositorioComBanco repositorioBd = new UsuarioRepositorioComBanco();
+
         public FormularioConsultaUsuarios()
         {
             InitializeComponent();
+            listaUsuariosGrid.DataSource = repositorioBd.ObterTodos();
         }
 
         public void AoClicarEmNovo(object sender, EventArgs e)
@@ -18,10 +24,10 @@ namespace CRUD_CadastroUsuario
             {
                 var formNovoUsuario = new FormularioNovoUsuario(null);
                 var resultado = formNovoUsuario.ShowDialog();
-                var usuarioRepositorio = new UsuarioRepositorio();
+                var usuarioRepositorio = new UsuarioRepositorioComBanco();
                 if (resultado == DialogResult.OK)
                 {
-                    usuarioRepositorio.AdicionarUsuario(formNovoUsuario.Usuario);
+                    usuarioRepositorio.AdicionarUsuario();
                     AtualizarLista();
                 }
             }
@@ -36,7 +42,7 @@ namespace CRUD_CadastroUsuario
             try
             {
                 var usuarioRepositorio = new UsuarioRepositorio();
-                if(usuarioRepositorio.ObterTodos().Count == 0)
+                if (usuarioRepositorio.ObterTodos().Count == 0)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                 }
@@ -136,6 +142,7 @@ namespace CRUD_CadastroUsuario
 
         public void AtualizarLista()
         {
+
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
             listaUsuariosGrid.DataSource = null;
             listaUsuariosGrid.DataSource = listaDeUsuarios;

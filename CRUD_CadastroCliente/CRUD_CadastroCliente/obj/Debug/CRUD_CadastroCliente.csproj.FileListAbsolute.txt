@@ -34,3 +34,15 @@ D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroU
 D:\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormNovoUsuario.resources
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormularioConsultaUsuarios.resources
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroUsuario.FormularioNovoUsuario.resources
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\Google.Protobuf.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Buffers.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Memory.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\Google.Protobuf.pdb
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\Google.Protobuf.xml
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Buffers.xml
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Memory.xml
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroCliente\CRUD_CadastroCliente\obj\Debug\CRUD_CadastroCliente.csproj.CopyComplete
