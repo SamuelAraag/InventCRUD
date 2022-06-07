@@ -9,13 +9,15 @@ namespace CRUD_CadastroUsuario
 
     public partial class FormularioConsultaUsuarios : Form
     {
+        //Instancia do repositorio com lista singleton
+        UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
         //Instanciar o repositorio com o banco de dados
-        UsuarioRepositorioComBanco repositorioBd = new UsuarioRepositorioComBanco();
+        UsuarioRepositorioComBanco usuarioRepositorioBd = new UsuarioRepositorioComBanco();
 
         public FormularioConsultaUsuarios()
         {
             InitializeComponent();
-            listaUsuariosGrid.DataSource = repositorioBd.ObterTodos();
+            AtualizarLista();
         }
 
         public void AoClicarEmNovo(object sender, EventArgs e)
@@ -27,14 +29,15 @@ namespace CRUD_CadastroUsuario
                 var usuarioRepositorio = new UsuarioRepositorioComBanco();
                 if (resultado == DialogResult.OK)
                 {
-                    usuarioRepositorio.AdicionarUsuario();
-                    AtualizarLista();
+                    usuarioRepositorioBd.AdicionarUsuario(formNovoUsuario.Usuario);
+                    listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
                 }
             }
             catch (Exception)
             {
                 ExibirMensagem("Erro inesperado, tente novamente!");
             }
+            AtualizarLista();
         }
 
         private void AoClicarEmAtualizar(object sender, EventArgs e)
@@ -72,22 +75,22 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
-                var usuarioRepositorio = new UsuarioRepositorio();
-                var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-                var usuario = new Usuario();
                 if (listaUsuariosGrid.CurrentCell == null)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                     throw new Exception("Nenhum usuário selecionado!");
-
                 }
                 else
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+
+                    ////var formNovoUsuario = new FormularioNovoUsuario(usuario);
+
                     if (DesejaDeletarOUsuario())
                     {
-                        usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
+                        usuarioRepositorioBd.DeletarUsuario(usuarioSelecionado.Id);
+                        MessageBox.Show("Usuario deletado!");
                         AtualizarLista();
                     }
                 }
@@ -142,16 +145,27 @@ namespace CRUD_CadastroUsuario
 
         public void AtualizarLista()
         {
-
-            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            listaUsuariosGrid.DataSource = null;
-            listaUsuariosGrid.DataSource = listaDeUsuarios;
+            //Carregar com banco de dados
+            listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
+            //=======================================================
+            ////Atualizar grid com banco em lista
+            //var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+            //listaUsuariosGrid.DataSource = null;
+            //listaUsuariosGrid.DataSource = listaDeUsuarios;
             listaUsuariosGrid.Columns["Senha"].Visible = false;
+            listaUsuariosGrid.Columns["DataNascimento"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            listaUsuariosGrid.Columns["DataCriacao"].DefaultCellStyle.Format = "d";
+            
+
         }
 
         private void ExibirMensagem(string mensagem)
         {
             MessageBox.Show(mensagem);
+        }
+
+        private void listaUsuariosGrid_ColumnDefaultCellStyleChanged(object sender, DataGridViewColumnEventArgs e)
+        { 
         }
     }
 }

@@ -10,7 +10,7 @@ namespace CRUD_CadastroUsuario
     public partial class FormularioNovoUsuario : Form
     {
         public Usuario Usuario { get; set; }
-        private string strCon = @"Data Source=DESKTOP-7MCFTA2;User ID=sa;Password=sap@123;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private string strCon = @"Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-7MCFTA2";
         SqlConnection sqlCon = null;
         private string strSql = string.Empty;
 
@@ -37,33 +37,25 @@ namespace CRUD_CadastroUsuario
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
-            strSql = "Insert into Usuario (Nome, Senha, Email, DataNascimento, DataCriacao)" +
-                " values (@Nome, @Senha, @Email, @DataNascimento, @DataCriacao)";
-            sqlCon = new SqlConnection(strCon);
-            SqlCommand sqlCmd = new SqlCommand(strSql, sqlCon);
 
-            sqlCmd.Parameters.Add("Nome", SqlDbType.VarChar).Value = caixaNome.Text;
-            sqlCmd.Parameters.Add("Senha", SqlDbType.VarChar).Value = caixaSenha.Text;
-            sqlCmd.Parameters.Add("Email", SqlDbType.VarChar).Value = caixaEmail.Text;
-            sqlCmd.Parameters.Add("DataNascimento", SqlDbType.VarChar).Value = caixaDataNascimento.Text;
-            sqlCmd.Parameters.Add("DataCriacao", SqlDbType.VarChar).Value = caixaDataCriacao.Text;
+
+            ////Salvando com o banco de dados
+            //sqlCmd.Parameters.Add("Nome", SqlDbType.VarChar).Value = caixaNome.Text;
+            //sqlCmd.Parameters.Add("Senha", SqlDbType.VarChar).Value = caixaSenha.Text;
+            //sqlCmd.Parameters.Add("Email", SqlDbType.VarChar).Value = caixaEmail.Text;
+            //sqlCmd.Parameters.Add("DataNascimento", SqlDbType.VarChar).Value = caixaDataNascimento.Text;
+            //sqlCmd.Parameters.Add("DataCriacao", SqlDbType.VarChar).Value = caixaDataCriacao.Text;
 
             try
             {
                 //ValidarCampos();
-                //Usuario.Email = caixaEmail.Text;
-                //Usuario.Senha = caixaSenha.Text;
-                //Usuario.Nome = caixaNome.Text;
-                //Usuario.DataCriacao = caixaDataCriacao.Text;
+                Usuario.Nome = caixaNome.Text;
+                Usuario.Email = caixaEmail.Text;
+                Usuario.Senha = caixaSenha.Text;
+                Usuario.DataCriacao = caixaDataCriacao.Text;
+                Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
 
                 //Teste com banco
-
-                sqlCon.Open();
-                sqlCmd.ExecuteNonQuery();
-                MessageBox.Show("Teste concluido");
-
-
-
 
 
                 DialogResult = DialogResult.OK;
@@ -72,10 +64,6 @@ namespace CRUD_CadastroUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
             }
         }
 
