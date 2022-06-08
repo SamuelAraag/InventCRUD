@@ -24,11 +24,11 @@ namespace CRUD_CadastroCliente
                 sqlCon = new SqlConnection(strCon);
                 SqlCommand cmd = new SqlCommand(strSql, sqlCon);
 
-                cmd.Parameters.Add("@Nome", SqlDbType.VarChar).Value = usuario.Nome;
-                cmd.Parameters.Add("@Senha", SqlDbType.VarChar).Value = usuario.Senha;
-                cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = usuario.Email;
-                cmd.Parameters.Add("@DataNascimento", SqlDbType.DateTime).Value = usuario.DataNascimento.ToString();
-                cmd.Parameters.Add("@DataCriacao", SqlDbType.DateTime).Value = usuario.DataCriacao.ToString();
+                cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
+                cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
+                cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
 
                 sqlCon.Open();
                 cmd.ExecuteNonQuery();
@@ -49,12 +49,12 @@ namespace CRUD_CadastroCliente
             sqlCon = new SqlConnection(@strCon);
             SqlCommand cmd = new SqlCommand(strSql, sqlCon);
 
-            cmd.Parameters.Add("Id", SqlDbType.Int).Value = usuario.Id;
-            cmd.Parameters.Add("Nome", SqlDbType.VarChar).Value = usuario.Nome;
-            cmd.Parameters.Add("Senha", SqlDbType.VarChar).Value = usuario.Senha;
-            cmd.Parameters.Add("Email", SqlDbType.VarChar).Value = usuario.Email;
-            cmd.Parameters.Add("DataNascimento", SqlDbType.DateTime).Value = usuario.DataNascimento;
-            cmd.Parameters.Add("DataCriacao", SqlDbType.DateTime).Value = usuario.DataCriacao;
+            cmd.Parameters.AddWithValue("@Id", usuario.Id);
+            cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+            cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
+            cmd.Parameters.AddWithValue("@Email", usuario.Email);
+            cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
+            cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
 
             try
             {
@@ -163,6 +163,26 @@ namespace CRUD_CadastroCliente
         //    {
         //        throw ex;
         //    }
+        //}
+        //public byte[] RSAEncrypt(byte[] DataToEncrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)
+        //{
+        //    try
+        //    {
+        //        byte[] encryptedData;
+        //        using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider)
+        //        {
+        //            rsa.ImportParameters(RSAKeyInfo);
+        //            encryptedData = rsa.Encrypt(DataToEncrypt, DoOAEPPadding);
+        //        }
+        //        return encryptedData;
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+            
         //}
     }
 }
