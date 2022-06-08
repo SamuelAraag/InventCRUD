@@ -103,7 +103,6 @@
             this.listaUsuariosGrid.Name = "listaUsuariosGrid";
             this.listaUsuariosGrid.Size = new System.Drawing.Size(527, 328);
             this.listaUsuariosGrid.TabIndex = 6;
-            this.listaUsuariosGrid.ColumnDefaultCellStyleChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.listaUsuariosGrid_ColumnDefaultCellStyleChanged);
             // 
             // FormularioConsultaUsuarios
             // 

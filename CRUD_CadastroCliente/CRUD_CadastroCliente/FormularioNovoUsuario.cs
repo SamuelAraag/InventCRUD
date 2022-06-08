@@ -1,7 +1,4 @@
-﻿using CRUD_CadastroCliente;
-using System;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -11,9 +8,6 @@ namespace CRUD_CadastroUsuario
     {
         public Usuario Usuario { get; set; }
         private string strCon = @"Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-7MCFTA2";
-        SqlConnection sqlCon = null;
-        private string strSql = string.Empty;
-
 
         public FormularioNovoUsuario(Usuario usuario)
         {
@@ -30,33 +24,21 @@ namespace CRUD_CadastroUsuario
                 caixaSenha.Text = usuario.Senha;
                 caixaEmail.Text = usuario.Email;
                 caixaDataNascimento.Text = usuario.DataNascimento.ToString();
-                caixaDataCriacao.Text = usuario.DataCriacao;
+                caixaDataCriacao.Text = usuario.DataCriacao.ToString();
                 Usuario = usuario;
             }
         }
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
-
-
-            ////Salvando com o banco de dados
-            //sqlCmd.Parameters.Add("Nome", SqlDbType.VarChar).Value = caixaNome.Text;
-            //sqlCmd.Parameters.Add("Senha", SqlDbType.VarChar).Value = caixaSenha.Text;
-            //sqlCmd.Parameters.Add("Email", SqlDbType.VarChar).Value = caixaEmail.Text;
-            //sqlCmd.Parameters.Add("DataNascimento", SqlDbType.VarChar).Value = caixaDataNascimento.Text;
-            //sqlCmd.Parameters.Add("DataCriacao", SqlDbType.VarChar).Value = caixaDataCriacao.Text;
-
             try
             {
-                //ValidarCampos();
+                ValidarCampos();
                 Usuario.Nome = caixaNome.Text;
                 Usuario.Email = caixaEmail.Text;
                 Usuario.Senha = caixaSenha.Text;
-                Usuario.DataCriacao = caixaDataCriacao.Text;
+                Usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
                 Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-
-                //Teste com banco
-
 
                 DialogResult = DialogResult.OK;
                 Close();

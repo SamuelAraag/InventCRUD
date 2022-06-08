@@ -9,7 +9,7 @@ namespace CRUD_CadastroUsuario
         public string Senha { get; set; }
         public string Email { get; set; }
         public DateTime? DataNascimento { get; set; }
-        public string DataCriacao { get; set; }
+        public DateTime DataCriacao { get; set; }
 
         public object ShallowCopy()
         {
