@@ -1,8 +1,6 @@
 ﻿using CRUD_CadastroCliente;
 using System;
-using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Data;
 
 namespace CRUD_CadastroUsuario
 {
@@ -24,7 +22,6 @@ namespace CRUD_CadastroUsuario
             {
                 var formularioNovoUsuario = new FormularioNovoUsuario(null);
                 var resultado = formularioNovoUsuario.ShowDialog();
-                var usuarioRepositorio = new UsuarioRepositorioComBanco();
                 if (resultado == DialogResult.OK)
                 {
                     usuarioRepositorioBd.AdicionarUsuario(formularioNovoUsuario.Usuario);
@@ -42,7 +39,7 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
-                if (usuarioRepositorioBd.ObterTodos().Count == 0)
+                if (usuarioRepositorioBd.ConverterDataTableParaUsuario().Count == 0)
                 {
                     ExibirMensagem("Nenhum usuário selecionado!");
                 }
@@ -144,13 +141,7 @@ namespace CRUD_CadastroUsuario
 
         public void AtualizarLista()
         {
-            //Carregar com banco de dados
-            listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
-            //=======================================================
-            ////Atualizar grid com banco em lista
-            //var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            //listaUsuariosGrid.DataSource = null;
-            //listaUsuariosGrid.DataSource = listaDeUsuarios;
+            listaUsuariosGrid.DataSource = usuarioRepositorioBd.ConverterDataTableParaUsuario();
             listaUsuariosGrid.Columns["Senha"].Visible = false;
         }
 

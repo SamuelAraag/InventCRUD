@@ -7,12 +7,9 @@ namespace CRUD_CadastroUsuario
     public partial class FormularioNovoUsuario : Form
     {
         public Usuario Usuario { get; set; }
-        private string strCon = @"Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-7MCFTA2";
-
         public FormularioNovoUsuario(Usuario usuario)
         {
             InicializarComponentes();
-
             if (usuario == null)
             {
                 Usuario = new Usuario();
@@ -38,21 +35,6 @@ namespace CRUD_CadastroUsuario
                 Usuario.Email = caixaEmail.Text;
                 Usuario.Senha = caixaSenha.Text;
                 Usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
-                const string valorPadrao = "  /  /";
-                DateTime dt;
-                if (caixaDataNascimento.Text == valorPadrao)
-                {
-                    Usuario.DataNascimento = null;
-                }
-                else
-                {
-                    if ((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
-                    {
-                        throw new Exception("Insira uma data valida!");
-                    }
-                    Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-                }
-
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -81,7 +63,21 @@ namespace CRUD_CadastroUsuario
             {
                 throw new Exception("Insira um email valido!");
             }
-            
+            const string valorPadrao = "  /  /";
+            DateTime dt;
+            if (caixaDataNascimento.Text == valorPadrao)
+            {
+                Usuario.DataNascimento = null;
+            }
+            else
+            {
+                if ((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
+                {
+                    throw new Exception("Insira uma data valida!");
+                }
+                Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+            }
+
         }
 
         private void AoClicarEmCancelar(object sender, EventArgs e)
