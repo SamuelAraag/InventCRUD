@@ -143,6 +143,11 @@ namespace CRUD_CadastroUsuario
         {
             listaUsuariosGrid.DataSource = usuarioRepositorioBd.ConverterDataTableParaUsuario();
             listaUsuariosGrid.Columns["Senha"].Visible = false;
+            listaUsuariosGrid.Columns["Id"].Width = 25;
+            listaUsuariosGrid.Columns["Nome"].Width = 150;
+            listaUsuariosGrid.Columns["Email"].Width = 200;
+            listaUsuariosGrid.Columns["DataNascimento"].Width = 90;
+            listaUsuariosGrid.Columns["DataCriacao"].Width = 90;
         }
 
         private void ExibirMensagem(string mensagem)

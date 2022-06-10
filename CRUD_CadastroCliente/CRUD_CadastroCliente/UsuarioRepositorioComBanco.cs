@@ -20,7 +20,7 @@ namespace CRUD_CadastroCliente
             sqlConexaoString = ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
             return sqlConexaoString;
         }
-        private static SqlConnection AbrirConexaoBanco()
+        private static SqlConnection AbrirConexaoComBanco()
         {
             conexaoSql = new SqlConnection(ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString);
             conexaoSql.Open();
@@ -31,14 +31,13 @@ namespace CRUD_CadastroCliente
         {
             try
             {
-                var cmd = AbrirConexaoBanco().CreateCommand();
+                var cmd = AbrirConexaoComBanco().CreateCommand();
                 cmd.CommandText = "Insert into Usuario (Nome, Senha, Email, DataNascimento, DataCriacao)" +
                 " values (@Nome, @Senha, @Email, @DataNascimento, @DataCriacao)";
 
                 
                 cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-                string senhaCriptografada = CriptografarSenha(usuario.Senha);
-                cmd.Parameters.AddWithValue("@Senha", senhaCriptografada);
+                cmd.Parameters.AddWithValue("@Senha", CriptografarSenha(usuario.Senha));
                 cmd.Parameters.AddWithValue("@Email", usuario.Email);
                 if(usuario.DataNascimento == null)
                 {
@@ -65,11 +64,11 @@ namespace CRUD_CadastroCliente
         {
             try
             {
-                var cmd = AbrirConexaoBanco().CreateCommand();
+                var cmd = AbrirConexaoComBanco().CreateCommand();
                 cmd.CommandText = "Update Usuario set Nome=@Nome, Senha=@Senha, Email=@Email," +
                 " DataNascimento=@DataNascimento, DataCriacao=@DataCriacao where Id=@Id";
                 cmd.Parameters.AddWithValue("@Id", usuario.Id);
-                cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                cmd.Parameters.AddWithValue("@Nome", CriptografarSenha(usuario.Nome));
                 cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
                 cmd.Parameters.AddWithValue("@Email", usuario.Email);
                 if (usuario.DataNascimento == null)
@@ -97,7 +96,7 @@ namespace CRUD_CadastroCliente
         {
             try
             {
-                var cmd = AbrirConexaoBanco().CreateCommand();
+                var cmd = AbrirConexaoComBanco().CreateCommand();
                 cmd.CommandText = "delete from Usuario where Id=@Id";
                 cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = Id.ToString();
                 cmd.ExecuteNonQuery();
@@ -117,7 +116,7 @@ namespace CRUD_CadastroCliente
             SqlDataAdapter sqlDataAdapter = null;
             DataTable bancoDataTable = new DataTable();
 
-            using(var conexaoBanco = AbrirConexaoBanco())
+            using(var conexaoBanco = AbrirConexaoComBanco())
             {
                 using(var cmd = conexaoBanco.CreateCommand())
                 {
@@ -136,11 +135,10 @@ namespace CRUD_CadastroCliente
             return converterParaLista.ConverterParaLista<Usuario>(usuarioRepositorioBd.ObterTodos());
         }
 
-        //Criar metodo para criptografar senha
         public string CriptografarSenha(string senhaACriptografar)
         {
-            CriptografarSenha criptografarSenha = new CriptografarSenha();
-            var senhaCriptografada = criptografarSenha.SenhaDigitada(senhaACriptografar);
+            ServicoDeCriptografia servicoDeCriptografia = new ServicoDeCriptografia();
+            var senhaCriptografada = servicoDeCriptografia.CriptografarSenha(senhaACriptografar);
 
             return senhaCriptografada;
         }

@@ -41,7 +41,7 @@
             // botaoNovo
             // 
             this.botaoNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.botaoNovo.Location = new System.Drawing.Point(302, 359);
+            this.botaoNovo.Location = new System.Drawing.Point(369, 359);
             this.botaoNovo.Name = "botaoNovo";
             this.botaoNovo.Size = new System.Drawing.Size(75, 23);
             this.botaoNovo.TabIndex = 0;
@@ -52,7 +52,7 @@
             // botaoAtualizar
             // 
             this.botaoAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.botaoAtualizar.Location = new System.Drawing.Point(383, 359);
+            this.botaoAtualizar.Location = new System.Drawing.Point(450, 359);
             this.botaoAtualizar.Name = "botaoAtualizar";
             this.botaoAtualizar.Size = new System.Drawing.Size(75, 23);
             this.botaoAtualizar.TabIndex = 1;
@@ -63,7 +63,7 @@
             // botaoDeletar
             // 
             this.botaoDeletar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.botaoDeletar.Location = new System.Drawing.Point(464, 359);
+            this.botaoDeletar.Location = new System.Drawing.Point(531, 359);
             this.botaoDeletar.Name = "botaoDeletar";
             this.botaoDeletar.Size = new System.Drawing.Size(75, 23);
             this.botaoDeletar.TabIndex = 2;
@@ -101,14 +101,14 @@
             this.listaUsuariosGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaUsuariosGrid.Location = new System.Drawing.Point(12, 13);
             this.listaUsuariosGrid.Name = "listaUsuariosGrid";
-            this.listaUsuariosGrid.Size = new System.Drawing.Size(527, 328);
+            this.listaUsuariosGrid.Size = new System.Drawing.Size(594, 328);
             this.listaUsuariosGrid.TabIndex = 6;
             // 
             // FormularioConsultaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 396);
+            this.ClientSize = new System.Drawing.Size(620, 396);
             this.Controls.Add(this.listaUsuariosGrid);
             this.Controls.Add(this.botaoCancelar);
             this.Controls.Add(this.botaoOk);
