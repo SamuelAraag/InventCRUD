@@ -26,45 +26,44 @@ namespace CRUD_CadastroUsuario
                 {
                     usuarioRepositorioBd.AdicionarUsuario(formularioNovoUsuario.Usuario);
                     listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
+                    MessageBox.Show("Usuário adicionado com sucesso!");
                 }
+                AtualizarLista();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ExibirMensagem("Erro inesperado, tente novamente!");
+                ExibirMensagem(ex.Message);
             }
-            AtualizarLista();
         }
 
         private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
             try
             {
-                if (usuarioRepositorioBd.ConverterDataTableParaUsuario().Count == 0)
+                var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+
+                if (listaUsuariosGrid.CurrentCell.RowIndex == -1)
                 {
-                    ExibirMensagem("Nenhum usuário selecionado!");
+                    throw new Exception("Nenhum usuário selecionado!");
                 }
                 else
                 {
-                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                    indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
                     var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado);
-
-                    if (usuarioSelecionado != null)
+                    
+                    formNovoUsuario.Text = "Atualizar Usuario";
+                    var resultado = formNovoUsuario.ShowDialog(this);
+                    if(resultado == DialogResult.OK)
                     {
-                        formNovoUsuario.Text = "Atualizar Usuario";
-                        var resultado = formNovoUsuario.ShowDialog(this);
-                        if(resultado == DialogResult.OK)
-                        {
-                            usuarioRepositorioBd.AtualizarUsuario(usuarioSelecionado);
-                            MessageBox.Show("Usuario atualizado!");
-                        }
-                        
+                        usuarioRepositorioBd.AtualizarUsuario(usuarioSelecionado);
+                        MessageBox.Show("Usuario atualizado com sucesso!");
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ExibirMensagem("Erro inesperado, tente novamente!");
+                ExibirMensagem(ex.Message);
             }
             AtualizarLista();
         }
@@ -91,7 +90,7 @@ namespace CRUD_CadastroUsuario
             }
             catch (Exception ex)
             {
-                ExibirMensagem($"Erro inesperado, tente novamente! \n {ex.Message}");
+                ExibirMensagem(ex.Message);
             }
             AtualizarLista();
         }
@@ -106,14 +105,14 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
-                if (DeveSairDoSistema())
+                if (DeveSairDoCadastroDeUsuario())
                 {
                     this.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ExibirMensagem("Erro inesperado, tente novamente!");
+                ExibirMensagem(ex.Message);
             }
         }
 
@@ -121,33 +120,45 @@ namespace CRUD_CadastroUsuario
         {
             try
             {
-                if (DeveSairDoSistema())
+                if (DeveSairDoCadastroDeUsuario())
                 {
                     this.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ExibirMensagem("Erro inesperado, tente novamente!");
+                ExibirMensagem(ex.Message);
             }
         }
 
-        private static bool DeveSairDoSistema()
+        private static bool DeveSairDoCadastroDeUsuario()
         {
-            return MessageBox.Show("Usuários cadastrados serão apagados ao sair, deseja realmente continuar?",
+            var resultadoDialogResult = MessageBox.Show("Usuários cadastrados serão apagados ao sair, " +
+                "deseja realmente continuar?",
                 "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+                MessageBoxDefaultButton.Button2);
+
+            return resultadoDialogResult == DialogResult.Yes;
         }
 
         public void AtualizarLista()
         {
-            listaUsuariosGrid.DataSource = usuarioRepositorioBd.ConverterDataTableParaUsuario();
-            listaUsuariosGrid.Columns["Senha"].Visible = false;
-            listaUsuariosGrid.Columns["Id"].Width = 25;
-            listaUsuariosGrid.Columns["Nome"].Width = 150;
-            listaUsuariosGrid.Columns["Email"].Width = 200;
-            listaUsuariosGrid.Columns["DataNascimento"].Width = 90;
-            listaUsuariosGrid.Columns["DataCriacao"].Width = 90;
+            try
+            {
+                listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
+                listaUsuariosGrid.Columns["Senha"].Visible = false;
+                listaUsuariosGrid.Columns["Id"].Width = 25;
+                listaUsuariosGrid.Columns["Nome"].Width = 150;
+                listaUsuariosGrid.Columns["Email"].Width = 200;
+                listaUsuariosGrid.Columns["DataNascimento"].Width = 130;
+                listaUsuariosGrid.Columns["DataNascimento"].HeaderText = "Data de Nascimento";
+                listaUsuariosGrid.Columns["DataCriacao"].Width = 140;
+                listaUsuariosGrid.Columns["DataCriacao"].HeaderText = "Data de Criacao";
+            }
+            catch (Exception ex)
+            {
+                ExibirMensagem(ex.Message);
+            }
         }
 
         private void ExibirMensagem(string mensagem)

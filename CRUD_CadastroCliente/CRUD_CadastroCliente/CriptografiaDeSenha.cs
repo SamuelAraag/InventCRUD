@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CRUD_CadastroCliente
 {
-    public class ServicoDeCriptografia
+    public static class ServicoDeCriptografia
     {
-        string chaveUnica = ("<RSAKeyValue><Modulus>s+nhsnWfULDRzP/RB6PlVmN/hYR8jHn1lE8NWkPxQN4pYoO4OLf3Voi5A/" +
+        private static readonly string chaveUnica = ("<RSAKeyValue><Modulus>s+nhsnWfULDRzP/RB6PlVmN/hYR8jHn1lE8NWkPxQN4pYoO4OLf3Voi5A/" +
             "99uVwmiuYHog2zX2n8nD2KkS+3Q1BKK9TSt0sIe9BcTGewQTaIhqySw83zsBUCtxoa9mhnoNOYJEySJyUTt5TJoGwcjBg1acPIPVIoBHGPrSB+Kfk=" +
             "</Modulus><Exponent>AQAB</Exponent><P>xNJFZMRH9KKdaLqJ3Wp/ZGFzXYhIO+NaAyXF/awnYNdsFLBDF633kfEGtJ8Cc43ga1r0Ss9yeIrUpXKDabamgw==" +
             "</P><Q>6gIvotoEmep96b6gvBhHI2f9jckBwP0wqN9l11oP70T2xbfQ7g+N36lB2luTNEpWct8bK7J15JACKbC0x+2k0w==</Q><DP>hsBDXFL5xKZUyK/" +
@@ -15,7 +15,7 @@ namespace CRUD_CadastroCliente
             "7fFI6srPtqC1jtoHEzOVHke+JG2BTQ==</InverseQ><D>A0+MfbI4ak22rqUOfauAbuSJ1jUn7ZXY9Q+3WS/i4qSz8kImQ7Tu8kK11OMAt0aA1xGAlnTWFi1nHqDrSdys7KJB" +
             "/kksa8JoKtBmO5sFrzpD/ex+ffVg+tFBySxOQ235BHzva31CMG+TDn3232XZNBBLFdBSOQIBahORF13F2Jk=</D></RSAKeyValue>");
 
-        public string CriptografarSenha(string senhaParaCriptografar)
+        public static string CriptografarSenha(string senhaParaCriptografar)
         {
             byte[] senhaCriptografada;
             using (var rsa = new RSACryptoServiceProvider(2048))
@@ -28,7 +28,7 @@ namespace CRUD_CadastroCliente
             return Convert.ToBase64String(senhaCriptografada);
         }
 
-        public string DescriptografaSenha(string senhaParaDescriptografar)
+        public static string DescriptografaSenha(string senhaParaDescriptografar)
         {
             byte[] senhaDescriptografada;
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(2048))

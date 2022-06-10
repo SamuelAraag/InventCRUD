@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace CRUD_CadastroCliente
 {
-    public class Conversor
+    public static class Conversor
     {
-        public List<T> ConverterParaLista<T>(DataTable dt)
+        public static List<T> ConverterParaLista<T>(DataTable dt)
         {
             var columnNames = dt.Columns.Cast<DataColumn>().
                 Select(c => c.ColumnName.ToLower()).

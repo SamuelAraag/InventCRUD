@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRUD_CadastroCliente;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace CRUD_CadastroUsuario
     {
         public Usuario Usuario { get; set; }
         public FormularioNovoUsuario(Usuario usuario)
-        {
+        { 
             InicializarComponentes();
             if (usuario == null)
             {
@@ -18,7 +19,7 @@ namespace CRUD_CadastroUsuario
             {
                 CaixaId.Text = usuario.Id.ToString();
                 caixaNome.Text = usuario.Nome;
-                caixaSenha.Text = usuario.Senha;
+                caixaSenha.Text = ServicoDeCriptografia.DescriptografaSenha(usuario.Senha);
                 caixaEmail.Text = usuario.Email;
                 caixaDataNascimento.Text = usuario.DataNascimento.ToString();
                 caixaDataCriacao.Text = usuario.DataCriacao.ToString();
@@ -35,6 +36,8 @@ namespace CRUD_CadastroUsuario
                 Usuario.Email = caixaEmail.Text;
                 Usuario.Senha = caixaSenha.Text;
                 Usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
+                //Validar dataNascimento
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -46,13 +49,11 @@ namespace CRUD_CadastroUsuario
 
         private void ValidarCampos()
         {
-            var campoInvalido = "";
-            if (caixaNome.Text == campoInvalido)
+            if (caixaNome.Text == String.Empty)
             {
                 throw new Exception("Campo Nome, Obrigatório");
             }
-
-            if (caixaSenha.Text == campoInvalido)
+            if (caixaSenha.Text == String.Empty)
             {
                 throw new Exception("Campo Senha, Obrigatório");
             }
@@ -63,21 +64,12 @@ namespace CRUD_CadastroUsuario
             {
                 throw new Exception("Insira um email valido!");
             }
-            const string valorPadrao = "  /  /";
-            DateTime dt;
-            if (caixaDataNascimento.Text == valorPadrao)
-            {
-                Usuario.DataNascimento = null;
-            }
-            else
-            {
-                if ((!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt)))
-                {
-                    throw new Exception("Insira uma data valida!");
-                }
-                Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-            }
 
+            DateTime dt;
+            if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+            {
+                throw new Exception("Insira uma data valida!");
+            }
         }
 
         private void AoClicarEmCancelar(object sender, EventArgs e)
