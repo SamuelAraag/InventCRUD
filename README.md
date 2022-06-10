@@ -1,2 +1,2 @@
 # InventCRUD
-Projeto CRUD, usando mais de uma tela
+Projeto CRUD, Tela de consulta e tela de cadastro;
