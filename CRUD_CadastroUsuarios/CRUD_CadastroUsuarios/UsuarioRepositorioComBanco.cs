@@ -1,5 +1,4 @@
-﻿using CRUD_CadastroUsuarios;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
