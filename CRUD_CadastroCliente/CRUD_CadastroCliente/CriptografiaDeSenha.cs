@@ -28,7 +28,7 @@ namespace CRUD_CadastroCliente
             return Convert.ToBase64String(senhaCriptografada);
         }
 
-        public static string DescriptografaSenha(string senhaParaDescriptografar)
+        public static string DescriptografarSenha(string senhaParaDescriptografar)
         {
             byte[] senhaDescriptografada;
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(2048))

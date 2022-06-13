@@ -19,7 +19,7 @@ namespace CRUD_CadastroUsuario
             {
                 CaixaId.Text = usuario.Id.ToString();
                 caixaNome.Text = usuario.Nome;
-                caixaSenha.Text = ServicoDeCriptografia.DescriptografaSenha(usuario.Senha);
+                caixaSenha.Text = ServicoDeCriptografia.DescriptografarSenha(usuario.Senha);
                 caixaEmail.Text = usuario.Email;
                 caixaDataNascimento.Text = usuario.DataNascimento.ToString();
                 caixaDataCriacao.Text = usuario.DataCriacao.ToString();
@@ -29,6 +29,7 @@ namespace CRUD_CadastroUsuario
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
+            const string dataVazia = "  /  /";
             try
             {
                 ValidarCampos();
@@ -36,9 +37,23 @@ namespace CRUD_CadastroUsuario
                 Usuario.Email = caixaEmail.Text;
                 Usuario.Senha = caixaSenha.Text;
                 Usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
-                //Validar dataNascimento
-
+                if(caixaDataNascimento.Text == dataVazia)
+                {
+                    if (DesejaSalvarSemData())
+                    {
+                        Usuario.DataNascimento = null;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                }
                 DialogResult = DialogResult.OK;
+                
                 Close();
             }
             catch (Exception ex)
@@ -65,8 +80,9 @@ namespace CRUD_CadastroUsuario
                 throw new Exception("Insira um email valido!");
             }
 
-            DateTime dt;
-            if (!DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+            var dataValida = DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var dt);
+            const string dataVazia = "  /  /";
+            if (caixaDataNascimento.Text != dataVazia && !dataValida)
             {
                 throw new Exception("Insira uma data valida!");
             }
@@ -85,6 +101,13 @@ namespace CRUD_CadastroUsuario
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private bool DesejaSalvarSemData()
+        {
+            return MessageBox.Show("Deseja salvar o usuário sem data de nascimento? ",
+                "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
 
         private bool DeveSairDaTela()

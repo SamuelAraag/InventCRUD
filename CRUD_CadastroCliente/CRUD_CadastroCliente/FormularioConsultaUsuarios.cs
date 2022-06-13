@@ -41,7 +41,6 @@ namespace CRUD_CadastroUsuario
             try
             {
                 var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-
                 if (listaUsuariosGrid.CurrentCell.RowIndex == -1)
                 {
                     throw new Exception("Nenhum usuário selecionado!");
