@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CRUD_CadastroUsuarios
+namespace CRUD.Infra
 {
     public class AcessoAoBancoDeDados
     {
@@ -15,7 +10,7 @@ namespace CRUD_CadastroUsuarios
         {
             string connString = @"Persist Security Info=False;User ID=sa;
             Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-7MCFTA2";
-            
+
             string query = "select * from Usuario";
 
             using (SqlConnection sqlCon = new SqlConnection(connString))

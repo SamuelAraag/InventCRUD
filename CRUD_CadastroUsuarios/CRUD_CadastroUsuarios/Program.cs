@@ -12,7 +12,7 @@ namespace CRUD_CadastroUsuarios
             // see https://aka.ms/applicationconfiguration.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormularioConsultaUsuarios());
+            Application.Run(FormularioConsultaUsuarios());
         }
     }
 }
