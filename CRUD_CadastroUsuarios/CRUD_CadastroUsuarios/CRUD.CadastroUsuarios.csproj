@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CRUD.Dominio\CRUD.Dominio.csproj" />
+    <ProjectReference Include="..\CRUD.Infra\CRUD.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="FormularioConsultaUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>

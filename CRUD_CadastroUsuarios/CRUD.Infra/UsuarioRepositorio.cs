@@ -1,7 +1,7 @@
-﻿using CRUD_CadastroUsuarios;
+﻿using CRUD.Dominio;
 using System.Collections.Generic;
 
-namespace CRUD_CadastroUsuarios
+namespace CRUD.Infra
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
@@ -16,7 +16,7 @@ namespace CRUD_CadastroUsuarios
         public void DeletarUsuario(int id)
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            var usuarioEncontrado = listaDeUsuarios.Find(u => u.Id == id);
+            var usuarioEncontrado = listaDeUsuarios.Find(u => u.Id == id) ?? throw new Exception("");
             listaDeUsuarios.Remove(usuarioEncontrado);
         }
 
@@ -38,6 +38,11 @@ namespace CRUD_CadastroUsuarios
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
             return listaDeUsuarios;
+        }
+
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace CRUD_CadastroUsuarios
+namespace CRUD.Dominio
 {
     public static class Conversor
     {

@@ -1,16 +1,18 @@
-﻿using CRUD_CadastroUsuarios;
-using System;
+﻿using CRUD.Dominio;
+using CRUD.Infra;
 
 namespace CRUD_CadastroUsuarios
 {
-
     public partial class FormularioConsultaUsuarios : Form
     {
         //UsuarioRepositorio usuarioRepositorioComLista = new UsuarioRepositorio();
         UsuarioRepositorioComBanco usuarioRepositorioBd = new UsuarioRepositorioComBanco();
+        private IUsuarioRepositorio _usuarioRepositorio;
 
-        public FormularioConsultaUsuarios()
+        public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)
         {
+            _usuarioRepositorio = usuarioRepositorio;
+
             InitializeComponent();
             AtualizarLista();
         }
@@ -47,8 +49,10 @@ namespace CRUD_CadastroUsuarios
                 else
                 {
                     indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado);
+                    var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario) 
+                        ?? throw new Exception("");
+
+                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
                     
                     formNovoUsuario.Text = "Atualizar Usuario";
                     var resultado = formNovoUsuario.ShowDialog(this);
