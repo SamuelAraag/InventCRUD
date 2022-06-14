@@ -9,7 +9,6 @@ namespace CRUD.Infra
     {
         private static SqlConnection conexaoSql;
 
-        public UsuarioRepositorioComBanco() { }
         private static string StringConexaoBanco()
         {
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
@@ -108,12 +107,12 @@ namespace CRUD.Infra
             return Conversor.ConverterParaLista<Usuario>(bancoDataTable);
         }
 
-        public void Dispose()
+        public Usuario ObterPorId(int id)
         {
-            GC.SuppressFinalize(this);
+            throw new NotImplementedException();
         }
 
-        public Usuario ObterPorId(int id)
+        public void Dispose()
         {
             throw new NotImplementedException();
         }
