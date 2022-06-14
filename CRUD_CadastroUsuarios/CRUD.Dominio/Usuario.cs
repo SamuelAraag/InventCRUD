@@ -1,4 +1,4 @@
-﻿namespace CRUD_CadastroUsuarios
+﻿namespace CRUD.Dominio
 {
     public class Usuario
     {

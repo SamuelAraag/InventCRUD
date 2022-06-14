@@ -1,30 +1,37 @@
-﻿using CRUD_CadastroUsuarios;
-using System;
+﻿using CRUD.Dominio;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioNovoUsuario : Form
     {
+        private IUsuarioRepositorio _repositorioDeUsuario;
+
         public Usuario Usuario { get; set; }
-        public FormularioNovoUsuario(Usuario usuario)
-        { 
+
+        public FormularioNovoUsuario(int idDoUsuario, IUsuarioRepositorio repositorioDeUsuario)
+        {
+            _repositorioDeUsuario = repositorioDeUsuario;
+
             InicializarComponentes();
-            if (usuario == null)
+
+            if (Usuario == null)
             {
                 Usuario = new Usuario();
             }
             else
             {
-                CaixaId.Text = usuario.Id.ToString();
-                caixaNome.Text = usuario.Nome;
+                var usuarioSalvo = _repositorioDeUsuario.ObterPorId(idDoUsuario) 
+                    ?? throw new Exception("");
+
+                CaixaId.Text = usuarioSalvo.Id.ToString();
+                caixaNome.Text = usuarioSalvo.Nome;
                 caixaSenha.Enabled = false;
-                caixaSenha.Text = ServicoDeCriptografia.DescriptografarSenha(usuario.Senha);
-                caixaEmail.Text = usuario.Email;
-                caixaDataNascimento.Text = usuario.DataNascimento.ToString();
-                caixaDataCriacao.Text = usuario.DataCriacao.ToString();
-                Usuario = usuario;
+                caixaSenha.Text = ServicoDeCriptografia.DescriptografarSenha(usuarioSalvo.Senha);
+                caixaEmail.Text = usuarioSalvo.Email;
+                caixaDataNascimento.Text = usuarioSalvo.DataNascimento.ToString();
+                caixaDataCriacao.Text = usuarioSalvo.DataCriacao.ToString();
+                Usuario = usuarioSalvo;
             }
         }
 

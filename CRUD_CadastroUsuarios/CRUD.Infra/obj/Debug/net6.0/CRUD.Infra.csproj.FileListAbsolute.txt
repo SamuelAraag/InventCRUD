@@ -1,0 +1,15 @@
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\bin\Debug\net6.0\CRUD.Infra.deps.json
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\bin\Debug\net6.0\CRUD.Infra.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\bin\Debug\net6.0\CRUD.Infra.pdb
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\bin\Debug\net6.0\CRUD.Dominio.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\bin\Debug\net6.0\CRUD.Dominio.pdb
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.csproj.AssemblyReference.cache
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.AssemblyInfoInputs.cache
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.AssemblyInfo.cs
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.csproj.CoreCompileInputs.cache
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.csproj.CopyComplete
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\refint\CRUD.Infra.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\CRUD.Infra.pdb
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.Infra\obj\Debug\net6.0\ref\CRUD.Infra.dll

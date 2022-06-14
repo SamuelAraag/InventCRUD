@@ -1,9 +1,6 @@
-﻿using CRUD_CadastroUsuarios;
-using System.Collections.Generic;
-
-namespace CRUD_CadastroUsuarios
+﻿namespace CRUD.Dominio
 {
-    public interface IUsuarioRepositorio
+    public interface IUsuarioRepositorio : IDisposable
     {
         void AdicionarUsuario(Usuario usuario);
         void DeletarUsuario(int id);

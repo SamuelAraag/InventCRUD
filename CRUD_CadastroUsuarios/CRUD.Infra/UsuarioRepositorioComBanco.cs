@@ -1,10 +1,11 @@
-﻿using System.Configuration;
+﻿using CRUD.Dominio;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CRUD_CadastroUsuarios
+namespace CRUD.Infra
 {
-    public class UsuarioRepositorioComBanco : IDisposable
+    public class UsuarioRepositorioComBanco : IUsuarioRepositorio
     {
         private static SqlConnection conexaoSql;
 
@@ -110,6 +111,11 @@ namespace CRUD_CadastroUsuarios
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public Usuario ObterPorId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
