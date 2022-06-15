@@ -5,6 +5,7 @@ namespace CRUD.Infra
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
+        //Repositório usando lista singleton
         public void AdicionarUsuario(Usuario usuario)
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();

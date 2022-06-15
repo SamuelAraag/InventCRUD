@@ -5,19 +5,17 @@ namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioNovoUsuario : Form
     {
-        private IUsuarioRepositorio _repositorioDeUsuario;
-
-        public Usuario Usuario { get; set; }
+        private readonly IUsuarioRepositorio _repositorioDeUsuario;
+        public Usuario usuario { get; set; }
 
         public FormularioNovoUsuario(int idDoUsuario, IUsuarioRepositorio repositorioDeUsuario)
         {
             _repositorioDeUsuario = repositorioDeUsuario;
-
             InicializarComponentes();
 
-            if (Usuario == null)
+            if (idDoUsuario == 0)
             {
-                Usuario = new Usuario();
+                usuario = new Usuario();
             }
             else
             {
@@ -31,7 +29,7 @@ namespace CRUD_CadastroUsuarios
                 caixaEmail.Text = usuarioSalvo.Email;
                 caixaDataNascimento.Text = usuarioSalvo.DataNascimento.ToString();
                 caixaDataCriacao.Text = usuarioSalvo.DataCriacao.ToString();
-                Usuario = usuarioSalvo;
+                usuario = usuarioSalvo;
             }
         }
 
@@ -41,15 +39,15 @@ namespace CRUD_CadastroUsuarios
             try
             {
                 ValidarCampos();
-                Usuario.Nome = caixaNome.Text;
-                Usuario.Email = caixaEmail.Text;
-                Usuario.Senha = caixaSenha.Text;
-                Usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
+                usuario.Nome = caixaNome.Text;
+                usuario.Email = caixaEmail.Text;
+                usuario.Senha = caixaSenha.Text;
+                usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
                 if(caixaDataNascimento.Text == dataVazia)
                 {
                     if (DesejaSalvarSemData())
                     {
-                        Usuario.DataNascimento = null;
+                        usuario.DataNascimento = null;
                     }
                     else
                     {
@@ -58,7 +56,7 @@ namespace CRUD_CadastroUsuarios
                 }
                 else
                 {
-                    Usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                    usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
                 }
                 DialogResult = DialogResult.OK;
                 

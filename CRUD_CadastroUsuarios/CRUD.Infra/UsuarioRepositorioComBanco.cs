@@ -51,7 +51,7 @@ namespace CRUD.Infra
         {
             if (usuario == null)
             {
-                throw new Exception();
+                throw new Exception("Usuario nulo");
             }
             using (var conn = AbrirConexaoComBanco())
             {
@@ -109,7 +109,19 @@ namespace CRUD.Infra
 
         public Usuario ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            SqlDataAdapter sqlDataAdapter = null;
+            DataTable bancoDataTable = new DataTable();
+            using (var conn = AbrirConexaoComBanco())
+            {
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "select * from Usuario";
+                    sqlDataAdapter = new SqlDataAdapter(cmd.CommandText, conn);
+                    sqlDataAdapter.Fill(bancoDataTable);
+                }
+            }
+            var usuarioId = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == id);
+            return usuarioId;
         }
 
         public void Dispose()

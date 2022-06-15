@@ -1,18 +1,15 @@
 ﻿using CRUD.Dominio;
-using CRUD.Infra;
 
 namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioConsultaUsuarios : Form
     {
-        //UsuarioRepositorio usuarioRepositorioComLista = new UsuarioRepositorio();
-        UsuarioRepositorioComBanco usuarioRepositorioBd = new UsuarioRepositorioComBanco();
-        private IUsuarioRepositorio _usuarioRepositorio;
+        //UsuarioRepositorioComBanco usuarioRepositorioBd = new UsuarioRepositorioComBanco();
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
 
         public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
-
             InitializeComponent();
             AtualizarLista();
         }
@@ -21,12 +18,13 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                var formularioNovoUsuario = new FormularioNovoUsuario(null);
+                var usuarioNovo= 0;
+                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio);
                 var resultado = formularioNovoUsuario.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
-                    usuarioRepositorioBd.AdicionarUsuario(formularioNovoUsuario.Usuario);
-                    listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
+                    _usuarioRepositorio.AdicionarUsuario(formularioNovoUsuario.usuario);
+                    listaUsuariosGrid.DataSource = _usuarioRepositorio.ObterTodos();
                     MessageBox.Show("Usuário adicionado com sucesso!");
                 }
                 AtualizarLista();
@@ -50,7 +48,7 @@ namespace CRUD_CadastroUsuarios
                 {
                     indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario) 
-                        ?? throw new Exception("");
+                        ?? throw new Exception("Nenhum usuário selecionado");
 
                     var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
                     
@@ -58,7 +56,7 @@ namespace CRUD_CadastroUsuarios
                     var resultado = formNovoUsuario.ShowDialog(this);
                     if(resultado == DialogResult.OK)
                     {
-                        usuarioRepositorioBd.AtualizarUsuario(usuarioSelecionado);
+                        _usuarioRepositorio.AtualizarUsuario(usuarioSelecionado);
                         MessageBox.Show("Usuario atualizado com sucesso!");
                     }
                 }
@@ -82,10 +80,10 @@ namespace CRUD_CadastroUsuarios
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-
+                    
                     if (DesejaDeletarOUsuario())
                     {
-                        usuarioRepositorioBd.DeletarUsuario(usuarioSelecionado.Id);
+                        _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
                         MessageBox.Show("Usuario deletado!");
                     }
                 }
@@ -147,7 +145,9 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                listaUsuariosGrid.DataSource = usuarioRepositorioBd.ObterTodos();
+                //var usuarioRepositorio = new UsuarioRepositorioComBanco();
+
+                listaUsuariosGrid.DataSource = _usuarioRepositorio.ObterTodos();
                 listaUsuariosGrid.Columns["Senha"].Visible = false;
                 listaUsuariosGrid.Columns["Id"].Width = 25;
                 listaUsuariosGrid.Columns["Nome"].Width = 150;
