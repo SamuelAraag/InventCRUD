@@ -62,7 +62,7 @@ namespace CRUD.Infra
 
                     cmd.Parameters.AddWithValue("@Id", usuario.Id);
                     cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-                    cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
+                    cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
                     cmd.Parameters.AddWithValue("@Email", usuario.Email);
                     if (usuario.DataNascimento == null)
                     {
@@ -120,8 +120,8 @@ namespace CRUD.Infra
                     sqlDataAdapter.Fill(bancoDataTable);
                 }
             }
-            var usuarioId = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == id);
-            return usuarioId;
+            var usuario = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == id);
+            return usuario;
         }
 
         public void Dispose()

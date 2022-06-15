@@ -37,6 +37,7 @@ namespace CRUD_CadastroUsuarios
 
         private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
+            var usuario = new Usuario();
             try
             {
                 var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
@@ -56,7 +57,8 @@ namespace CRUD_CadastroUsuarios
                     var resultado = formNovoUsuario.ShowDialog(this);
                     if(resultado == DialogResult.OK)
                     {
-                        _usuarioRepositorio.AtualizarUsuario(usuarioSelecionado);
+                        usuario = usuarioSelecionado;
+                        _usuarioRepositorio.AtualizarUsuario(usuario);
                         MessageBox.Show("Usuario atualizado com sucesso!");
                     }
                 }
