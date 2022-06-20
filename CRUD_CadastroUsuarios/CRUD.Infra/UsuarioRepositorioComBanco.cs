@@ -8,8 +8,7 @@ namespace CRUD.Infra
     public class UsuarioRepositorioComBanco : IUsuarioRepositorio
     {
         private static SqlConnection conexaoSql;
-
-        public UsuarioRepositorioComBanco() { }
+        
         private static string StringConexaoBanco()
         {
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
@@ -24,71 +23,111 @@ namespace CRUD.Infra
 
         public void AdicionarUsuario(Usuario usuario)
         {
-            using (var conn = AbrirConexaoComBanco())
+            try
             {
-                using (var cmd = conn.CreateCommand())
+                using (var conn = AbrirConexaoComBanco())
                 {
-                    cmd.CommandText = "Insert into Usuario (Nome, Senha, Email, DataNascimento, DataCriacao)" +
-                    " values (@Nome, @Senha, @Email, @DataNascimento, @DataCriacao)";
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "Insert into Usuario (Nome, Senha, Email, DataNascimento, DataCriacao)" +
+                        " values (@Nome, @Senha, @Email, @DataNascimento, @DataCriacao)";
 
-                    cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-                    cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
-                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                    if (usuario.DataNascimento == null)
-                    {
-                        cmd.Parameters.AddWithValue("@DataNascimento", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Erro ao criptografar senha! " + ex);
+                        }
+                        cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                        if (usuario.DataNascimento == null)
+                        {
+                            cmd.Parameters.AddWithValue("@DataNascimento", DBNull.Value);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
+                        }
+                        cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
+                        cmd.ExecuteNonQuery();
                     }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
-                    }
-                    cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
-                    cmd.ExecuteNonQuery();
                 }
             }
+            catch (Exception)
+            {
+
+                throw new Exception("Erro ao adicionar novo usuário");
+            }
+            
         }
 
         public void AtualizarUsuario(Usuario usuario)
         {
-            if (usuario == null)
+            try
             {
-                throw new Exception();
-            }
-            using (var conn = AbrirConexaoComBanco())
-            {
-                using (var cmd = conn.CreateCommand())
+                if (usuario == null)
                 {
-                    cmd.CommandText = "Update Usuario set Nome=@Nome, Senha=@Senha, Email=@Email," +
-                    " DataNascimento=@DataNascimento, DataCriacao=@DataCriacao where Id=@Id";
+                    throw new Exception("Usuario nulo!");
+                }
+                using (var conn = AbrirConexaoComBanco())
+                {
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "Update Usuario set Nome=@Nome, Senha=@Senha, Email=@Email," +
+                        " DataNascimento=@DataNascimento, DataCriacao=@DataCriacao where Id=@Id";
 
-                    cmd.Parameters.AddWithValue("@Id", usuario.Id);
-                    cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-                    cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
-                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                    if (usuario.DataNascimento == null)
-                    {
-                        cmd.Parameters.AddWithValue("@DataNascimento", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Id", usuario.Id);
+                        cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Erro ao criptografar senha! " + ex);
+                        }
+                        cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                        if (usuario.DataNascimento == null)
+                        {
+                            cmd.Parameters.AddWithValue("@DataNascimento", DBNull.Value);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
+                        }
+                        cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
+                        cmd.ExecuteNonQuery();
                     }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
-                    }
-                    cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
-                    cmd.ExecuteNonQuery();
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao atualizar usuário" + ex);
+            }
+            
         }
 
         public void DeletarUsuario(int Id)
         {
-            using (var conn = AbrirConexaoComBanco())
+            try
             {
-                using (var cmd = conn.CreateCommand())
+                using (var conn = AbrirConexaoComBanco())
                 {
-                    cmd.CommandText = "delete from Usuario where Id=@Id";
-                    cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = Id.ToString();
-                    cmd.ExecuteNonQuery();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "delete from Usuario where Id=@Id";
+                        cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = Id.ToString();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao deletar usuário! " + ex);
             }
         }
 
@@ -108,12 +147,32 @@ namespace CRUD.Infra
             return Conversor.ConverterParaLista<Usuario>(bancoDataTable);
         }
 
-        public void Dispose()
+        public Usuario ObterPorId(int id)
         {
-            GC.SuppressFinalize(this);
+            SqlDataAdapter sqlDataAdapter = null;
+            DataTable bancoDataTable = new DataTable();
+            try
+            {
+                using (var conn = AbrirConexaoComBanco())
+                {
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "select * from Usuario";
+                        sqlDataAdapter = new SqlDataAdapter(cmd.CommandText, conn);
+                        sqlDataAdapter.Fill(bancoDataTable);
+                    }
+                }
+                var usuario = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == id);
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao obter usuário pelo Id! " + ex);
+            }
         }
 
-        public Usuario ObterPorId(int id)
+        public void Dispose()
         {
             throw new NotImplementedException();
         }
