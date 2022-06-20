@@ -8,7 +8,7 @@ namespace CRUD.Infra
     public class UsuarioRepositorioComBanco : IUsuarioRepositorio
     {
         private static SqlConnection conexaoSql;
-        
+
         private static string StringConexaoBanco()
         {
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
@@ -60,7 +60,6 @@ namespace CRUD.Infra
 
                 throw new Exception("Erro ao adicionar novo usuário");
             }
-            
         }
 
         public void AtualizarUsuario(Usuario usuario)
@@ -126,13 +125,13 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Erro ao deletar usuário! " + ex);
             }
         }
 
         public List<Usuario> ObterTodos()
         {
+            //Consulta usando o linq2db
             SqlDataAdapter sqlDataAdapter = null;
             DataTable bancoDataTable = new DataTable();
             using (var conn = AbrirConexaoComBanco())
@@ -167,7 +166,6 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Erro ao obter usuário pelo Id! " + ex);
             }
         }
