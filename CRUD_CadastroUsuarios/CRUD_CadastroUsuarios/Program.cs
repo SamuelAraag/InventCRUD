@@ -23,7 +23,6 @@ namespace CRUD_CadastroUsuarios
                 .Services
                 .GetRequiredService<IUsuarioRepositorio>();
 
-            // see https://aka.ms/applicationconfiguration.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormularioConsultaUsuarios(usuarioRepositorio));

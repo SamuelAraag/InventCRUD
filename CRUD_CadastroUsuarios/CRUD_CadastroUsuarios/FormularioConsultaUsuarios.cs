@@ -17,8 +17,8 @@ namespace CRUD_CadastroUsuarios
         public void AoClicarEmNovo(object sender, EventArgs e)
         {
             try
-            {
-                var usuarioNovo = 0;
+            { 
+                var usuarioNovo = (int)decimal.Zero;
                 var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio);
                 var resultado = formularioNovoUsuario.ShowDialog();
                 if (resultado == DialogResult.OK)
@@ -39,13 +39,13 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                if (listaUsuariosGrid.CurrentCell.RowIndex == -1)
+                if (listaUsuariosGrid.CurrentCell == null)
                 {
                     throw new Exception("Nenhum usuário selecionado!");
                 }
                 else
                 {
+                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario) 
                         ?? throw new Exception("Nenhum usuário selecionado");
