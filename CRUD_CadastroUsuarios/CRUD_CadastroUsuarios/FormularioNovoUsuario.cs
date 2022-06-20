@@ -21,11 +21,18 @@ namespace CRUD_CadastroUsuarios
             {
                 var usuarioSalvo = _repositorioDeUsuario.ObterPorId(idDoUsuario) 
                     ?? throw new Exception("");
-
                 CaixaId.Text = usuarioSalvo.Id.ToString();
                 caixaNome.Text = usuarioSalvo.Nome;
                 caixaSenha.Enabled = false;
-                caixaSenha.Text = ServicoDeCriptografia.DescriptografarSenha(usuarioSalvo.Senha);
+                try
+                {
+                    caixaSenha.Text = ServicoDeCriptografia.DescriptografarSenha(usuarioSalvo.Senha);
+                }
+                catch (Exception ex) 
+                {
+
+                    throw new Exception("Erro ao descriptografar senha! " + ex);
+                }
                 caixaEmail.Text = usuarioSalvo.Email;
                 caixaDataNascimento.Text = usuarioSalvo.DataNascimento.ToString();
                 caixaDataCriacao.Text = usuarioSalvo.DataCriacao.ToString();

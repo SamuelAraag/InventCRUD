@@ -18,7 +18,7 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                var usuarioNovo= 0;
+                var usuarioNovo = 0;
                 var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio);
                 var resultado = formularioNovoUsuario.ShowDialog();
                 if (resultado == DialogResult.OK)
@@ -37,7 +37,6 @@ namespace CRUD_CadastroUsuarios
 
         private void AoClicarEmAtualizar(object sender, EventArgs e)
         {
-            var usuario = new Usuario();
             try
             {
                 var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
@@ -56,9 +55,8 @@ namespace CRUD_CadastroUsuarios
                     formNovoUsuario.Text = "Atualizar Usuario";
                     var resultado = formNovoUsuario.ShowDialog(this);
                     if(resultado == DialogResult.OK)
-                    {
-                        usuario = usuarioSelecionado;
-                        _usuarioRepositorio.AtualizarUsuario(usuario);
+                    {    
+                        _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
                         MessageBox.Show("Usuario atualizado com sucesso!");
                     }
                 }
@@ -147,8 +145,6 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                //var usuarioRepositorio = new UsuarioRepositorioComBanco();
-
                 listaUsuariosGrid.DataSource = _usuarioRepositorio.ObterTodos();
                 listaUsuariosGrid.Columns["Senha"].Visible = false;
                 listaUsuariosGrid.Columns["Id"].Width = 25;

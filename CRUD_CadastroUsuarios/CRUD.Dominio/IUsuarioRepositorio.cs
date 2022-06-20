@@ -4,7 +4,7 @@
     {
         void AdicionarUsuario(Usuario usuario);
         void DeletarUsuario(int id);
-        void AtualizarUsuario(Usuario usuarioEditado);
+        void AtualizarUsuario(Usuario usuario);
         Usuario ObterPorId(int id);
         List<Usuario> ObterTodos();
     }

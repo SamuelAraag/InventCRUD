@@ -1,11 +1,9 @@
 ﻿using CRUD.Dominio;
-using System.Collections.Generic;
 
 namespace CRUD.Infra
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        //Repositório usando lista singleton
         public void AdicionarUsuario(Usuario usuario)
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
@@ -21,11 +19,11 @@ namespace CRUD.Infra
             listaDeUsuarios.Remove(usuarioEncontrado);
         }
 
-        public void AtualizarUsuario(Usuario usuarioEditado)
+        public void AtualizarUsuario(Usuario usuario)
         {
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
-            var indice = listaDeUsuarios.FindIndex(usuario => usuario.Id == usuarioEditado.Id);
-            listaDeUsuarios[indice] = usuarioEditado;
+            var indice = listaDeUsuarios.FindIndex(usuario => usuario.Id == usuario.Id);
+            listaDeUsuarios[indice] = usuario;
         }
 
         public Usuario ObterPorId(int id)
@@ -33,6 +31,7 @@ namespace CRUD.Infra
             var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
             var usuarioBuscado = listaDeUsuarios.Find(u => u.Id == id);
             return usuarioBuscado;
+
         }
 
         public List<Usuario> ObterTodos()
