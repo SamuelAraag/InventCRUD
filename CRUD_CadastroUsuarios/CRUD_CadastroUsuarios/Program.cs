@@ -19,6 +19,8 @@ namespace CRUD_CadastroUsuarios
 
             builder.RunAsync();
 
+            MapeamentoDasTabelas.Mapear();
+
             var usuarioRepositorio = builder
                 .Services
                 .GetRequiredService<IUsuarioRepositorio>();

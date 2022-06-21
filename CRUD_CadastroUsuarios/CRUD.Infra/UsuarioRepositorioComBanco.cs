@@ -28,24 +28,30 @@ namespace CRUD.Infra
             var novoUsuario = new Usuario();
             try
             {
-                //Usando linq
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {
-                    ////Adicionar id
-                    ////Transformar informações em objeto
-                    ////Não funciona - novoUsuario.Id = db.InsertWithInt32Identity(usuario);
-                    //novoUsuario.Nome = usuario.Nome;
-                    //novoUsuario.Senha = usuario.Senha;
-                    //novoUsuario.Email = usuario.Email;
-                    //novoUsuario.DataNascimento = usuario.DataNascimento;
-                    //novoUsuario.DataCriacao = usuario.DataCriacao;
-                    ////Inserir o id automatico
+                    novoUsuario.Nome = usuario.Nome;
+                    try
+                    {
+                        novoUsuario.Senha = ServicoDeCriptografia.CriptografarSenha(usuario.Senha);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Erro ao criptografar senha! " + ex);
+                    }
+                    novoUsuario.Email = usuario.Email;
+                    if (usuario.DataNascimento == null)
+                    {
+                        novoUsuario.DataNascimento = null;
+                    }
+                    else
+                    {
+                        novoUsuario.DataNascimento = usuario.DataNascimento;
+                    }
+                    novoUsuario.DataCriacao = usuario.DataCriacao;
 
-                    //db.Insert(novoUsuario);
-
-
+                    db.Insert(novoUsuario);
                 }
-
 
                 //using (var conn = AbrirConexaoComBanco())
                 //{
@@ -86,42 +92,77 @@ namespace CRUD.Infra
 
         public void AtualizarUsuario(Usuario usuario)
         {
+            var usuarioAtualizado = new Usuario();
             try
             {
                 if (usuario == null)
                 {
                     throw new Exception("Usuario nulo!");
                 }
-                using (var conn = AbrirConexaoComBanco())
+                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {
-                    using (var cmd = conn.CreateCommand())
+                    usuarioAtualizado.Id = usuario.Id;
+                    usuarioAtualizado.Nome = usuario.Nome;
+                    try
                     {
-                        cmd.CommandText = "Update Usuario set Nome=@Nome, Senha=@Senha, Email=@Email," +
-                        " DataNascimento=@DataNascimento, DataCriacao=@DataCriacao where Id=@Id";
-
-                        cmd.Parameters.AddWithValue("@Id", usuario.Id);
-                        cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-                        try
-                        {
-                            cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
-                        }
-                        catch (Exception ex)
-                        {
-                            throw new Exception("Erro ao criptografar senha! " + ex);
-                        }
-                        cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                        if (usuario.DataNascimento == null)
-                        {
-                            cmd.Parameters.AddWithValue("@DataNascimento", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
-                        }
-                        cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
-                        cmd.ExecuteNonQuery();
+                        usuarioAtualizado.Senha = ServicoDeCriptografia.CriptografarSenha(usuario.Senha);
                     }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Erro ao criptografar senha! " + ex);
+                    }
+                    usuarioAtualizado.Email = usuario.Email;
+                    if(usuario.DataNascimento == null)
+                    {
+                        usuarioAtualizado.DataNascimento = null;
+                    }
+                    else
+                    {
+                        usuarioAtualizado.DataNascimento = usuario.DataNascimento;
+                    }
+                    usuarioAtualizado.DataCriacao = usuario.DataCriacao;
+                    usuario = usuarioAtualizado;
+
+                    db.Update(usuario);
                 }
+
+
+
+
+
+
+
+
+                //using (var conn = AbrirConexaoComBanco())
+                //{
+                //    using (var cmd = conn.CreateCommand())
+                //    {
+                //        cmd.CommandText = "Update Usuario set Nome=@Nome, Senha=@Senha, Email=@Email," +
+                //        " DataNascimento=@DataNascimento, DataCriacao=@DataCriacao where Id=@Id";
+
+                //        cmd.Parameters.AddWithValue("@Id", usuario.Id);
+                //        cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                //        try
+                //        {
+                //            cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
+                //        }
+                //        catch (Exception ex)
+                //        {
+                //            throw new Exception("Erro ao criptografar senha! " + ex);
+                //        }
+                //        cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                //        if (usuario.DataNascimento == null)
+                //        {
+                //            cmd.Parameters.AddWithValue("@DataNascimento", DBNull.Value);
+                //        }
+                //        else
+                //        {
+                //            cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento.ToString());
+                //        }
+                //        cmd.Parameters.AddWithValue("@DataCriacao", usuario.DataCriacao);
+                //        cmd.ExecuteNonQuery();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
