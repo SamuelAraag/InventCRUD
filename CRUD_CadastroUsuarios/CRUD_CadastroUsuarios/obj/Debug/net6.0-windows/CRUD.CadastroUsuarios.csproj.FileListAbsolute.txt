@@ -60,3 +60,4 @@ C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD_Cadastr
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD_CadastroUsuarios\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD_CadastroUsuarios\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD_CadastroUsuarios\bin\Debug\net6.0-windows\FluentAssertions.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD_CadastroUsuarios\bin\Debug\net6.0-windows\linq2db.dll

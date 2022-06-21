@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ikYiBj+VpECevPpz+5ZE6P4n0BmXcL362L1NMGYNrw5znnrLMjTMZv8uAscU+7aCZGN7DK9N07774yH+RvPltA==",
+  "dgSpecHash": "ojFLpgy+f3sli0Yv87+UooaF+IrflOQFe8Fpokf/P2Z/Ww/qLcPzTw8zpuMGLxcsdeaJ/q42VZo5MZ9s3RjAQg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD_CadastroUsuarios\\CRUD.CadastroUsuarios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuário\\.nuget\\packages\\fluentassertions\\6.7.0\\fluentassertions.6.7.0.nupkg.sha512",
+    "C:\\Users\\Usuário\\.nuget\\packages\\linq2db\\4.1.0\\linq2db.4.1.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
