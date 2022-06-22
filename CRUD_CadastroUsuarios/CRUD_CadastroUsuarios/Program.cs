@@ -1,10 +1,9 @@
 using CRUD.Dominio;
 using CRUD.Infra;
-using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CRUD_CadastroUsuarios  
+namespace CRUD_CadastroUsuarios
 {
 
     internal static class Program
@@ -34,7 +33,7 @@ namespace CRUD_CadastroUsuarios
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((_, services) =>
-                    services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComBanco>());
+                    services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>());
         }
     }
 }

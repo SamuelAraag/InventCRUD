@@ -72,21 +72,21 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                //if (listaUsuariosGrid.CurrentCell == null)
-                //{
-                //    ExibirMensagem("Nenhum usuário selecionado!");
-                //}
-                //else
-                //{
-                //    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                //    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    
-                //    if (DesejaDeletarOUsuario())
-                //    {
-                //        _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
-                //        MessageBox.Show("Usuario deletado!");
-                //    }
-                //}
+                if (listaUsuariosGrid.CurrentCell == null)
+                {
+                    ExibirMensagem("Nenhum usuário selecionado!");
+                }
+                else
+                {
+                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+
+                    if (DesejaDeletarOUsuario())
+                    {
+                        _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
+                        MessageBox.Show("Usuario deletado!");
+                    }
+                }
             }
             catch (Exception ex)
             {
