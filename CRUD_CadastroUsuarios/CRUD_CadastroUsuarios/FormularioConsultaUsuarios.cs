@@ -4,7 +4,6 @@ namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioConsultaUsuarios : Form
     {
-        //UsuarioRepositorioComBanco usuarioRepositorioBd = new UsuarioRepositorioComBanco();
         private readonly IUsuarioRepositorio _usuarioRepositorio;
 
         public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)

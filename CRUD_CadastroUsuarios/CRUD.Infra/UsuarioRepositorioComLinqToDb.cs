@@ -19,14 +19,7 @@ namespace CRUD.Infra
             {
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {
-                    try
-                    {
-                        usuario.Senha = ServicoDeCriptografia.CriptografarSenha(usuario.Senha);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("Erro ao criptografar senha! " + ex);
-                    }
+                    usuario.Senha = CriptografarSenhaDoUsuario(usuario.Senha);
                     db.Insert(usuario);
                 }
             }
@@ -46,14 +39,7 @@ namespace CRUD.Infra
                 }
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {
-                    try
-                    {
-                        usuario.Senha = ServicoDeCriptografia.CriptografarSenha(usuario.Senha);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("Erro ao criptografar senha! " + ex);
-                    }
+                    usuario.Senha = CriptografarSenhaDoUsuario(usuario.Senha);
                     db.Update(usuario);
                 }
             }
@@ -94,17 +80,16 @@ namespace CRUD.Infra
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
-                var usuarioEncontrado = db.GetTable<Usuario>()
-                        .FirstOrDefault(u => u.Id == Id);
-                if (usuarioEncontrado == null)
-                {
-                    throw new Exception("Não foi possível encontrar o Usuario com Id" + Id);
-                }
+                var usuarioEncontrado = db
+                    .GetTable<Usuario>()
+                    .FirstOrDefault(u => u.Id == Id) ?? throw new Exception ("Não foi possível encontrar o Usuario com Id" + Id);
+
                 return usuarioEncontrado;
             }
+            //teste de try/catch
             catch (Exception ex)
             {
-                throw new Exception("Erro ao obter usuário pelo Id! ", ex);
+                throw new Exception("Erro ao obter usuário pelo Id! " + ex);
             }
         }
 
@@ -112,6 +97,18 @@ namespace CRUD.Infra
         {
             throw new NotImplementedException();
         }
-
+        
+        private string CriptografarSenhaDoUsuario(string senhaACriptografar)
+        {
+            try
+            {
+                var senhaCriptografada = ServicoDeCriptografia.CriptografarSenha(senhaACriptografar);
+                return senhaCriptografada;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro as cript senha " + ex);
+            }
+        }
     }
 }
