@@ -19,7 +19,6 @@ namespace CRUD_CadastroUsuarios
             }
             else
             {
-                //Mudar idDoUsuario para um valor padrão 200 por exemplo (caso queira gerar o erro)
                 var usuarioSalvo = _repositorioDeUsuario.ObterPorId(idDoUsuario);
                 CaixaId.Text = usuarioSalvo.Id.ToString();
                 caixaNome.Text = usuarioSalvo.Nome;
@@ -30,7 +29,7 @@ namespace CRUD_CadastroUsuarios
                 }
                 catch (Exception ex) 
                 {
-                    throw new Exception("Erro ao descriptografar senha! " + ex);
+                    throw new Exception("Erro ao descriptografar senha!" , ex);
                 }
                 caixaEmail.Text = usuarioSalvo.Email;
                 caixaDataNascimento.Text = usuarioSalvo.DataNascimento.ToString();
@@ -70,7 +69,7 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new Exception("Erro ao salvar Usuário!" , ex);
             }
         }
 
@@ -110,7 +109,7 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new Exception("Erro inesperado!", ex);
             }
         }
 

@@ -25,7 +25,7 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao adicionar novo usuário" + ex);
+                throw new Exception("Erro ao adicionar novo usuário" , ex);
             }
         }
 
@@ -43,9 +43,9 @@ namespace CRUD.Infra
                     db.Update(usuario);
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                throw new Exception("Erro ao atualizar usuário" + ex);
+                throw new Exception("Erro ao atualizar Usuário! " , ex);
             }
         }
 
@@ -62,17 +62,24 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao deletar usuário! " + ex);
+                throw new Exception("Erro ao deletar usuário! " , ex);
             }
         }
 
         public List<Usuario> ObterTodos()
         {
-            using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
-            var listaDeUsuarios =
-                from usuarios in db.GetTable<Usuario>()
-                select usuarios;
-            return listaDeUsuarios.ToList();
+            try
+            {
+                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                var listaDeUsuarios =
+                    from usuarios in db.GetTable<Usuario>()
+                    select usuarios;
+                return listaDeUsuarios.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao carregar lista de Usuários! " , ex);
+            }
         }
 
         public Usuario ObterPorId(int Id)
@@ -86,10 +93,9 @@ namespace CRUD.Infra
 
                 return usuarioEncontrado;
             }
-            //teste de try/catch
             catch (Exception ex)
             {
-                throw new Exception("Erro ao obter usuário pelo Id! " + ex);
+                throw new Exception("Erro ao obter usuário pelo Id! " + Id , ex);
             }
         }
 
@@ -107,7 +113,7 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro as cript senha " + ex);
+                throw new Exception("Erro as criptografar a senha do Usuário " , ex);
             }
         }
     }

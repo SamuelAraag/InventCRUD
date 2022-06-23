@@ -33,7 +33,10 @@ namespace CRUD_CadastroUsuarios
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((_, services) =>
+                    //services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>());
                     services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>());
+                    //services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComBanco>());
+
         }
     }
 }

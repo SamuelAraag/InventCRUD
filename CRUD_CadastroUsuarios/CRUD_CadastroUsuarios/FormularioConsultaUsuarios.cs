@@ -30,7 +30,8 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                ExibirMensagem(ex.Message);
+                var mensagem = $"{ex.Message}{ex.InnerException?.Message}";
+                ExibirMensagem(mensagem);
             }
         }
 
@@ -62,7 +63,8 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                ExibirMensagem(ex.Message);
+                var mensagem = $"{ex.Message}{ex.InnerException?.Message}";
+                ExibirMensagem(mensagem);
             }
             AtualizarLista();
         }
