@@ -43,22 +43,19 @@ namespace CRUD_CadastroUsuarios
                 {
                     throw new Exception("Nenhum usuário selecionado!");
                 }
-                else
+                var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
+                    ?? throw new Exception("Nenhum usuário selecionado");
+
+                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
+
+                formNovoUsuario.Text = "Atualizar Usuário";
+                var resultado = formNovoUsuario.ShowDialog(this);
+                if (resultado == DialogResult.OK)
                 {
-                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
-                        ?? throw new Exception("Nenhum usuário selecionado");
-
-                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
-
-                    formNovoUsuario.Text = "Atualizar Usuario";
-                    var resultado = formNovoUsuario.ShowDialog(this);
-                    if (resultado == DialogResult.OK)
-                    {
-                        _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
-                        MessageBox.Show("Usuario atualizado com sucesso!");
-                    }
+                    _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
+                    MessageBox.Show("Usuário atualizado com sucesso!");
                 }
             }
             catch (Exception ex)
@@ -75,18 +72,14 @@ namespace CRUD_CadastroUsuarios
             {
                 if (listaUsuariosGrid.CurrentCell == null)
                 {
-                    ExibirMensagem("Nenhum usuário selecionado!");
+                    ExibirMensagem("Nenhum Usuário selecionado!");
                 }
-                else
+                var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+                if (DesejaDeletarOUsuario())
                 {
-                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-
-                    if (DesejaDeletarOUsuario())
-                    {
-                        _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
-                        MessageBox.Show("Usuario deletado!");
-                    }
+                     _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
+                     MessageBox.Show("Usuário deletado!");
                 }
             }
             catch (Exception ex)
