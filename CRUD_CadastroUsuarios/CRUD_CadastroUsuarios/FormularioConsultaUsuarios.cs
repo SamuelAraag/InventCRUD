@@ -39,27 +39,21 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
-                if (listaUsuariosGrid.CurrentCell == null)
-                {
-                    throw new Exception("Nenhum usuário selecionado!");
-                }
-                else
-                {
-                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
-                        ?? throw new Exception("Nenhum usuário selecionado");
+                var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
+                    ?? throw new Exception("Nenhum usuário selecionado");
 
-                    var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
+                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
 
-                    formNovoUsuario.Text = "Atualizar Usuario";
-                    var resultado = formNovoUsuario.ShowDialog(this);
-                    if (resultado == DialogResult.OK)
-                    {
-                        _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
-                        MessageBox.Show("Usuario atualizado com sucesso!");
-                    }
+                formNovoUsuario.Text = "Atualizar Usuario";
+                var resultado = formNovoUsuario.ShowDialog(this);
+                if (resultado == DialogResult.OK)
+                {
+                    _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
+                    MessageBox.Show("Usuario atualizado com sucesso!");
                 }
+                
             }
             catch (Exception ex)
             {
