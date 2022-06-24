@@ -1,5 +1,6 @@
 ﻿using CRUD.Dominio;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace CRUD_CadastroUsuarios
 {
@@ -69,7 +70,7 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao salvar Usuário!" , ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -78,6 +79,11 @@ namespace CRUD_CadastroUsuarios
             if (caixaNome.Text == String.Empty)
             {
                 throw new Exception("Campo Nome, Obrigatório");
+            }
+            const int tamanhoMax = 50;
+            if(caixaSenha.Text.Length > tamanhoMax)
+            {
+                throw new Exception("Senha muito grande! ");
             }
             if (caixaSenha.Text == String.Empty)
             {

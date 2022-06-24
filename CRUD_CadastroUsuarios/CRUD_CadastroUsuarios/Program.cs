@@ -3,6 +3,8 @@ using CRUD.Infra;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
+using CRUD.Infra.ContextoDoBanco;
 
 namespace CRUD_CadastroUsuarios
 {
@@ -25,56 +27,35 @@ namespace CRUD_CadastroUsuarios
                 .Services
                 .GetRequiredService<IUsuarioRepositorio>();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormularioConsultaUsuarios(usuarioRepositorio));
-
             //Fluent Migration, fazendo testes
-            var serviceProvider = CreateServices();
-
-            using (var scope = serviceProvider.CreateScope())
+            using (var scope = builder.Services.CreateScope())
             {
                 UpdateDatabase(scope.ServiceProvider);
             }
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FormularioConsultaUsuarios(usuarioRepositorio));
         }
 
-        private static IServiceProvider CreateServices()
-        {
-            return new ServiceCollection()
-                // Add common FluentMigrator services
-                .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    // Add SQLite support to FluentMigrator
-                    .AddSQLite()
-                    // Set the connection string
-                    .WithGlobalConnectionString("conexaoSql")
-                    // Define the assembly containing the migrations
-                    .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
-                // Enable logging to console in the FluentMigrator way
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-                // Build the service provider
-                .BuildServiceProvider(false);
-        }
         private static void UpdateDatabase(IServiceProvider serviceProvider)
         {
-            // Instantiate the runner
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-
-            // Execute the migrations
             runner.MigrateUp();
         }
 
-
+        //Injeção de dependência
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureServices((_, services) =>
-                    //services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>());
-                    services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>());
-                    //services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComBanco>());
+                .ConfigureServices((_, servicos) => ConfigurarServicos(servicos));
 
         }
 
-
+        private static void ConfigurarServicos(IServiceCollection servicos)
+        {
+            servicos.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
+            servicos.ConfigurarFluentMigrator();
+        }
     }
 }

@@ -113,7 +113,7 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro as criptografar a senha do Usuário " , ex);
+                throw new Exception("Erro ao criptografar a senha do Usuário " , ex);
             }
         }
     }

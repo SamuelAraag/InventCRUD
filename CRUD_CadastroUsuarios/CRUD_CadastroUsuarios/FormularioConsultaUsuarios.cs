@@ -39,6 +39,10 @@ namespace CRUD_CadastroUsuarios
         {
             try
             {
+                if (listaUsuariosGrid.CurrentCell == null)
+                {
+                    throw new Exception("Nenhum usuário selecionado!");
+                }
                 var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                 indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                 var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
@@ -46,14 +50,13 @@ namespace CRUD_CadastroUsuarios
 
                 var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
 
-                formNovoUsuario.Text = "Atualizar Usuario";
+                formNovoUsuario.Text = "Atualizar Usuário";
                 var resultado = formNovoUsuario.ShowDialog(this);
                 if (resultado == DialogResult.OK)
                 {
                     _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
-                    MessageBox.Show("Usuario atualizado com sucesso!");
+                    MessageBox.Show("Usuário atualizado com sucesso!");
                 }
-                
             }
             catch (Exception ex)
             {
@@ -69,18 +72,14 @@ namespace CRUD_CadastroUsuarios
             {
                 if (listaUsuariosGrid.CurrentCell == null)
                 {
-                    ExibirMensagem("Nenhum usuário selecionado!");
+                    ExibirMensagem("Nenhum Usuário selecionado!");
                 }
-                else
+                var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
+                var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
+                if (DesejaDeletarOUsuario())
                 {
-                    var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-
-                    if (DesejaDeletarOUsuario())
-                    {
-                        _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
-                        MessageBox.Show("Usuario deletado!");
-                    }
+                     _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);
+                     MessageBox.Show("Usuário deletado!");
                 }
             }
             catch (Exception ex)

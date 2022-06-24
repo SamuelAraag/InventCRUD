@@ -1260,6 +1260,10 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "CRUD.Dominio": "1.0.0",
+          "FluentAssertions": "6.7.0",
+          "FluentMigrator.Runner": "3.3.2",
+          "FluentMigrator.Runner.SqlServer": "3.3.2",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.IdentityModel.Protocols": "6.19.0",
           "NLog": "5.0.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
