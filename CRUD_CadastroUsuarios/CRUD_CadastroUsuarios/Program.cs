@@ -27,29 +27,25 @@ namespace CRUD_CadastroUsuarios
                 .Services
                 .GetRequiredService<IUsuarioRepositorio>();
 
-            //Fluent Migration, fazendo testes
             using (var scope = builder.Services.CreateScope())
             {
-                UpdateDatabase(scope.ServiceProvider);
+                AtualizarBanco(scope.ServiceProvider);
             }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormularioConsultaUsuarios(usuarioRepositorio));
         }
 
-        private static void UpdateDatabase(IServiceProvider serviceProvider)
+        private static void AtualizarBanco(IServiceProvider serviceProvider)
         {
-            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-            runner.MigrateUp();
+            var executar = serviceProvider.GetRequiredService<IMigrationRunner>();
+            executar.MigrateUp();
         }
 
-        //Injeção de dependência
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((_, servicos) => ConfigurarServicos(servicos));
-
         }
 
         private static void ConfigurarServicos(IServiceCollection servicos)
