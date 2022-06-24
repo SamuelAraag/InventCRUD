@@ -4,7 +4,6 @@ namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioConsultaUsuarios : Form
     {
-        //UsuarioRepositorioComBanco usuarioRepositorioBd = new UsuarioRepositorioComBanco();
         private readonly IUsuarioRepositorio _usuarioRepositorio;
 
         public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)
@@ -31,7 +30,8 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                ExibirMensagem(ex.Message);
+                var mensagem = $"{ex.Message}{ex.InnerException?.Message}";
+                ExibirMensagem(mensagem);
             }
         }
 
@@ -47,15 +47,15 @@ namespace CRUD_CadastroUsuarios
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                    var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario) 
+                    var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
                         ?? throw new Exception("Nenhum usuário selecionado");
 
                     var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
-                    
+
                     formNovoUsuario.Text = "Atualizar Usuario";
                     var resultado = formNovoUsuario.ShowDialog(this);
-                    if(resultado == DialogResult.OK)
-                    {    
+                    if (resultado == DialogResult.OK)
+                    {
                         _usuarioRepositorio.AtualizarUsuario(formNovoUsuario.usuario);
                         MessageBox.Show("Usuario atualizado com sucesso!");
                     }
@@ -63,7 +63,8 @@ namespace CRUD_CadastroUsuarios
             }
             catch (Exception ex)
             {
-                ExibirMensagem(ex.Message);
+                var mensagem = $"{ex.Message}{ex.InnerException?.Message}";
+                ExibirMensagem(mensagem);
             }
             AtualizarLista();
         }
@@ -80,7 +81,7 @@ namespace CRUD_CadastroUsuarios
                 {
                     var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                     var usuarioSelecionado = listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario;
-                    
+
                     if (DesejaDeletarOUsuario())
                     {
                         _usuarioRepositorio.DeletarUsuario(usuarioSelecionado.Id);

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "IaqlGbNpnxtx605lHfwDoJF7Oco+ywDuQa/P6IUMUob9VU8A1JeEa0R52eZqSI0TnVO7bJTFGG54KDL1d4Ju2A==",
+  "dgSpecHash": "MC4+2/OEwWHeoVRC1jgKfdBFsnUSqXO4COgKwNdxHjR8mfirAkODR5Pf10HQ88nJ3aexddA6uDWj07G6f/3bJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Infra\\CRUD.Infra.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Usuário\\.nuget\\packages\\linq2db\\4.1.0\\linq2db.4.1.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.19.0\\microsoft.identitymodel.abstractions.6.19.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.identitymodel.logging\\6.19.0\\microsoft.identitymodel.logging.6.19.0.nupkg.sha512",

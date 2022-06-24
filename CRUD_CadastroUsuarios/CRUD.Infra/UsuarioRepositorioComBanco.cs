@@ -8,7 +8,7 @@ namespace CRUD.Infra
     public class UsuarioRepositorioComBanco : IUsuarioRepositorio
     {
         private static SqlConnection conexaoSql;
-        
+
         private static string StringConexaoBanco()
         {
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
@@ -29,7 +29,7 @@ namespace CRUD.Infra
                 {
                     using (var cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = "Insert into Usuario (Nome, Senha, Email, DataNascimento, DataCriacao)" +
+                        cmd.CommandText = "Insert into Usuarioss (Nome, Senha, Email, DataNascimento, DataCriacao)" +
                         " values (@Nome, @Senha, @Email, @DataNascimento, @DataCriacao)";
 
                         cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
@@ -37,9 +37,9 @@ namespace CRUD.Infra
                         {
                             cmd.Parameters.AddWithValue("@Senha", ServicoDeCriptografia.CriptografarSenha(usuario.Senha));
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
-                            throw new Exception("Erro ao criptografar senha! " + ex);
+                            throw new Exception("Erro ao criptografar senha! ");
                         }
                         cmd.Parameters.AddWithValue("@Email", usuario.Email);
                         if (usuario.DataNascimento == null)
@@ -55,12 +55,10 @@ namespace CRUD.Infra
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw new Exception("Erro ao adicionar novo usuário");
+                throw new Exception("Erro ao adicionar novo Usuários! " , ex);
             }
-            
         }
 
         public void AtualizarUsuario(Usuario usuario)
@@ -104,10 +102,8 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Erro ao atualizar usuário" + ex);
+                throw new Exception("Erro ao atualizar Usuário! " , ex);
             }
-            
         }
 
         public void DeletarUsuario(int Id)
@@ -126,28 +122,34 @@ namespace CRUD.Infra
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Erro ao deletar usuário! " + ex);
+                throw new Exception("Erro ao deletar Usuário! " , ex);
             }
         }
 
         public List<Usuario> ObterTodos()
         {
-            SqlDataAdapter sqlDataAdapter = null;
-            DataTable bancoDataTable = new DataTable();
-            using (var conn = AbrirConexaoComBanco())
+            try
             {
-                using (var cmd = conn.CreateCommand())
+                SqlDataAdapter sqlDataAdapter = null;
+                DataTable bancoDataTable = new DataTable();
+                using (var conn = AbrirConexaoComBanco())
                 {
-                    cmd.CommandText = "select * from Usuario";
-                    sqlDataAdapter = new SqlDataAdapter(cmd.CommandText, conn);
-                    sqlDataAdapter.Fill(bancoDataTable);
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "select * from Usuario";
+                        sqlDataAdapter = new SqlDataAdapter(cmd.CommandText, conn);
+                        sqlDataAdapter.Fill(bancoDataTable);
+                    }
                 }
+                return Conversor.ConverterParaLista<Usuario>(bancoDataTable);
             }
-            return Conversor.ConverterParaLista<Usuario>(bancoDataTable);
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao carregar lista de Usuários! " , ex);
+            }
         }
 
-        public Usuario ObterPorId(int id)
+        public Usuario ObterPorId(int Id)
         {
             SqlDataAdapter sqlDataAdapter = null;
             DataTable bancoDataTable = new DataTable();
@@ -162,13 +164,16 @@ namespace CRUD.Infra
                         sqlDataAdapter.Fill(bancoDataTable);
                     }
                 }
-                var usuario = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == id);
-                return usuario;
+                var usuarioARetornar = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == 10050);
+                if (usuarioARetornar == null)
+                {
+                    throw new Exception("Usuário Id não encontrado");
+                }
+                return usuarioARetornar;
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Erro ao obter usuário pelo Id! " + ex);
+                throw new Exception("Erro ao obter usuário pelo Id! " , ex);
             }
         }
 
