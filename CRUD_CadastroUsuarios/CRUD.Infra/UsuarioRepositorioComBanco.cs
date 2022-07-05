@@ -176,10 +176,5 @@ namespace CRUD.Infra
                 throw new Exception("Erro ao obter usuário pelo Id! " , ex);
             }
         }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

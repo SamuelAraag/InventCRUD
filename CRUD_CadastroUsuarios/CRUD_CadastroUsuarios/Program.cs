@@ -3,7 +3,6 @@ using CRUD.Infra;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
 using CRUD.Infra.ContextoDoBanco;
 
 namespace CRUD_CadastroUsuarios

@@ -1,4 +1,6 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using CRUD.Dominio;
+using CRUD.Infra;
+using Microsoft.OpenApi.Models;
 
 namespace CRUD.WebApp
 {
@@ -7,14 +9,16 @@ namespace CRUD.WebApp
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            MapeamentoDasTabelas.Mapear();
+
         }
+
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -22,7 +26,6 @@ namespace CRUD.WebApp
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
