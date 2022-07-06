@@ -39,9 +39,5 @@ namespace CRUD.Infra
             return listaDeUsuarios;
         }
 
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CRUD.Dominio
 {
-    public interface IUsuarioRepositorio : IDisposable
+    public interface IUsuarioRepositorio
     {
         void AdicionarUsuario(Usuario usuario);
         void DeletarUsuario(int id);

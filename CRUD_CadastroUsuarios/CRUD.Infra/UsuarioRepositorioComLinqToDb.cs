@@ -8,9 +8,10 @@ namespace CRUD.Infra
 {
     public class UsuarioRepositorioComLinqToDb : IUsuarioRepositorio
     {
-        private static string StringConexaoBanco()
+        public static string StringConexaoBanco()
         {
-            return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
+            string stringConexao = "Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-7MCFTA2;";
+            return stringConexao;
         }
 
         public void AdicionarUsuario(Usuario usuario)
@@ -35,7 +36,7 @@ namespace CRUD.Infra
             {
                 if (usuario == null)
                 {
-                    throw new Exception("Usuario nulo!");
+                    throw new Exception("Usuario não encontrado!");
                 }
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {
@@ -97,11 +98,6 @@ namespace CRUD.Infra
             {
                 throw new Exception("Erro ao obter usuário pelo Id! " + Id , ex);
             }
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
         
         private string CriptografarSenhaDoUsuario(string senhaACriptografar)
