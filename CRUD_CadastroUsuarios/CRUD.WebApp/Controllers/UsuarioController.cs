@@ -18,45 +18,69 @@ namespace CRUD.WebApp.Controllers
         [Route("ObterTodosOsUsuarios")]
         public IActionResult ObterTodosOsUsuarios()
         {
-            var todosOsUsuarios = _usuarioRepositorio.ObterTodos();
-            if (todosOsUsuarios.Count() == 0)
+            try
             {
-                return new OkObjectResult(new { message = "Nenhum Usuário Cadastrado" });
+                var todosOsUsuarios = _usuarioRepositorio.ObterTodos();
+                if (todosOsUsuarios.Count() == 0)
+                {
+                    return new OkObjectResult(new { message = "Nenhum Usuário Cadastrado" });
+                }
+                return Ok(todosOsUsuarios);
             }
-            return Ok(todosOsUsuarios);
+            catch (Exception)
+            {
+                return new OkObjectResult(new { message = "Erro ao buscar usuários"});
+            }
+
         }
 
         [HttpGet]
         [Route("ObterUsuarioPorId")]
         public IActionResult ObterUsuarioPorId(int Id)
         {
-            var usuarioObtido = _usuarioRepositorio.ObterPorId(Id);
-            if(usuarioObtido == null)
+            try
             {
-                return new OkObjectResult(new { message = "Usuário não cadastrado" });
+                var usuarioObtido = _usuarioRepositorio.ObterPorId(Id);
+                return Ok(usuarioObtido);
             }
-            return Ok(usuarioObtido);
+            catch (Exception)
+            {
+                return new OkObjectResult(new { message = "Erro ao buscar usuário, verifique o Id" });
+            }
         }
 
         [HttpDelete]
         [Route("DeletarUsuario")]
         public IActionResult DeletarUsuario(int Id)
         {
-            var usuarioADeletar = _usuarioRepositorio.ObterPorId(Id);
-            if(usuarioADeletar == null)
+            try
             {
-                return new OkObjectResult(new { message = "Usuário não encontrado" });
+                var usuarioASerDeletado = _usuarioRepositorio.ObterPorId(Id);
+                _usuarioRepositorio.DeletarUsuario(usuarioASerDeletado.Id);
+                return new OkObjectResult(new { message = "Usuário deletado" });
             }
-            _usuarioRepositorio.DeletarUsuario(Id);
-            return new OkObjectResult(new { message = "Usuário deletado" });
+            catch (Exception)
+            {
+                return new OkObjectResult(new { message = "Erro ao deletar, usuário não encontrado" });
+
+            }
+
         }
 
         [HttpPost]
         [Route("AdicionarUsuario")]
         public IActionResult AdicionarUsuario(Usuario usuario)
         {
-            _usuarioRepositorio.AdicionarUsuario(usuario);
-            return new OkObjectResult(new {message = "Usuário adicionado"});
+            try
+            {
+                _usuarioRepositorio.AdicionarUsuario(usuario);
+                return new OkObjectResult(new { message = "Usuário adicionado" });
+            }
+            catch (Exception)
+            {
+                return new OkObjectResult(new { message = "Erro ao adicionar usuário" });
+            }
+
         }
 
         [HttpPut]
