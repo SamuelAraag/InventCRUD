@@ -36,7 +36,7 @@ namespace CRUD.Infra
             {
                 if (usuario == null)
                 {
-                    throw new Exception("Usuario nulo!");
+                    throw new Exception("Usuario não encontrado!");
                 }
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {

@@ -10,7 +10,6 @@ namespace CRUD.WebApp
         {
             Configuration = configuration;
             MapeamentoDasTabelas.Mapear();
-
         }
 
 

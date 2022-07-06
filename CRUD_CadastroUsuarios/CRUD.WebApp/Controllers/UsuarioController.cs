@@ -1,5 +1,4 @@
 ﻿using CRUD.Dominio;
-using CRUD.Infra;
 using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +15,7 @@ namespace CRUD.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("ObterTodos")]
+        [Route("ObterTodosOsUsuarios")]
         public IActionResult ObterTodosOsUsuarios()
         {
             var todosOsUsuarios = _usuarioRepositorio.ObterTodos();
@@ -28,7 +27,7 @@ namespace CRUD.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("ObterPorId")]
+        [Route("ObterUsuarioPorId")]
         public IActionResult ObterUsuarioPorId(int Id)
         {
             var usuarioObtido = _usuarioRepositorio.ObterPorId(Id);
@@ -54,10 +53,27 @@ namespace CRUD.WebApp.Controllers
 
         [HttpPost]
         [Route("AdicionarUsuario")]
-        public IActionResult AdicionarUsuario([FromBody]Usuario usuario)
+        public IActionResult AdicionarUsuario(Usuario usuario)
         {
             _usuarioRepositorio.AdicionarUsuario(usuario);
             return new OkObjectResult(new {message = "Usuário adicionado"});
+        }
+
+        [HttpPut]
+        [Route("AtualizarUsuario")]
+        public IActionResult AtualizarUsuario(Usuario usuario)
+        {
+            try
+            {
+                var usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(usuario.Id);
+                usuarioASerAtualizado = usuario;
+                _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
+                return new OkObjectResult(new {message = "Usuário atualizado"});
+            }
+            catch (Exception)
+            {   
+                return new OkObjectResult(new {message = "Usuário não encontrado, verifique o Id"});
+            }
         }
     }
 }
