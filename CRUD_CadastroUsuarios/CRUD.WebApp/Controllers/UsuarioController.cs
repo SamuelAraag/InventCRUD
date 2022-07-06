@@ -31,7 +31,6 @@ namespace CRUD.WebApp.Controllers
             {
                 return new OkObjectResult(new { message = "Erro ao buscar usuários"});
             }
-
         }
 
         [HttpGet]
@@ -62,9 +61,7 @@ namespace CRUD.WebApp.Controllers
             catch (Exception)
             {
                 return new OkObjectResult(new { message = "Erro ao deletar, usuário não encontrado" });
-
             }
-
         }
 
         [HttpPost]
@@ -73,6 +70,8 @@ namespace CRUD.WebApp.Controllers
         {
             try
             {
+                var validacoes = new ValidarUsuario();
+                validacoes.ValidarCampos(usuario.Nome);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
                 return new OkObjectResult(new { message = "Usuário adicionado" });
             }
@@ -80,7 +79,6 @@ namespace CRUD.WebApp.Controllers
             {
                 return new OkObjectResult(new { message = "Erro ao adicionar usuário" });
             }
-
         }
 
         [HttpPut]
