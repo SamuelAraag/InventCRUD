@@ -2,12 +2,20 @@
 {
     public class ValidarUsuario
     {
-        public void ValidarCampos(Usuario usuario)
+        public void ValidarCampos(string nome)
         {
+            var usuario = new Usuario();
             const string nomeBase = "string";
-            if ((usuario.Nome == String.Empty) && (usuario.Nome == nomeBase))
+            if ((nome == String.Empty) || (nome == nomeBase))
             {
-                throw new Exception("Campo Nome, Obrigatório");
+                try
+                {
+                    usuario.Nome = nome;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Campo Nome, Obrigatório" , ex);
+                }
             }
             //const int tamanhoMax = 50;
             //if (caixaSenha.Text.Length > tamanhoMax)

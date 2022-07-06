@@ -75,9 +75,9 @@ namespace CRUD.WebApp.Controllers
                 _usuarioRepositorio.AdicionarUsuario(usuario);
                 return new OkObjectResult(new { message = "Usuário adicionado" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new OkObjectResult(new { message = "Erro ao adicionar usuário" });
+                return new OkObjectResult(new { message = "Erro ao adicionar usuário" + ex.InnerException});
             }
         }
 
