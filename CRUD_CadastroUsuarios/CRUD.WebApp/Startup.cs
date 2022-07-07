@@ -1,5 +1,6 @@
 ﻿using CRUD.Dominio;
 using CRUD.Infra;
+using FluentValidation;
 using Microsoft.OpenApi.Models;
 
 namespace CRUD.WebApp
@@ -18,6 +19,8 @@ namespace CRUD.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
+            services.AddScoped<IValidator<Usuario>, ValidarUsuario>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

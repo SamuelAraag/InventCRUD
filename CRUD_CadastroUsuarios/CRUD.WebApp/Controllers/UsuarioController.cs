@@ -1,4 +1,5 @@
 ﻿using CRUD.Dominio;
+using FluentValidation;
 using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,14 @@ namespace CRUD.WebApp.Controllers
     public class UsuarioController : Controller
     {
         public IUsuarioRepositorio _usuarioRepositorio;
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        private IValidator<Usuario> _validador;
+
+        public UsuarioController(
+            IUsuarioRepositorio usuarioRepositorio,
+            IValidator<Usuario> validador)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _validador = validador;
         }
 
         [HttpGet]
@@ -21,16 +27,17 @@ namespace CRUD.WebApp.Controllers
             try
             {
                 var todosOsUsuarios = _usuarioRepositorio.ObterTodos();
-                if (todosOsUsuarios.Count() == 0)
+                if (todosOsUsuarios.Count() == decimal.Zero)
                 {
                     return new OkObjectResult(new { message = "Nenhum Usuário Cadastrado" });
                 }
                 return Ok(todosOsUsuarios);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new OkObjectResult(new { message = "Erro ao buscar usuários"});
+                return BadRequest("Erro ao buscar usuários! " + ex.Message);
             }
+
         }
 
         [HttpGet]
@@ -42,9 +49,9 @@ namespace CRUD.WebApp.Controllers
                 var usuarioObtido = _usuarioRepositorio.ObterPorId(Id);
                 return Ok(usuarioObtido);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new OkObjectResult(new { message = "Erro ao buscar usuário, verifique o Id" });
+                return BadRequest("Erro ao buscar usuário, verifique o Id! " + ex.Message);
             }
         }
 
@@ -58,9 +65,9 @@ namespace CRUD.WebApp.Controllers
                 _usuarioRepositorio.DeletarUsuario(usuarioASerDeletado.Id);
                 return new OkObjectResult(new { message = "Usuário deletado" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new OkObjectResult(new { message = "Erro ao deletar, usuário não encontrado" });
+                return BadRequest("Erro ao deletar, usuário não encontrado! " + ex.Message);
             }
         }
 
@@ -70,14 +77,13 @@ namespace CRUD.WebApp.Controllers
         {
             try
             {
-                var validacoes = new ValidarUsuario();
-                validacoes.ValidarCampos(usuario.Nome);
+                _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
                 return new OkObjectResult(new { message = "Usuário adicionado" });
             }
             catch (Exception ex)
             {
-                return new OkObjectResult(new { message = "Erro ao adicionar usuário" + ex.InnerException});
+                return BadRequest("Erro nas informações do Usuário! " + ex.Message);
             }
         }
 
@@ -87,14 +93,23 @@ namespace CRUD.WebApp.Controllers
         {
             try
             {
-                var usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(usuario.Id);
+                var usuarioASerAtualizado = usuario;
+                try
+                {
+                    usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(usuario.Id);
+                }
+                catch (Exception)
+                {
+                    return BadRequest("Usuário não encontrado, verifique o Id! ");
+                }
                 usuarioASerAtualizado = usuario;
+                _validador.ValidateAndThrow(usuarioASerAtualizado);
                 _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
                 return new OkObjectResult(new {message = "Usuário atualizado"});
             }
-            catch (Exception)
-            {   
-                return new OkObjectResult(new {message = "Usuário não encontrado, verifique o Id"});
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }
