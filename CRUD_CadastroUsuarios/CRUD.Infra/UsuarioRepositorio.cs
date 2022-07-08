@@ -39,5 +39,9 @@ namespace CRUD.Infra
             return listaDeUsuarios;
         }
 
+        public Usuario ObterPorEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

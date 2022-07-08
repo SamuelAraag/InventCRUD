@@ -84,20 +84,20 @@ namespace CRUD.Infra
             }
         }
 
-        public Usuario ObterPorId(int Id)
+        public Usuario ObterPorId(int id)
         {
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 var usuarioEncontrado = db
                     .GetTable<Usuario>()
-                    .FirstOrDefault(u => u.Id == Id) ?? throw new Exception ("Não foi possível encontrar o Usuario com Id" + Id);
+                    .FirstOrDefault(u => u.Id == id) ?? throw new Exception ("Não foi possível encontrar o Usuario com Id" + id);
 
                 return usuarioEncontrado;
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao obter usuário pelo Id! " + Id , ex);
+                throw new Exception("Erro ao obter usuário pelo Id! " + id , ex);
             }
         }
         
@@ -111,6 +111,23 @@ namespace CRUD.Infra
             catch (Exception ex)
             {
                 throw new Exception("Erro ao criptografar a senha do Usuário " , ex);
+            }
+        }
+
+        public Usuario ObterPorEmail(string email)
+        {
+            try
+            {
+                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                var usuarioEncontrado = db
+                    .GetTable<Usuario>()
+                    .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com email" + email);
+
+                return usuarioEncontrado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter usuário pelo email! " + email, ex);
             }
         }
     }

@@ -176,5 +176,10 @@ namespace CRUD.Infra
                 throw new Exception("Erro ao obter usuário pelo Id! " , ex);
             }
         }
+
+        public Usuario ObterPorEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

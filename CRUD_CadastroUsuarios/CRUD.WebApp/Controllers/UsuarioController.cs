@@ -82,8 +82,17 @@ namespace CRUD.WebApp.Controllers
             try
             {
                 usuario.DataCriacao = DateTime.Now;
+                try
+                {
+                    var emailASerValidado = _usuarioRepositorio.ObterPorEmail(usuario.Email);
+                    return Ok("Email já existente no banco de dados");
+                }
+                catch (Exception)
+                {
+                }
                 _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
+
                 return Ok("Usuário adicionado");
             }
             catch (Exception ex)
