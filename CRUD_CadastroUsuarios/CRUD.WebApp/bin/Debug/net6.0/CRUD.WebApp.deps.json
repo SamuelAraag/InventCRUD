@@ -725,6 +725,7 @@
         "dependencies": {
           "CRUD.Dominio": "1.0.0",
           "FluentAssertions": "6.7.0",
+          "FluentMigrator": "3.3.2",
           "FluentMigrator.Runner": "3.3.2",
           "FluentMigrator.Runner.SqlServer": "3.3.2",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",

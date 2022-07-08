@@ -36,7 +36,6 @@ namespace CRUD.WebApp.Controllers
             {
                 return NotFound("Erro ao buscar usuários! " + ex.Message);
             }
-
         }
 
         [HttpGet]
@@ -82,14 +81,8 @@ namespace CRUD.WebApp.Controllers
             try
             {
                 usuario.DataCriacao = DateTime.Now;
-                try
-                {
-                    var emailASerValidado = _usuarioRepositorio.ObterPorEmail(usuario.Email);
-                    return Ok("Email já existente no banco de dados");
-                }
-                catch (Exception)
-                {
-                }
+                
+                var emailASerValidado = _usuarioRepositorio.ObterPorEmail(usuario.Email);
                 _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
 
@@ -97,7 +90,8 @@ namespace CRUD.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Erro nas informações do Usuário! " + ex.Message);
+                //Corrigir mensagem ex.message e colocar inner exception
+                return BadRequest(ex.Message);
             }
         }
 
@@ -108,15 +102,8 @@ namespace CRUD.WebApp.Controllers
             try
             {
                 var usuarioASerAtualizado = usuario;
-                try
-                {
-                    usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(id);
-                }
-                catch (Exception)
-                {
-                    return BadRequest("Usuário não encontrado, verifique o Id! ");
-                }
-
+                
+                usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(id);
                 usuarioASerAtualizado.Nome = usuario.Nome;
                 usuarioASerAtualizado.Senha = usuario.Senha;
                 usuarioASerAtualizado.Email = usuario.Email;
@@ -127,7 +114,7 @@ namespace CRUD.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message + ex.InnerException.Message);
+                return BadRequest($"{ex.Message} {ex.InnerException?.Message ?? String.Empty}");
             }
         }
     }

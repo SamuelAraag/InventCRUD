@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CRUD.CadastroUsuarios</id>
+    <version>1.0.0</version>
+    <authors>CRUD.CadastroUsuarios</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0">
+        <dependency id="CRUD.Dominio" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="CRUD.Infra" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="FluentAssertions" version="6.7.0" exclude="Build,Analyzers" />
+        <dependency id="FluentMigrator.Runner" version="3.3.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Hosting" version="6.0.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\Usuario\Documents\InventCRUD\CRUD_CadastroUsuarios\CRUD_CadastroUsuarios\bin\Debug\net6.0-windows\CRUD.CadastroUsuarios.runtimeconfig.json" target="lib\net6.0-windows7.0\CRUD.CadastroUsuarios.runtimeconfig.json" />
+    <file src="C:\Users\Usuario\Documents\InventCRUD\CRUD_CadastroUsuarios\CRUD_CadastroUsuarios\bin\Debug\net6.0-windows\CRUD.CadastroUsuarios.dll" target="lib\net6.0-windows7.0\CRUD.CadastroUsuarios.dll" />
+  </files>
+</package>
