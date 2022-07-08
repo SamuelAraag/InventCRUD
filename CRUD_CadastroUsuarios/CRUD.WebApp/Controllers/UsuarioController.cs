@@ -67,8 +67,7 @@ namespace CRUD.WebApp.Controllers
         {
             try
             {
-                var usuarioASerDeletado = _usuarioRepositorio.ObterPorId(id);
-                _usuarioRepositorio.DeletarUsuario(usuarioASerDeletado.Id);
+                _usuarioRepositorio.DeletarUsuario(id);
                 return Ok("Usuário deletado");
             }
             catch (Exception ex)
