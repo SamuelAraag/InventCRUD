@@ -8,7 +8,6 @@ namespace CRUD.Dominio
         public ValidarUsuario()
         {
             const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
-
             RuleFor(x => x.Nome)
                 .NotEmpty()
                 .WithMessage("Campo {PropertyName} obrigatorio!");

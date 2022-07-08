@@ -21,7 +21,6 @@ namespace CRUD.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("ObterTodosOsUsuarios")]
         public IActionResult ObterTodosOsUsuarios()
         {
             try
@@ -29,41 +28,48 @@ namespace CRUD.WebApp.Controllers
                 var todosOsUsuarios = _usuarioRepositorio.ObterTodos();
                 if (todosOsUsuarios.Count() == decimal.Zero)
                 {
-                    return new OkObjectResult(new { message = "Nenhum Usuário Cadastrado" });
+                    return Ok("Nenhum Usuário Cadastrado");
                 }
                 return Ok(todosOsUsuarios);
             }
             catch (Exception ex)
             {
-                return BadRequest("Erro ao buscar usuários! " + ex.Message);
+                return NotFound("Erro ao buscar usuários! " + ex.Message);
             }
 
         }
 
         [HttpGet]
-        [Route("ObterUsuarioPorId")]
-        public IActionResult ObterUsuarioPorId(int Id)
+        [Route("{id}")]
+        public IActionResult ObterUsuarioPorId([FromRoute] int id)
         {
             try
             {
-                var usuarioObtido = _usuarioRepositorio.ObterPorId(Id);
-                return Ok(usuarioObtido);
+                try
+                {
+                    var usuarioObtido = _usuarioRepositorio.ObterPorId(id);
+                    return Ok(usuarioObtido);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest("Erro ao buscar usuário, verifique o Id! " + ex.Message);
+                }
             }
             catch (Exception ex)
             {
-                return BadRequest("Erro ao buscar usuário, verifique o Id! " + ex.Message);
+                return NotFound("Erro ao buscar usuário, verifique o Id! " + ex.Message);
             }
         }
 
         [HttpDelete]
-        [Route("DeletarUsuario")]
-        public IActionResult DeletarUsuario(int Id)
+        [Route("{id}")]
+        public IActionResult DeletarUsuario([FromRoute] int id)
         {
             try
             {
-                var usuarioASerDeletado = _usuarioRepositorio.ObterPorId(Id);
+                var usuarioASerDeletado = _usuarioRepositorio.ObterPorId(id);
                 _usuarioRepositorio.DeletarUsuario(usuarioASerDeletado.Id);
-                return new OkObjectResult(new { message = "Usuário deletado" });
+                return Ok("Usuário deletado");
             }
             catch (Exception ex)
             {
@@ -72,7 +78,6 @@ namespace CRUD.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("AdicionarUsuario")]
         public IActionResult AdicionarUsuario([FromBody] Usuario usuario)
         {
             try
@@ -80,7 +85,7 @@ namespace CRUD.WebApp.Controllers
                 usuario.DataCriacao = DateTime.Now;
                 _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
-                return new OkObjectResult(new { message = "Usuário adicionado" });
+                return Ok("Usuário adicionado");
             }
             catch (Exception ex)
             {
@@ -89,15 +94,15 @@ namespace CRUD.WebApp.Controllers
         }
 
         [HttpPut]
-        [Route("AtualizarUsuario")]
-        public IActionResult AtualizarUsuario(Usuario usuario)
+        [Route("{id}")]
+        public IActionResult AtualizarUsuario([FromRoute] int id, [FromBody] Usuario usuario)
         {
             try
             {
                 var usuarioASerAtualizado = usuario;
                 try
                 {
-                    usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(usuario.Id);
+                    usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(id);
                 }
                 catch (Exception)
                 {
@@ -110,7 +115,7 @@ namespace CRUD.WebApp.Controllers
                 usuarioASerAtualizado.DataNascimento = usuario.DataNascimento;
                 _validador.ValidateAndThrow(usuarioASerAtualizado);
                 _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
-                return new OkObjectResult(new {message = "Usuário atualizado"});
+                return Ok("Usuário atualizado");
             }
             catch (Exception ex)
             {
