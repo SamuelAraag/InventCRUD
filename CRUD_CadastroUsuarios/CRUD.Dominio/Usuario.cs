@@ -1,4 +1,6 @@
-﻿namespace CRUD.Dominio
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CRUD.Dominio
 {
     public class Usuario
     {

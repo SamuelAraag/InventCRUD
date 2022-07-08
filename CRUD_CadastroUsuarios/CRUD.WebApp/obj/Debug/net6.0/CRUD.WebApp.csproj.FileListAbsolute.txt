@@ -88,3 +88,4 @@ C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\obj\Debug\net6.0\CRUD.WebApp.pdb
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\obj\Debug\net6.0\CRUD.WebApp.genruntimeconfig.cache
 C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\obj\Debug\net6.0\ref\CRUD.WebApp.dll
+C:\Users\Usuário\Documents\Estudo\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\bin\Debug\net6.0\FluentValidation.dll

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hEDIZlfCtoHGq8X58WxXbW0QSyaNwTfgdQ8/Q3M9cO/WGOFAZlDDH197D1C25bqJ8sV940d1PGj/tNEr8GSlbg==",
+  "dgSpecHash": "hprzfJgEnUTOHbpB1YHBKCq4f1RAScLSTgtqFg9eESzLAKYVgqvJEJILvZ4FYVv4sbsOBETKrqoZLOfnpuTxuQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\CRUD.WebApp.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\Usuário\\.nuget\\packages\\fluentmigrator.runner.sqlite\\3.3.2\\fluentmigrator.runner.sqlite.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\fluentmigrator.runner.sqlserver\\3.3.2\\fluentmigrator.runner.sqlserver.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\fluentmigrator.runner.sqlserverce\\3.3.2\\fluentmigrator.runner.sqlserverce.3.3.2.nupkg.sha512",
+    "C:\\Users\\Usuário\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\linq2db\\4.1.0\\linq2db.4.1.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.2\\microsoft.data.sqlclient.2.1.2.nupkg.sha512",

@@ -7,5 +7,6 @@
         void AtualizarUsuario(Usuario usuario);
         Usuario ObterPorId(int id);
         List<Usuario> ObterTodos();
+        public Usuario ObterPorEmail(string email);
     }
 }
