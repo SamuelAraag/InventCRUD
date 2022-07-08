@@ -40,6 +40,7 @@ namespace CRUD.Infra
                 }
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 {
+                    usuario.DataCriacao = usuario.DataCriacao;
                     usuario.Senha = CriptografarSenhaDoUsuario(usuario.Senha);
                     db.Update(usuario);
                 }

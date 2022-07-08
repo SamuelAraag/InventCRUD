@@ -73,10 +73,11 @@ namespace CRUD.WebApp.Controllers
 
         [HttpPost]
         [Route("AdicionarUsuario")]
-        public IActionResult AdicionarUsuario(Usuario usuario)
+        public IActionResult AdicionarUsuario([FromBody] Usuario usuario)
         {
             try
             {
+                usuario.DataCriacao = DateTime.Now;
                 _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
                 return new OkObjectResult(new { message = "Usuário adicionado" });
@@ -102,14 +103,18 @@ namespace CRUD.WebApp.Controllers
                 {
                     return BadRequest("Usuário não encontrado, verifique o Id! ");
                 }
-                usuarioASerAtualizado = usuario;
+
+                usuarioASerAtualizado.Nome = usuario.Nome;
+                usuarioASerAtualizado.Senha = usuario.Senha;
+                usuarioASerAtualizado.Email = usuario.Email;
+                usuarioASerAtualizado.DataNascimento = usuario.DataNascimento;
                 _validador.ValidateAndThrow(usuarioASerAtualizado);
                 _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
                 return new OkObjectResult(new {message = "Usuário atualizado"});
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + ex.InnerException.Message);
             }
         }
     }

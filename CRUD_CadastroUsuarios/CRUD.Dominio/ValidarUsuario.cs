@@ -7,8 +7,7 @@ namespace CRUD.Dominio
     {
         public ValidarUsuario()
         {
-            //valor mínimo do datetime para sql server
-            var dataMinimaValida = DateTime.Parse("1753-07-07T12:06:13.975Z");
+            const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
 
             RuleFor(x => x.Nome)
                 .NotEmpty()
@@ -29,16 +28,12 @@ namespace CRUD.Dominio
             RuleFor(x => x.DataNascimento)
                 .LessThanOrEqualTo(DateTime.Now)
                 .WithMessage("Data invalida!")
-                .GreaterThan(dataMinimaValida)
+                .GreaterThan(DateTime.Parse(dataMinimaValida))
                 .WithMessage("Data invalida!");
-            
-            
-            //Validar data de criação
-
         }
 
         private static bool EmailEstaNoPadraoCorreto(string email)
-        { 
+        {
             var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             var match = regex.Match(email);
             return match.Success; 
