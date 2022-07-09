@@ -98,7 +98,7 @@ namespace CRUD.WebApp.Controllers
         {
             try
             {
-                var usuarioASerAtualizado = usuario;
+                var usuarioASerAtualizado = new Usuario();
                 
                 usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(id);
                 usuarioASerAtualizado.Nome = usuario.Nome;
@@ -113,10 +113,8 @@ namespace CRUD.WebApp.Controllers
                 else
                 {
                     var _validador2 = new validarUsuario(_usuarioRepositorio);
-                    usuarioASerAtualizado.Email = usuario.Email;
-                    _validador2.ValidarUsuarioMetodoAtualizar(usuarioASerAtualizado);
+                    _validador2.ValidarUsuarioEmailNaoAlterado(usuarioASerAtualizado);
                 }
-
                 _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
                 return Ok("Usuário atualizado");
             }

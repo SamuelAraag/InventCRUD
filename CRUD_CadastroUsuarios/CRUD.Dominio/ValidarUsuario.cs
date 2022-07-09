@@ -35,7 +35,7 @@ namespace CRUD.Dominio
                 .WithMessage("Data invalida!");
         }
 
-        public void ValidarUsuarioMetodoAtualizar(Usuario usuarioASerAtualizado)
+        public void ValidarUsuarioEmailNaoAlterado(Usuario usuarioASerAtualizado)
         {
             const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
             RuleFor(x => x.Nome)
@@ -71,11 +71,11 @@ namespace CRUD.Dominio
         private static bool ValidarEmailExistente(string email, IUsuarioRepositorio usuarioRepositorio)
         {
             var _usuarioRepositorio = usuarioRepositorio;
-            var resultado = new Usuario();
+            var usuario = new Usuario();
             bool emailPodeSerCriado;
             try
             {
-                resultado = _usuarioRepositorio.ObterUsuarioPorEmail(email);
+                usuario = _usuarioRepositorio.ObterUsuarioPorEmail(email);
                 emailPodeSerCriado = false;
                 return emailPodeSerCriado;
             }
