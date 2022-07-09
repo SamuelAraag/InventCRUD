@@ -3,10 +3,10 @@ using System.Text.RegularExpressions;
 
 namespace CRUD.Dominio
 {
-    public class ValidarUsuario : AbstractValidator<Usuario>
+    public class validarUsuario : AbstractValidator<Usuario>
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        public ValidarUsuario(IUsuarioRepositorio usuarioRepositorio)
+        public validarUsuario(IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
             const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
@@ -26,7 +26,33 @@ namespace CRUD.Dominio
                 .Must((usuario, email) => EmailEstaNoPadraoCorreto(email))
                 .WithMessage("O campo {PropertyName} é inválido!")
                 .Must((usuario, email) => ValidarEmailExistente(email, _usuarioRepositorio))
-                .WithMessage("Este E-mail já existe!");
+                .WithMessage("Este {PropertyName} já existe no nosso banco de dados!");
+
+            RuleFor(x => x.DataNascimento)
+                .LessThanOrEqualTo(DateTime.Now)
+                .WithMessage("Data invalida!")
+                .GreaterThan(DateTime.Parse(dataMinimaValida))
+                .WithMessage("Data invalida!");
+        }
+
+        public void ValidarUsuarioMetodoAtualizar(Usuario usuarioASerAtualizado)
+        {
+            const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
+            RuleFor(x => x.Nome)
+                .NotEmpty()
+                .WithMessage("Campo {PropertyName} obrigatorio!");
+
+            RuleFor(x => x.Senha)
+                .NotEmpty()
+                .WithMessage("Campo {PropertyName} obrigatório!")
+                .NotNull()
+                .WithMessage("Campo {PropertyName} obrigatório!");
+
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .WithMessage("campo {PropertyName} obrigatório!")
+                .Must((usuario, email) => EmailEstaNoPadraoCorreto(email))
+                .WithMessage("O campo {PropertyName} é inválido!");
 
             RuleFor(x => x.DataNascimento)
                 .LessThanOrEqualTo(DateTime.Now)
@@ -53,7 +79,6 @@ namespace CRUD.Dominio
                 emailPodeSerCriado = false;
                 return emailPodeSerCriado;
             }
-            //caso o usuario com este email não exista, cai no catch e eu consigo criar o meu novo usuario
             catch (Exception)
             {
                 emailPodeSerCriado = true;

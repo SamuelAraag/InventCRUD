@@ -103,9 +103,20 @@ namespace CRUD.WebApp.Controllers
                 usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(id);
                 usuarioASerAtualizado.Nome = usuario.Nome;
                 usuarioASerAtualizado.Senha = usuario.Senha;
-                usuarioASerAtualizado.Email = usuario.Email;
                 usuarioASerAtualizado.DataNascimento = usuario.DataNascimento;
-                _validador.ValidateAndThrow(usuarioASerAtualizado);
+
+                if (usuario.Email != usuarioASerAtualizado.Email)
+                {
+                    usuarioASerAtualizado.Email = usuario.Email;
+                    _validador.ValidateAndThrow(usuarioASerAtualizado);
+                }
+                else
+                {
+                    var _validador2 = new validarUsuario(_usuarioRepositorio);
+                    usuarioASerAtualizado.Email = usuario.Email;
+                    _validador2.ValidarUsuarioMetodoAtualizar(usuarioASerAtualizado);
+                }
+
                 _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
                 return Ok("Usuário atualizado");
             }

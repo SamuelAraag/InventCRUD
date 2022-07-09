@@ -39,7 +39,6 @@ namespace CRUD.Infra
             return listaDeUsuarios;
         }
 
-        //Criar lógica do metodo emailexistente
         public bool EmailExistente(string email)
         {
             throw new NotImplementedException();
