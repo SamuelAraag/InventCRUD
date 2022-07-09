@@ -177,9 +177,44 @@ namespace CRUD.Infra
             }
         }
 
-        public Usuario ObterPorEmail(string email)
+        public bool EmailExistente(string email)
         {
-            throw new NotImplementedException();
+            SqlDataAdapter sqlDataAdapter = null;
+            DataTable bancoDataTable = new DataTable();
+            bool resultado;
+            
+            using (var conn = AbrirConexaoComBanco())
+            {
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "select * from Usuario";
+                    sqlDataAdapter = new SqlDataAdapter(cmd.CommandText, conn);
+                    sqlDataAdapter.Fill(bancoDataTable);
+                }
+            }
+            try
+            {
+                var usuarioARetornar = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Email == email);
+                return resultado = false;
+            }
+            catch (Exception)
+            {
+                return resultado = true;
+            }
+
+            //bool resultado;
+            //try
+            //{
+            //    using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+            //    var usuarioEncontrado = db
+            //        .GetTable<Usuario>()
+            //        .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com email" + email);
+            //    return resultado = false;
+            //}
+            //catch (Exception)
+            //{
+            //    return resultado = true;
+            //}
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using CRUD.Dominio;
 using LinqToDB;
 using LinqToDB.DataProvider.SqlServer;
-using System.Configuration;
 using System.Data;
 
 namespace CRUD.Infra
@@ -10,7 +9,7 @@ namespace CRUD.Infra
     {
         public static string StringConexaoBanco()
         {
-            string stringConexao = "Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=INVENT085;";
+            string stringConexao = "Persist Security Info=False;User ID=sa; Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-IP07KBT;";
             return stringConexao;
         }
 
@@ -113,20 +112,20 @@ namespace CRUD.Infra
             }
         }
 
-        public Usuario ObterPorEmail(string email)
+        public bool EmailExistente(string email)
         {
+            bool resultado;
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
                 var usuarioEncontrado = db
                     .GetTable<Usuario>()
                     .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com email" + email);
-
-                return usuarioEncontrado;
+                return resultado = false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Erro ao obter usuário pelo email! " + email, ex);
+                return resultado = true;
             }
         }
     }

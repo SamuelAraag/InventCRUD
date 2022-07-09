@@ -49,7 +49,7 @@ namespace CRUD_CadastroUsuarios
 
         private static void ConfigurarServicos(IServiceCollection servicos)
         {
-            servicos.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
+            servicos.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComBanco>();
             servicos.ConfigurarFluentMigrator();
         }
     }

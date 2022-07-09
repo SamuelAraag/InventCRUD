@@ -81,8 +81,6 @@ namespace CRUD.WebApp.Controllers
             try
             {
                 usuario.DataCriacao = DateTime.Now;
-                
-                var emailASerValidado = _usuarioRepositorio.ObterPorEmail(usuario.Email);
                 _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
 
@@ -90,8 +88,7 @@ namespace CRUD.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                //Corrigir mensagem ex.message e colocar inner exception
-                return BadRequest(ex.Message);
+                return BadRequest($"{ex.Message} {ex.InnerException?.Message ?? String.Empty}");
             }
         }
 

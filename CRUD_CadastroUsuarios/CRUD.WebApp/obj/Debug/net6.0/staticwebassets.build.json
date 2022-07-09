@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8/MdZigQ/rl1Qpwk8bzVT+wt55bAV+lVT0PLKka+kxU=",
+  "Hash": "ZCiwLmv7z0H+ph19bqmegf+DY+UyeDdafSwZoMgSrUQ=",
   "Source": "CRUD.WebApp",
   "BasePath": "_content/CRUD.WebApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "CRUD.WebApp\\wwwroot",
       "Source": "CRUD.WebApp",
-      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\index.html",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
       "RelativePath": "index.html",
       "AssetKind": "All",

@@ -5,8 +5,10 @@ namespace CRUD.Dominio
 {
     public class ValidarUsuario : AbstractValidator<Usuario>
     {
-        public ValidarUsuario()
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        public ValidarUsuario(IUsuarioRepositorio usuarioRepositorio)
         {
+            _usuarioRepositorio = usuarioRepositorio;
             const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
             RuleFor(x => x.Nome)
                 .NotEmpty()
@@ -22,7 +24,9 @@ namespace CRUD.Dominio
                 .NotEmpty()
                 .WithMessage("campo {PropertyName} obrigatório!")
                 .Must((usuario, email) => EmailEstaNoPadraoCorreto(email))
-                .WithMessage("O campo {PropertyName} é inválido!");
+                .WithMessage("O campo {PropertyName} é inválido!")
+                .Must((usuario, email) => _usuarioRepositorio.EmailExistente(email))
+                .WithMessage("Este E-mail já existe!");
 
             RuleFor(x => x.DataNascimento)
                 .LessThanOrEqualTo(DateTime.Now)
