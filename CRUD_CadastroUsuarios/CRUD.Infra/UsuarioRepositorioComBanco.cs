@@ -216,5 +216,10 @@ namespace CRUD.Infra
             //    return resultado = true;
             //}
         }
+
+        public Usuario ObterUsuarioPorEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

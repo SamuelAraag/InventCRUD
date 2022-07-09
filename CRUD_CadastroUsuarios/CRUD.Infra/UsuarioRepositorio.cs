@@ -44,5 +44,10 @@ namespace CRUD.Infra
         {
             throw new NotImplementedException();
         }
+
+        public Usuario ObterUsuarioPorEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

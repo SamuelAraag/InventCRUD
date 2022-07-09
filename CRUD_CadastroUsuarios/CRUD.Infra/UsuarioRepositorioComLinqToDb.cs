@@ -128,5 +128,22 @@ namespace CRUD.Infra
                 return resultado = true;
             }
         }
+        //Teste de retorno de usuario com email
+        public Usuario ObterUsuarioPorEmail(string email)
+        {
+            try
+            {
+                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                var usuarioEncontrado = db
+                    .GetTable<Usuario>()
+                    .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com este Email" + email);
+
+                return usuarioEncontrado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter usuário pelo Email! " + email, ex);
+            }
+        }
     }
 }
