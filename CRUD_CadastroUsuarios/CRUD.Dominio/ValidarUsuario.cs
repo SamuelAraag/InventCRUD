@@ -82,8 +82,7 @@ namespace CRUD.Dominio
                 var usuarioDoBanco = _usuarioRepositorio.ObterPorId(usuario.Id);
                 if(usuario.Email != usuarioDoBanco.Email)
                 {
-                    resultado = true;
-                    throw new Exception("Este email já existe no banco de dados");
+                    resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
                 }
                 else
                 {

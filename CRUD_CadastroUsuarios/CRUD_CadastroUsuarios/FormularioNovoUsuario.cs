@@ -48,68 +48,28 @@ namespace CRUD_CadastroUsuarios
             const string dataVazia = "  /  /";
             try
             {
-                if(usuario.Id == decimal.Zero)
+                usuario.Nome = caixaNome.Text;
+                usuario.Senha = caixaSenha.Text;
+                usuario.Email = caixaEmail.Text;
+                usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
+                if (caixaDataNascimento.Text == dataVazia)
                 {
-                    //novo usuario
-                    usuario.Nome = caixaNome.Text;
-                    usuario.Senha = caixaSenha.Text;
-                    usuario.Email = caixaEmail.Text;
-                    usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
-                    if (caixaDataNascimento.Text == dataVazia)
+                    if (DesejaSalvarSemData())
                     {
-                        if (DesejaSalvarSemData())
-                        {
-                            usuario.DataNascimento = null;
-                        }
-                        else
-                        {
-                            return;
-                        }
+                        usuario.DataNascimento = null;
                     }
                     else
                     {
-                        usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                        return;
                     }
-                    //usuario pronto com as informações, só testar a validação e mandar pra tela de salvarUsuario
-                    //Teste de validação com validator
-                    //Nesse não precisa conferir se o email é igual ou não, isso é só no método atualizarUsuario
-                    var _validador = new ValidarUsuario(_usuarioRepositorio);
-                    _validador.ValidateAndThrow(usuario);
-                    
                 }
                 else
                 {
-                    //atualizar usuario
-                    usuario.Nome = caixaNome.Text;
-                    usuario.Senha = caixaSenha.Text;
-                    usuario.Email = caixaEmail.Text;
-                    if (caixaDataNascimento.Text == dataVazia)
-                    {
-                        if (DesejaSalvarSemData())
-                        {
-                            usuario.DataNascimento = null;
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-                    }
-                    if(caixaEmail.Text != usuario.Email)
-                    {
-                        var _validador = new ValidarUsuario(_usuarioRepositorio);
-                        _validador.ValidateAndThrow(usuario);
-                    }
-                    else
-                    {
-                        var _validador2 = new ValidarUsuario(_usuarioRepositorio);
-                        _validador2.ValidarUsuarioASerAtualizado(usuario);
-                    }
+                    usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
                 }
-                
+                var _validador = new ValidarUsuario(_usuarioRepositorio);
+                _validador.ValidateAndThrow(usuario);
+
                 DialogResult = DialogResult.OK;
                 
                 Close();
@@ -117,36 +77,6 @@ namespace CRUD_CadastroUsuarios
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void ValidarCampos()
-        {
-            if (caixaNome.Text == String.Empty)
-            {
-                throw new Exception("Campo Nome, Obrigatório");
-            }
-            const int tamanhoMax = 50;
-            if(caixaSenha.Text.Length > tamanhoMax)
-            {
-                throw new Exception("Senha muito grande! ");
-            }
-            if (caixaSenha.Text == String.Empty)
-            {
-                throw new Exception("Campo Senha, Obrigatório");
-            }
-            var email = caixaEmail.Text;
-            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            var match = regex.Match(email);
-            if (!match.Success)
-            {
-                throw new Exception("Insira um email valido!");
-            }
-            var dataValida = DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var dt);
-            const string dataVazia = "  /  /";
-            if (caixaDataNascimento.Text != dataVazia && !dataValida)
-            {
-                throw new Exception("Insira uma data valida!");
             }
         }
 
@@ -184,5 +114,35 @@ namespace CRUD_CadastroUsuarios
             caixaDataCriacao.Enabled = false;
             CaixaId.Enabled = false;
         }
+
+        //private void ValidarCampos()
+        //{
+        //    if (caixaNome.Text == String.Empty)
+        //    {
+        //        throw new Exception("Campo Nome, Obrigatório");
+        //    }
+        //    const int tamanhoMax = 50;
+        //    if(caixaSenha.Text.Length > tamanhoMax)
+        //    {
+        //        throw new Exception("Senha muito grande! ");
+        //    }
+        //    if (caixaSenha.Text == String.Empty)
+        //    {
+        //        throw new Exception("Campo Senha, Obrigatório");
+        //    }
+        //    var email = caixaEmail.Text;
+        //    var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        //    var match = regex.Match(email);
+        //    if (!match.Success)
+        //    {
+        //        throw new Exception("Insira um email valido!");
+        //    }
+        //    var dataValida = DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var dt);
+        //    const string dataVazia = "  /  /";
+        //    if (caixaDataNascimento.Text != dataVazia && !dataValida)
+        //    {
+        //        throw new Exception("Insira uma data valida!");
+        //    }
+        //}
     }
 }
