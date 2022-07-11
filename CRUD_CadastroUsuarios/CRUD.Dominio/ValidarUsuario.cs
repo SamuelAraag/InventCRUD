@@ -25,7 +25,7 @@ namespace CRUD.Dominio
                 .WithMessage("campo {PropertyName} obrigatório!")
                 .Must((usuario, email) => EmailEstaNoPadraoCorreto(email))
                 .WithMessage("O campo {PropertyName} é inválido!")
-                .Must((usuario, email) => EmailExiste(email, _usuarioRepositorio))
+                .Must((usuario, email) => EmailPodeSerCriado(email, _usuarioRepositorio))
                 .WithMessage("Este {PropertyName} já existe no nosso banco de dados!");
 
             RuleFor(x => x.DataNascimento)
@@ -68,13 +68,12 @@ namespace CRUD.Dominio
             return match.Success; 
         }
 
-        private static bool EmailExiste(string email, IUsuarioRepositorio usuarioRepositorio)
+        private static bool EmailPodeSerCriado(string email, IUsuarioRepositorio usuarioRepositorio)
         {
             var _usuarioRepositorio = usuarioRepositorio;
             var resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
 
-            if (resultado == true ? resultado=false : resultado=true);
-            return resultado;
+            return !resultado;
         }
     }
 }

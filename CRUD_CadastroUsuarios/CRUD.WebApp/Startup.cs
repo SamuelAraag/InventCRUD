@@ -18,7 +18,7 @@ namespace CRUD.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IValidator<Usuario>, validarUsuario>();
 
             services.AddControllers();

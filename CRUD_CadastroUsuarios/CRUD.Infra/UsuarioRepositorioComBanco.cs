@@ -9,14 +9,13 @@ namespace CRUD.Infra
     {
         private static SqlConnection conexaoSql;
 
-        private static string StringConexaoBanco()
+        private static string BancoConexao()
         {
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
         }
-
         private static SqlConnection AbrirConexaoComBanco()
         {
-            conexaoSql = new SqlConnection(StringConexaoBanco());
+            conexaoSql = new SqlConnection(BancoConexao());
             conexaoSql.Open();
             return conexaoSql;
         }
@@ -29,7 +28,7 @@ namespace CRUD.Infra
                 {
                     using (var cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = "Insert into Usuarioss (Nome, Senha, Email, DataNascimento, DataCriacao)" +
+                        cmd.CommandText = "Insert into Usuario (Nome, Senha, Email, DataNascimento, DataCriacao)" +
                         " values (@Nome, @Senha, @Email, @DataNascimento, @DataCriacao)";
 
                         cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
@@ -149,7 +148,7 @@ namespace CRUD.Infra
             }
         }
 
-        public Usuario ObterPorId(int Id)
+        public Usuario ObterPorId(int id)
         {
             SqlDataAdapter sqlDataAdapter = null;
             DataTable bancoDataTable = new DataTable();
@@ -164,7 +163,7 @@ namespace CRUD.Infra
                         sqlDataAdapter.Fill(bancoDataTable);
                     }
                 }
-                var usuarioARetornar = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == 10050);
+                var usuarioARetornar = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Id == id);
                 if (usuarioARetornar == null)
                 {
                     throw new Exception("Usuário Id não encontrado");
@@ -177,11 +176,11 @@ namespace CRUD.Infra
             }
         }
 
-        public bool EmailExistente(string email)
+
+        public bool ExisteEmailNoBanco(string email)
         {
             SqlDataAdapter sqlDataAdapter = null;
             DataTable bancoDataTable = new DataTable();
-            bool resultado;
             
             using (var conn = AbrirConexaoComBanco())
             {
@@ -192,39 +191,8 @@ namespace CRUD.Infra
                     sqlDataAdapter.Fill(bancoDataTable);
                 }
             }
-            try
-            {
-                var usuarioARetornar = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Find(u => u.Email == email);
-                return resultado = false;
-            }
-            catch (Exception)
-            {
-                return resultado = true;
-            }
-
-            //bool resultado;
-            //try
-            //{
-            //    using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
-            //    var usuarioEncontrado = db
-            //        .GetTable<Usuario>()
-            //        .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com email" + email);
-            //    return resultado = false;
-            //}
-            //catch (Exception)
-            //{
-            //    return resultado = true;
-            //}
-        }
-
-        public Usuario ObterUsuarioPorEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool ExisteEmailNoBanco(string email)
-        {
-            throw new NotImplementedException();
+            var emailExiste = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Exists(u => u.Email == email);
+            return emailExiste;
         }
     }
 }

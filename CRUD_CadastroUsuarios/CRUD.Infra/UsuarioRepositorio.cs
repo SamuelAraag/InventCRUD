@@ -41,7 +41,10 @@ namespace CRUD.Infra
 
         public bool ExisteEmailNoBanco(string email)
         {
-            throw new NotImplementedException();
+            bool resultado;
+            var listaDeUsuarios = ListaDeUsuarios.ObterInstancia();
+            resultado = listaDeUsuarios.Any(u => u.Email == email);
+            return resultado;
         }
     }
 }
