@@ -46,5 +46,10 @@ namespace CRUD.Infra
             resultado = listaDeUsuarios.Any(u => u.Email == email);
             return resultado;
         }
+
+        public Usuario ObterUsuarioPorEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

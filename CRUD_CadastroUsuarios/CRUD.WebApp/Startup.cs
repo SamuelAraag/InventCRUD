@@ -13,13 +13,12 @@ namespace CRUD.WebApp
             MapeamentoDasTabelas.Mapear();
         }
 
-
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-            services.AddScoped<IValidator<Usuario>, validarUsuario>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
+            services.AddScoped<IValidator<Usuario>, ValidarUsuario>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

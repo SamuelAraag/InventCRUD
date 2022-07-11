@@ -122,11 +122,11 @@ namespace CRUD.Infra
         public bool ExisteEmailNoBanco(string email)
         {
             using var db = SqlServerTools.CreateDataConnection(BancoConexao());
-            var existeOemailNoBanco = db
+            var existeOEmailNoBanco = db
                 .GetTable<Usuario>()
                 .Any(u => u.Email == email);
             
-            return existeOemailNoBanco;
+            return existeOEmailNoBanco;
         }
     }
 }

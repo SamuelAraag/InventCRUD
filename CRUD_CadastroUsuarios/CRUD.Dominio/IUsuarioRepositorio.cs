@@ -8,5 +8,6 @@
         Usuario ObterPorId(int id);
         List<Usuario> ObterTodos();
         public bool ExisteEmailNoBanco(string email);
+        public Usuario ObterUsuarioPorEmail(string email);
     }
 }

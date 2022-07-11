@@ -194,5 +194,10 @@ namespace CRUD.Infra
             var emailExiste = Conversor.ConverterParaLista<Usuario>(bancoDataTable).Exists(u => u.Email == email);
             return emailExiste;
         }
+
+        public Usuario ObterUsuarioPorEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

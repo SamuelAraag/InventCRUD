@@ -4,6 +4,7 @@ using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CRUD.Infra.ContextoDoBanco;
+using FluentValidation;
 
 namespace CRUD_CadastroUsuarios
 {

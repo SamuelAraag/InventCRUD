@@ -3,12 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace CRUD.Dominio
 {
-    public class validarUsuario : AbstractValidator<Usuario>
+    public class ValidarUsuario : AbstractValidator<Usuario>
     {
+
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        public validarUsuario(IUsuarioRepositorio usuarioRepositorio)
+        public ValidarUsuario(IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+
             const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
             RuleFor(x => x.Nome)
                 .NotEmpty()
@@ -25,7 +27,7 @@ namespace CRUD.Dominio
                 .WithMessage("campo {PropertyName} obrigatório!")
                 .Must((usuario, email) => EmailEstaNoPadraoCorreto(email))
                 .WithMessage("O campo {PropertyName} é inválido!")
-                .Must((usuario, email) => EmailPodeSerCriado(email, _usuarioRepositorio))
+                .Must((usuario, email) => EmailPodeSerCriado(usuario, email))
                 .WithMessage("Este {PropertyName} já existe no nosso banco de dados!");
 
             RuleFor(x => x.DataNascimento)
@@ -68,10 +70,26 @@ namespace CRUD.Dominio
             return match.Success; 
         }
 
-        private static bool EmailPodeSerCriado(string email, IUsuarioRepositorio usuarioRepositorio)
+        private bool EmailPodeSerCriado(Usuario usuario, string email)
         {
-            var _usuarioRepositorio = usuarioRepositorio;
-            var resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
+            bool resultado;
+            if (usuario.Id == decimal.Zero)
+            {
+                resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
+            }
+            else
+            {
+                var usuarioDoBanco = _usuarioRepositorio.ObterPorId(usuario.Id);
+                if(usuario.Email != usuarioDoBanco.Email)
+                {
+                    resultado = true;
+                    throw new Exception("Este email já existe no banco de dados");
+                }
+                else
+                {
+                    resultado = false;
+                }
+            }
 
             return !resultado;
         }

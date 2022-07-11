@@ -1,4 +1,5 @@
 ﻿using CRUD.Dominio;
+using FluentValidation;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -6,21 +7,24 @@ namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioNovoUsuario : Form
     {
-        private readonly IUsuarioRepositorio _repositorioDeUsuario;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IValidator<Usuario> _validador;
+
         public Usuario usuario { get; set; }
 
-        public FormularioNovoUsuario(int idDoUsuario, IUsuarioRepositorio repositorioDeUsuario)
+        public FormularioNovoUsuario(int idDoUsuario, IUsuarioRepositorio usuarioRepositorio, IValidator<Usuario> validadorUsuario)
         {
-            _repositorioDeUsuario = repositorioDeUsuario;
+            _usuarioRepositorio = usuarioRepositorio;
+            _validador = validadorUsuario;
             InicializarComponentes();
 
-            if (idDoUsuario == 0)
+            if (idDoUsuario == decimal.Zero)
             {
                 usuario = new Usuario();
             }
             else
             {
-                var usuarioSalvo = _repositorioDeUsuario.ObterPorId(idDoUsuario);
+                var usuarioSalvo = _usuarioRepositorio.ObterPorId(idDoUsuario);
                 CaixaId.Text = usuarioSalvo.Id.ToString();
                 caixaNome.Text = usuarioSalvo.Nome;
                 caixaSenha.Enabled = false;
@@ -44,26 +48,68 @@ namespace CRUD_CadastroUsuarios
             const string dataVazia = "  /  /";
             try
             {
-                ValidarCampos();
-                usuario.Nome = caixaNome.Text;
-                usuario.Email = caixaEmail.Text;
-                usuario.Senha = caixaSenha.Text;
-                usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
-                if(caixaDataNascimento.Text == dataVazia)
+                if(usuario.Id == decimal.Zero)
                 {
-                    if (DesejaSalvarSemData())
+                    //novo usuario
+                    usuario.Nome = caixaNome.Text;
+                    usuario.Senha = caixaSenha.Text;
+                    usuario.Email = caixaEmail.Text;
+                    usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
+                    if (caixaDataNascimento.Text == dataVazia)
                     {
-                        usuario.DataNascimento = null;
+                        if (DesejaSalvarSemData())
+                        {
+                            usuario.DataNascimento = null;
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                     else
                     {
-                        return;
+                        usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
                     }
+                    //usuario pronto com as informações, só testar a validação e mandar pra tela de salvarUsuario
+                    //Teste de validação com validator
+                    //Nesse não precisa conferir se o email é igual ou não, isso é só no método atualizarUsuario
+                    var _validador = new ValidarUsuario(_usuarioRepositorio);
+                    _validador.ValidateAndThrow(usuario);
+                    
                 }
                 else
                 {
-                    usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                    //atualizar usuario
+                    usuario.Nome = caixaNome.Text;
+                    usuario.Senha = caixaSenha.Text;
+                    usuario.Email = caixaEmail.Text;
+                    if (caixaDataNascimento.Text == dataVazia)
+                    {
+                        if (DesejaSalvarSemData())
+                        {
+                            usuario.DataNascimento = null;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
+                    }
+                    if(caixaEmail.Text != usuario.Email)
+                    {
+                        var _validador = new ValidarUsuario(_usuarioRepositorio);
+                        _validador.ValidateAndThrow(usuario);
+                    }
+                    else
+                    {
+                        var _validador2 = new ValidarUsuario(_usuarioRepositorio);
+                        _validador2.ValidarUsuarioASerAtualizado(usuario);
+                    }
                 }
+                
                 DialogResult = DialogResult.OK;
                 
                 Close();

@@ -1,10 +1,12 @@
 ﻿using CRUD.Dominio;
+using FluentValidation;
 
 namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioConsultaUsuarios : Form
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private IValidator<Usuario> validadorUsuario;
 
         public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)
         {
@@ -18,7 +20,7 @@ namespace CRUD_CadastroUsuarios
             try
             { 
                 var usuarioNovo = (int)decimal.Zero;
-                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio);
+                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio, validadorUsuario);
                 var resultado = formularioNovoUsuario.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
@@ -48,7 +50,7 @@ namespace CRUD_CadastroUsuarios
                 var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
                     ?? throw new Exception("Nenhum usuário selecionado");
 
-                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
+                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio, validadorUsuario);
 
                 formNovoUsuario.Text = "Atualizar Usuário";
                 var resultado = formNovoUsuario.ShowDialog(this);
