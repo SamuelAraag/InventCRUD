@@ -25,7 +25,7 @@ namespace CRUD.Dominio
                 .WithMessage("campo {PropertyName} obrigatório!")
                 .Must((usuario, email) => EmailEstaNoPadraoCorreto(email))
                 .WithMessage("O campo {PropertyName} é inválido!")
-                .Must((usuario, email) => ValidarEmailExistente(email, _usuarioRepositorio))
+                .Must((usuario, email) => EmailExiste(email, _usuarioRepositorio))
                 .WithMessage("Este {PropertyName} já existe no nosso banco de dados!");
 
             RuleFor(x => x.DataNascimento)
@@ -35,7 +35,7 @@ namespace CRUD.Dominio
                 .WithMessage("Data invalida!");
         }
 
-        public void ValidarUsuarioEmailNaoAlterado(Usuario usuarioASerAtualizado)
+        public void ValidarUsuarioASerAtualizado(Usuario usuarioASerAtualizado)
         {
             const string dataMinimaValida = "1753-01-01T12:06:13.975Z";
             RuleFor(x => x.Nome)
@@ -68,22 +68,13 @@ namespace CRUD.Dominio
             return match.Success; 
         }
 
-        private static bool ValidarEmailExistente(string email, IUsuarioRepositorio usuarioRepositorio)
+        private static bool EmailExiste(string email, IUsuarioRepositorio usuarioRepositorio)
         {
             var _usuarioRepositorio = usuarioRepositorio;
-            var usuario = new Usuario();
-            bool emailPodeSerCriado;
-            try
-            {
-                usuario = _usuarioRepositorio.ObterUsuarioPorEmail(email);
-                emailPodeSerCriado = false;
-                return emailPodeSerCriado;
-            }
-            catch (Exception)
-            {
-                emailPodeSerCriado = true;
-                return emailPodeSerCriado;
-            }
+            var resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
+
+            if (resultado == true ? resultado=false : resultado=true);
+            return resultado;
         }
     }
 }

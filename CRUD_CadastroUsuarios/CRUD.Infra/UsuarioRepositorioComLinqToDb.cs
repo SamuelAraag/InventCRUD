@@ -9,7 +9,7 @@ namespace CRUD.Infra
     {
         public static string StringConexaoBanco()
         {
-            string stringConexao = "Persist Security Info=False;User ID=sa; Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-IP07KBT;";
+            string stringConexao = "Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=INVENT085";
             return stringConexao;
         }
 
@@ -112,38 +112,14 @@ namespace CRUD.Infra
             }
         }
 
-        public bool EmailExistente(string email)
+        public bool ExisteEmailNoBanco(string email)
         {
-            bool resultado;
-            try
-            {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
-                var usuarioEncontrado = db
-                    .GetTable<Usuario>()
-                    .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com email" + email);
-                return resultado = false;
-            }
-            catch (Exception)
-            {
-                return resultado = true;
-            }
-        }
-        //Teste de retorno de usuario com email
-        public Usuario ObterUsuarioPorEmail(string email)
-        {
-            try
-            {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
-                var usuarioEncontrado = db
-                    .GetTable<Usuario>()
-                    .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com este Email" + email);
-
-                return usuarioEncontrado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao obter usuário pelo Email! " + email, ex);
-            }
+            using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+            var existeOemailNoBanco = db
+                .GetTable<Usuario>()
+                .Any(u => u.Email == email);
+            
+            return existeOemailNoBanco;
         }
     }
 }

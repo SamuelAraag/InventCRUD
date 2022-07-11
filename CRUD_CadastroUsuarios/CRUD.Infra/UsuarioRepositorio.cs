@@ -39,12 +39,7 @@ namespace CRUD.Infra
             return listaDeUsuarios;
         }
 
-        public bool EmailExistente(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Usuario ObterUsuarioPorEmail(string email)
+        public bool ExisteEmailNoBanco(string email)
         {
             throw new NotImplementedException();
         }

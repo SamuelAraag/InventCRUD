@@ -7,9 +7,6 @@
         void AtualizarUsuario(Usuario usuario);
         Usuario ObterPorId(int id);
         List<Usuario> ObterTodos();
-
-        public Usuario ObterUsuarioPorEmail(string email);
-
-        //public bool EmailExistente(string email);
+        public bool ExisteEmailNoBanco(string email);
     }
 }

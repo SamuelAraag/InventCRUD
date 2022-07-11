@@ -221,5 +221,10 @@ namespace CRUD.Infra
         {
             throw new NotImplementedException();
         }
+
+        public bool ExisteEmailNoBanco(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

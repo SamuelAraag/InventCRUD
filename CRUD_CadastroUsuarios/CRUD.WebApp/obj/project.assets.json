@@ -2764,24 +2764,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Samuel\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\CRUD.WebApp.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\CRUD.WebApp.csproj",
       "projectName": "CRUD.WebApp",
-      "projectPath": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\CRUD.WebApp.csproj",
-      "packagesPath": "C:\\Users\\Samuel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\obj\\",
+      "projectPath": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\CRUD.WebApp.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Samuel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2795,11 +2790,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj": {
-              "projectPath": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj"
+            "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj"
             },
-            "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Infra\\CRUD.Infra.csproj": {
-              "projectPath": "C:\\Users\\Samuel\\Desktop\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Infra\\CRUD.Infra.csproj"
+            "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Infra\\CRUD.Infra.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Infra\\CRUD.Infra.csproj"
             }
           }
         }
@@ -2845,7 +2840,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

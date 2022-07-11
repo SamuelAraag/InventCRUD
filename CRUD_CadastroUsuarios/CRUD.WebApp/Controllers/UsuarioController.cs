@@ -66,7 +66,8 @@ namespace CRUD.WebApp.Controllers
         {
             try
             {
-                _usuarioRepositorio.DeletarUsuario(id);
+                var usuarioASerDeletado = _usuarioRepositorio.ObterPorId(id);
+                _usuarioRepositorio.DeletarUsuario(usuarioASerDeletado.Id);
                 return Ok("Usuário deletado");
             }
             catch (Exception ex)
@@ -113,7 +114,7 @@ namespace CRUD.WebApp.Controllers
                 else
                 {
                     var _validador2 = new validarUsuario(_usuarioRepositorio);
-                    _validador2.ValidarUsuarioEmailNaoAlterado(usuarioASerAtualizado);
+                    _validador2.ValidarUsuarioASerAtualizado(usuarioASerAtualizado);
                 }
                 _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
                 return Ok("Usuário atualizado");
