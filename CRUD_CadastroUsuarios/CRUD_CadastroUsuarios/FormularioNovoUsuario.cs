@@ -71,16 +71,30 @@ namespace CRUD_CadastroUsuarios
             if(caixaDataNascimento.Text != dataVazia)
             {
                 data = DateTime.Parse(caixaDataNascimento.Text);
-            } 
-              
-            return new Usuario
+            }
+            if(CaixaId.Text == String.Empty)
             {
-                Nome = caixaNome.Text,
-                Senha = caixaSenha.Text,
-                Email = caixaEmail.Text,
-                DataCriacao = DateTime.Parse(caixaDataCriacao.Text), 
-                DataNascimento = data
-            }; 
+                return new Usuario
+                {
+                    Nome = caixaNome.Text,
+                    Senha = caixaSenha.Text,
+                    Email = caixaEmail.Text,
+                    DataCriacao = DateTime.Parse(caixaDataCriacao.Text),
+                    DataNascimento = data
+                };
+            }
+            else
+            {
+                return new Usuario
+                {
+                    Id = int.Parse(CaixaId.Text),
+                    Nome = caixaNome.Text,
+                    Senha = caixaSenha.Text,
+                    Email = caixaEmail.Text,
+                    DataCriacao = DateTime.Parse(caixaDataCriacao.Text),
+                    DataNascimento = data
+                };
+            }
         }
 
         private void AoClicarEmCancelar(object sender, EventArgs e)
