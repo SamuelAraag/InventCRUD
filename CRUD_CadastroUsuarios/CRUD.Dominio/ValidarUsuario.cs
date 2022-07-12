@@ -71,26 +71,18 @@ namespace CRUD.Dominio
         }
 
         private bool EmailPodeSerCriado(Usuario usuario, string email)
-        {
-            bool resultado;
-            if (usuario.Id == decimal.Zero)
-            {
-                resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
-            }
-            else
-            {
-                var usuarioDoBanco = _usuarioRepositorio.ObterPorId(usuario.Id);
-                if(usuario.Email != usuarioDoBanco.Email)
-                {
-                    resultado = _usuarioRepositorio.ExisteEmailNoBanco(email);
-                }
-                else
-                {
-                    resultado = false;
-                }
-            }
+        { 
+            var ehCriacao           = usuario.Id == decimal.Zero;
+            var emailDoBanco        = ehCriacao 
+                ? null 
+                : _usuarioRepositorio.ObterPorId(usuario.Id).Email;
 
-            return !resultado;
+            var emailAlterado       = email != emailDoBanco;
+            var validarDuplicidade  = ehCriacao || emailAlterado;
+
+            var resultado = validarDuplicidade && _usuarioRepositorio.ExisteEmailNoBanco(email);
+
+            return !resultado; 
         }
     }
 }

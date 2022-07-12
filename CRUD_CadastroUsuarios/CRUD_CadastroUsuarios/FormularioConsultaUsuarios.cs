@@ -6,13 +6,14 @@ namespace CRUD_CadastroUsuarios
     public partial class FormularioConsultaUsuarios : Form
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        private IValidator<Usuario> validadorUsuario;
+        private IValidator<Usuario> _validadorUsuario;
 
-        public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)
+        public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio, IValidator<Usuario> validadorUsuario)
         {
             _usuarioRepositorio = usuarioRepositorio;
             InitializeComponent();
             AtualizarLista();
+            _validadorUsuario = validadorUsuario;
         }
 
         public void AoClicarEmNovo(object sender, EventArgs e)
@@ -20,7 +21,7 @@ namespace CRUD_CadastroUsuarios
             try
             { 
                 var usuarioNovo = (int)decimal.Zero;
-                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio, validadorUsuario);
+                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio, _validadorUsuario);
                 var resultado = formularioNovoUsuario.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
@@ -50,7 +51,7 @@ namespace CRUD_CadastroUsuarios
                 var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
                     ?? throw new Exception("Nenhum usuário selecionado");
 
-                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio, validadorUsuario);
+                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio, _validadorUsuario);
 
                 formNovoUsuario.Text = "Atualizar Usuário";
                 var resultado = formNovoUsuario.ShowDialog(this);

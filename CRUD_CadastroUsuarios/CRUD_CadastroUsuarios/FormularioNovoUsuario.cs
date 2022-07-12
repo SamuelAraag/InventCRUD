@@ -45,39 +45,44 @@ namespace CRUD_CadastroUsuarios
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
-            const string dataVazia = "  /  /";
             try
-            {
-                usuario.Nome = caixaNome.Text;
-                usuario.Senha = caixaSenha.Text;
-                usuario.Email = caixaEmail.Text;
-                usuario.DataCriacao = DateTime.Parse(caixaDataCriacao.Text);
-                if (caixaDataNascimento.Text == dataVazia)
+            { 
+                const string dataVazia = "  /  /";
+                if (caixaDataNascimento.Text == dataVazia && !DesejaSalvarSemData())
                 {
-                    if (DesejaSalvarSemData())
-                    {
-                        usuario.DataNascimento = null;
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    return;
                 }
-                else
-                {
-                    usuario.DataNascimento = DateTime.Parse(caixaDataNascimento.Text);
-                }
-                var _validador = new ValidarUsuario(_usuarioRepositorio);
-                _validador.ValidateAndThrow(usuario);
 
-                DialogResult = DialogResult.OK;
-                
+                var usuarioDaTela = ObterUsuarioDaTela();
+                _validador.ValidateAndThrow(usuarioDaTela);
+
+                usuario = usuarioDaTela;
+                DialogResult = DialogResult.OK; 
                 Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private Usuario ObterUsuarioDaTela( )
+        {
+            const string dataVazia = "  /  /";
+            DateTime? data = null;
+            if(caixaDataNascimento.Text != dataVazia)
+            {
+                data = DateTime.Parse(caixaDataNascimento.Text);
+            } 
+              
+            return new Usuario
+            {
+                Nome = caixaNome.Text,
+                Senha = caixaSenha.Text,
+                Email = caixaEmail.Text,
+                DataCriacao = DateTime.Parse(caixaDataCriacao.Text), 
+                DataNascimento = data
+            }; 
         }
 
         private void AoClicarEmCancelar(object sender, EventArgs e)
@@ -114,35 +119,5 @@ namespace CRUD_CadastroUsuarios
             caixaDataCriacao.Enabled = false;
             CaixaId.Enabled = false;
         }
-
-        //private void ValidarCampos()
-        //{
-        //    if (caixaNome.Text == String.Empty)
-        //    {
-        //        throw new Exception("Campo Nome, Obrigatório");
-        //    }
-        //    const int tamanhoMax = 50;
-        //    if(caixaSenha.Text.Length > tamanhoMax)
-        //    {
-        //        throw new Exception("Senha muito grande! ");
-        //    }
-        //    if (caixaSenha.Text == String.Empty)
-        //    {
-        //        throw new Exception("Campo Senha, Obrigatório");
-        //    }
-        //    var email = caixaEmail.Text;
-        //    var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-        //    var match = regex.Match(email);
-        //    if (!match.Success)
-        //    {
-        //        throw new Exception("Insira um email valido!");
-        //    }
-        //    var dataValida = DateTime.TryParseExact(caixaDataNascimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var dt);
-        //    const string dataVazia = "  /  /";
-        //    if (caixaDataNascimento.Text != dataVazia && !dataValida)
-        //    {
-        //        throw new Exception("Insira uma data valida!");
-        //    }
-        //}
     }
 }

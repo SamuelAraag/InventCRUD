@@ -2,6 +2,7 @@
 using FluentValidation;
 using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CRUD.WebApp.Controllers
 {
@@ -26,15 +27,11 @@ namespace CRUD.WebApp.Controllers
             try
             {
                 var todosOsUsuarios = _usuarioRepositorio.ObterTodos();
-                if (todosOsUsuarios.Count() == decimal.Zero)
-                {
-                    return Ok("Nenhum Usuário Cadastrado");
-                }
                 return Ok(todosOsUsuarios);
             }
             catch (Exception ex)
             {
-                return NotFound("Erro ao buscar usuários! " + ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
@@ -42,21 +39,24 @@ namespace CRUD.WebApp.Controllers
         [Route("{id}")]
         public IActionResult ObterUsuarioPorId([FromRoute] int id)
         {
-            try
+            if (id == decimal.Zero)
             {
-                try
+                return BadRequest("O id deve ser informado");
+            }
+             
+            try
+            { 
+                var usuarioObtido = _usuarioRepositorio.ObterPorId(id);
+                if(usuarioObtido is null)
                 {
-                    var usuarioObtido = _usuarioRepositorio.ObterPorId(id);
-                    return Ok(usuarioObtido);
+                    return NotFound($"Usuario não pode ser encontrado com o id: {id}");
                 }
-                catch (Exception ex)
-                {
-                    return BadRequest("Erro ao buscar usuário, verifique o Id! " + ex.Message);
-                }
+
+                return Ok(usuarioObtido);
             }
             catch (Exception ex)
             {
-                return NotFound("Erro ao buscar usuário, verifique o Id! " + ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
@@ -64,32 +64,45 @@ namespace CRUD.WebApp.Controllers
         [Route("{id}")]
         public IActionResult DeletarUsuario([FromRoute] int id)
         {
+            if (id == decimal.Zero)
+            {
+                return BadRequest("O id deve ser informado");
+            }
             try
             {
                 var usuarioASerDeletado = _usuarioRepositorio.ObterPorId(id);
+                if (usuarioASerDeletado is null)
+                {
+                    return NotFound($"Usuario não pode ser encontrado com o id: {id}");
+                }
                 _usuarioRepositorio.DeletarUsuario(usuarioASerDeletado.Id);
-                return Ok("Usuário deletado");
+                return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest("Erro ao deletar, usuário não encontrado! " + ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
         [HttpPost]
         public IActionResult AdicionarUsuario([FromBody] Usuario usuario)
         {
+            if (usuario is null)
+            {
+                return BadRequest("O usuario deve ser informado");
+            }
+
             try
             {
                 usuario.DataCriacao = DateTime.Now;
                 _validador.ValidateAndThrow(usuario);
                 _usuarioRepositorio.AdicionarUsuario(usuario);
 
-                return Ok("Usuário adicionado");
+                return Created($"Usuario/{usuario.Id}", usuario);
             }
             catch (Exception ex)
             {
-                return BadRequest($"{ex.Message} {ex.InnerException?.Message ?? String.Empty}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
@@ -97,22 +110,27 @@ namespace CRUD.WebApp.Controllers
         [Route("{id}")]
         public IActionResult AtualizarUsuario([FromRoute] int id, [FromBody] Usuario usuario)
         {
-            try
+            if (usuario is null)
             {
-                var usuarioASerAtualizado = new Usuario();
-                
-                usuarioASerAtualizado = _usuarioRepositorio.ObterPorId(id);
-                usuarioASerAtualizado.Nome = usuario.Nome;
-                usuarioASerAtualizado.Senha = usuario.Senha;
-                usuarioASerAtualizado.DataNascimento = usuario.DataNascimento;
-                usuarioASerAtualizado.Email = usuario.Email;
-                _validador.ValidateAndThrow(usuarioASerAtualizado);
-                _usuarioRepositorio.AtualizarUsuario(usuarioASerAtualizado);
-                return Ok("Usuário atualizado");
+                return BadRequest("O usuario deve ser informado");
+            }
+
+            try
+            { 
+                var usuarioDoBanco = _usuarioRepositorio.ObterPorId(id);
+                if (usuarioDoBanco is null)
+                {
+                    return NotFound($"Usuario não pode ser encontrado com o id: {id}");
+                }
+                usuario.DataCriacao = usuarioDoBanco.DataCriacao;
+                usuario.Id = id;
+                _validador.ValidateAndThrow(usuario);
+                _usuarioRepositorio.AtualizarUsuario(usuario);
+                return NoContent();
             }
             catch (Exception ex)
             {
-                return BadRequest($"{ex.Message} {ex.InnerException?.Message ?? String.Empty}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
     }

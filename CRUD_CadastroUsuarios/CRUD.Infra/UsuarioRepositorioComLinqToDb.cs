@@ -27,7 +27,8 @@ namespace CRUD.Infra
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     usuario.Senha = CriptografarSenhaDoUsuario(usuario.Senha);
-                    db.Insert(usuario);
+                    var id = db.InsertWithInt32Identity(usuario);
+                    usuario.Id = id;
                 }
             }
             catch (Exception ex)
