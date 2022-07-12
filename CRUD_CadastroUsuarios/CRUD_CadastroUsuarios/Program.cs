@@ -4,6 +4,7 @@ using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CRUD.Infra.ContextoDoBanco;
+using FluentValidation;
 
 namespace CRUD_CadastroUsuarios
 {
@@ -22,17 +23,18 @@ namespace CRUD_CadastroUsuarios
 
             MapeamentoDasTabelas.Mapear();
 
-            var usuarioRepositorio = builder
-                .Services
-                .GetRequiredService<IUsuarioRepositorio>();
-
             using (var scope = builder.Services.CreateScope())
             {
                 AtualizarBanco(scope.ServiceProvider);
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormularioConsultaUsuarios(usuarioRepositorio));
+
+            var form = builder
+                .Services
+                .GetRequiredService<FormularioConsultaUsuarios>();
+
+            Application.Run(form);
         }
 
         private static void AtualizarBanco(IServiceProvider serviceProvider)
@@ -49,7 +51,9 @@ namespace CRUD_CadastroUsuarios
 
         private static void ConfigurarServicos(IServiceCollection servicos)
         {
+            servicos.AddScoped<FormularioConsultaUsuarios>();
             servicos.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
+            servicos.AddScoped<IValidator<Usuario>, ValidarUsuario>();
             servicos.ConfigurarFluentMigrator();
         }
     }

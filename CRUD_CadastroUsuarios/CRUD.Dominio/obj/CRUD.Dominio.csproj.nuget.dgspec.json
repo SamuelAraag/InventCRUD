@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj": {}
+    "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj": {
+    "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj",
         "projectName": "CRUD.Dominio",
-        "projectPath": "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj",
-        "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuário\\Documents\\Estudo\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\CRUD.Dominio.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.Dominio\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

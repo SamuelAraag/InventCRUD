@@ -13,7 +13,6 @@ namespace CRUD.WebApp
             MapeamentoDasTabelas.Mapear();
         }
 
-
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -39,7 +38,9 @@ namespace CRUD.WebApp
 
             app.UseHttpsRedirection();
 
+            //Procura o arquivo base para inicializar primeiro index.html
             app.UseDefaultFiles();
+            //Abre o index ou arquivo principal
             app.UseStaticFiles();
 
             app.UseRouting();

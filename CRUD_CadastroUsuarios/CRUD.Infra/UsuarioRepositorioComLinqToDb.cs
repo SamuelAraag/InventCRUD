@@ -1,27 +1,34 @@
 ﻿using CRUD.Dominio;
-using LinqToDB;
-using LinqToDB.DataProvider.SqlServer;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using LinqToDB.DataProvider.SqlServer;
+using LinqToDB;
+
+
 
 namespace CRUD.Infra
 {
     public class UsuarioRepositorioComLinqToDb : IUsuarioRepositorio
     {
-        public static string StringConexaoBanco()
+        public static SqlConnection? sqlConexao;
+        public static SqlConnection BancoConexao()
         {
-            string stringConexao = "Persist Security Info=False;User ID=sa;Password=sap@123;Initial Catalog=Usuarios;Data Source=DESKTOP-7MCFTA2;";
-            return stringConexao;
+            sqlConexao = new SqlConnection(ConfigurationManager.ConnectionStrings
+                ["conexaoSql"].ConnectionString);
+            sqlConexao.Open();
+            return sqlConexao;
         }
 
         public void AdicionarUsuario(Usuario usuario)
         {
             try
             {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     usuario.Senha = CriptografarSenhaDoUsuario(usuario.Senha);
-                    db.Insert(usuario);
+                    var id = db.InsertWithInt32Identity(usuario);
+                    usuario.Id = id;
                 }
             }
             catch (Exception ex)
@@ -38,9 +45,8 @@ namespace CRUD.Infra
                 {
                     throw new Exception("Usuario não encontrado!");
                 }
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
-                    usuario.DataCriacao = usuario.DataCriacao;
                     usuario.Senha = CriptografarSenhaDoUsuario(usuario.Senha);
                     db.Update(usuario);
                 }
@@ -55,7 +61,7 @@ namespace CRUD.Infra
         {
             try
             {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     db.GetTable<Usuario>()
                         .Where(u => u.Id == Id)
@@ -72,7 +78,7 @@ namespace CRUD.Infra
         {
             try
             {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 var listaDeUsuarios =
                     from usuarios in db.GetTable<Usuario>()
                     select usuarios;
@@ -88,7 +94,7 @@ namespace CRUD.Infra
         {
             try
             {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
+                using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 var usuarioEncontrado = db
                     .GetTable<Usuario>()
                     .FirstOrDefault(u => u.Id == id) ?? throw new Exception ("Não foi possível encontrar o Usuario com Id" + id);
@@ -114,21 +120,14 @@ namespace CRUD.Infra
             }
         }
 
-        public Usuario ObterPorEmail(string email)
+        public bool ExisteEmailNoBanco(string email)
         {
-            try
-            {
-                using var db = SqlServerTools.CreateDataConnection(StringConexaoBanco());
-                var usuarioEncontrado = db
-                    .GetTable<Usuario>()
-                    .FirstOrDefault(u => u.Email == email) ?? throw new Exception("Não foi possível encontrar o Usuario com email" + email);
-
-                return usuarioEncontrado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao obter usuário pelo email! " + email, ex);
-            }
+            using var db = SqlServerTools.CreateDataConnection(BancoConexao());
+            var existeOEmailNoBanco = db
+                .GetTable<Usuario>()
+                .Any(u => u.Email == email);
+            
+            return existeOEmailNoBanco;
         }
     }
 }

@@ -1,14 +1,17 @@
 ﻿using CRUD.Dominio;
+using FluentValidation;
 
 namespace CRUD_CadastroUsuarios
 {
     public partial class FormularioConsultaUsuarios : Form
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private IValidator<Usuario> _validadorUsuario;
 
-        public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio)
+        public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio, IValidator<Usuario> validadorUsuario)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _validadorUsuario = validadorUsuario;
             InitializeComponent();
             AtualizarLista();
         }
@@ -18,12 +21,11 @@ namespace CRUD_CadastroUsuarios
             try
             { 
                 var usuarioNovo = (int)decimal.Zero;
-                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio);
+                var formularioNovoUsuario = new FormularioNovoUsuario(usuarioNovo, _usuarioRepositorio, _validadorUsuario);
                 var resultado = formularioNovoUsuario.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
                     _usuarioRepositorio.AdicionarUsuario(formularioNovoUsuario.usuario);
-                    listaUsuariosGrid.DataSource = _usuarioRepositorio.ObterTodos();
                     MessageBox.Show("Usuário adicionado com sucesso!");
                 }
                 AtualizarLista();
@@ -44,11 +46,10 @@ namespace CRUD_CadastroUsuarios
                     throw new Exception("Nenhum usuário selecionado!");
                 }
                 var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                 var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
                     ?? throw new Exception("Nenhum usuário selecionado");
 
-                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio);
+                var formNovoUsuario = new FormularioNovoUsuario(usuarioSelecionado.Id, _usuarioRepositorio, _validadorUsuario);
 
                 formNovoUsuario.Text = "Atualizar Usuário";
                 var resultado = formNovoUsuario.ShowDialog(this);
