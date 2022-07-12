@@ -1,7 +1,5 @@
 ﻿using CRUD.Dominio;
 using FluentValidation;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace CRUD_CadastroUsuarios
 {

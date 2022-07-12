@@ -52,7 +52,7 @@ namespace CRUD_CadastroUsuarios
         private static void ConfigurarServicos(IServiceCollection servicos)
         {
             servicos.AddScoped<FormularioConsultaUsuarios>();
-            servicos.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComBanco>();
+            servicos.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
             servicos.AddScoped<IValidator<Usuario>, ValidarUsuario>();
             servicos.ConfigurarFluentMigrator();
         }

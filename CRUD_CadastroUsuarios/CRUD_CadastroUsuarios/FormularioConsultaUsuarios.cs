@@ -11,9 +11,9 @@ namespace CRUD_CadastroUsuarios
         public FormularioConsultaUsuarios(IUsuarioRepositorio usuarioRepositorio, IValidator<Usuario> validadorUsuario)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _validadorUsuario = validadorUsuario;
             InitializeComponent();
             AtualizarLista();
-            _validadorUsuario = validadorUsuario;
         }
 
         public void AoClicarEmNovo(object sender, EventArgs e)
@@ -26,7 +26,6 @@ namespace CRUD_CadastroUsuarios
                 if (resultado == DialogResult.OK)
                 {
                     _usuarioRepositorio.AdicionarUsuario(formularioNovoUsuario.usuario);
-                    listaUsuariosGrid.DataSource = _usuarioRepositorio.ObterTodos();
                     MessageBox.Show("Usuário adicionado com sucesso!");
                 }
                 AtualizarLista();
@@ -47,7 +46,6 @@ namespace CRUD_CadastroUsuarios
                     throw new Exception("Nenhum usuário selecionado!");
                 }
                 var indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
-                indexSelecionado = listaUsuariosGrid.CurrentCell.RowIndex;
                 var usuarioSelecionado = (listaUsuariosGrid.Rows[indexSelecionado].DataBoundItem as Usuario)
                     ?? throw new Exception("Nenhum usuário selecionado");
 
