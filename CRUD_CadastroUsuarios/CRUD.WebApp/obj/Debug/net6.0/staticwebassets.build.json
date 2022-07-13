@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lG6YNlmGuCG3NqlgragyaFOI6JWgMiFSNYi3Xb+KQxk=",
+  "Hash": "/iNgChyLX+6zEh35URV8FAHdfk6Q5d94VbmSKw1fRxU=",
   "Source": "CRUD.WebApp",
   "BasePath": "_content/CRUD.WebApp",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Cadastro.controller.js",
+      "SourceId": "CRUD.WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
+      "BasePath": "_content/CRUD.WebApp",
+      "RelativePath": "controller/Cadastro.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\Cadastro.controller.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Detail.controller.js",

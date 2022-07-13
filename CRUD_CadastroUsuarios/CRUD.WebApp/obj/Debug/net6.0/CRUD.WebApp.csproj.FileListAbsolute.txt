@@ -272,3 +272,5 @@ C:\Users\Samuel\Desktop\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\obj\Debug\n
 C:\Users\Samuel\Desktop\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\obj\Debug\net6.0\CRUD.WebApp.genruntimeconfig.cache
 C:\Users\Samuel\Desktop\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\obj\Debug\net6.0\ref\CRUD.WebApp.dll
 C:\Users\Usuario\Documents\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\bin\Debug\net6.0\CRUD.WebApp.dll.config
+C:\Users\Usuario\Documents\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\bin\Debug\net6.0\i18n.Domain.dll
+C:\Users\Usuario\Documents\InventCRUD\CRUD_CadastroUsuarios\CRUD.WebApp\bin\Debug\net6.0\i18n.dll
