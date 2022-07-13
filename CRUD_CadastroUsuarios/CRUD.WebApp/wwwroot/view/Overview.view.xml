@@ -1,25 +1,93 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.App"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
-	<Page title="{i18n>homePageTitle}">
-		<landmarkInfo>
-			<PageAccessibleLandmarkInfo
-				rootRole="Region"
-				rootLabel="{i18n>Overview_rootLabel}"
-				contentRole="Main"
-				contentLabel="{i18n>Overview_contentLabel}"
-				headerRole="Banner"
-				headerLabel="{i18n>Overview_headerLabel}"/>
-		</landmarkInfo>
-		<headerContent>
-			<Button
-				icon="sap-icon://hello-world"
-				press=".onOpenDialog"/>
-		</headerContent>
-		<content>
-			<mvc:XMLView viewName="sap.ui.demo.walkthrough.view.HelloPanel"/>
-			<mvc:XMLView viewName="sap.ui.demo.walkthrough.view.InvoiceList"/>
-		</content>
-	</Page>
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Panel accessibleRole="Region">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{i18n>invoiceListTitle}"/>
+				<ToolbarSpacer/>
+				<SearchField
+					width="50%"
+					search=".onFilterInvoices"/>
+			</Toolbar>
+		</headerToolbar>
+
+		<!-- Colocar os campos de preenchimento antes dos botões -->
+		<Button
+		id="carregarUsuarios"
+      	text="Carregar usuarios"
+      	press="carregarUsuariosDoBanco"/>
+    	<Button
+    	id="botaoCriar"
+    	text="Criar"
+    	press=""/>
+    	<Button
+    	id="botaoAtualizar"
+    	text="Atualizar"
+    	press=""/>
+    	<Button
+    	id="botaoDeletar"
+    	text="Deletar"
+    	press=""/>    
+		<Table
+			id="invoiceList"
+			class="sapUiResponsiveMargin"
+			width="auto"
+			items="{
+				path : 'invoice>/Invoices',
+				sorter : {
+					path : 'id',
+					group : true
+				}
+			}">
+			<columns>
+				<Column
+					hAlign="End"
+					minScreenWidth="Small"
+					demandPopin="true"
+					width="5em">
+					<Text text="{i18n>Id}"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>Nome}"/>
+				</Column>
+				<Column
+					minScreenWidth="Small"
+					demandPopin="true">
+					<Text text="{i18n>Email}"/>
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="false">
+					<Text text="{i18n>Data Nascimento}"/>
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="false">
+					<Text text="{i18n>Data Criacao}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem
+					type="Navigation"
+					press=".onPress">
+					<cells>
+						<ObjectNumber number="{invoice>id}" emphasized="false"/>
+						<ObjectIdentifier title="{invoice>nome}"/>
+						<Text text="{
+							path: 'invoice>email',
+							formatter: '.formatter.statusText'
+						}"/>
+						<Text text="{invoice>dataNascimento}"/>
+						<Text text="{invoice>dataCriacao}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		
+	</Panel>
 </mvc:View>

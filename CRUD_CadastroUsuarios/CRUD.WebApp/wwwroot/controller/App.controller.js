@@ -7,7 +7,18 @@ sap.ui.define([
 
 		onInit: function(){
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
-		}
-	});
+		},
 
+		buscarUsuariosDoBanco : function (){
+            var usuariosObtidos = fetch('https://swapi.dev/api/people/')
+            .then((resposta) => resposta.json())
+			return (usuariosObtidos)
+        },
+
+		carregarUsuariosDoBanco: function(){
+			var resultado = this.buscarUsuariosDoBanco();
+			resultado.then(lista=> console.log(lista.results))
+		}
+
+	});
 });
