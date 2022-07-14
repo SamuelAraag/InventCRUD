@@ -28,14 +28,6 @@
     	id="botaoCriar"
     	text="{i18n>buttonCreate}"
     	press=".aoClicarEmCriar"/>
-    	<!-- <Button
-    	id="botaoAtualizar"
-    	text="Atualizar"
-    	press=""/>
-    	<Button
-    	id="botaoDeletar"
-    	text="Deletar"
-    	press=""/>     -->
 		<Table
 			id="invoiceList"
 			class="sapUiResponsiveMargin"

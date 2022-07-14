@@ -12,8 +12,8 @@ sap.ui.define([
 			this.carregarUsuariosDoBanco();
 		},
 
-		buscarUsuariosDoBanco : function (){
-            var usuariosObtidos = fetch('https://localhost:7137/api/Usuario')
+		buscarUsuariosDoBanco : async function (){
+            var usuariosObtidos = await fetch('https://localhost:7137/api/Usuario')
             .then((resposta) => resposta.json())
 			return (usuariosObtidos)
         },
@@ -24,8 +24,14 @@ sap.ui.define([
 				var oModel = new JSONModel(lista);
 				this.getView().setModel(oModel, "listaDeUsuarios")
 			})
+			return MessageToast.show("Usuarios carregados")
 		},
 
+		aoClicarEmCriar: function(){
+			return MessageToast.show("botão criar funcionando!")
+
+
+		}
 
 
 
