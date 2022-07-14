@@ -18,13 +18,14 @@ namespace CRUD.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(services => {
-                services.AddPolicy("CorsPolicy", build => build
-                .AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod());
-            });
+            //services.AddCors(services => {
+            //    services.AddPolicy("CorsPolicy", build => build
+            //    .AllowAnyOrigin()
+            //    .AllowAnyHeader()
+            //    .AllowAnyMethod());
+            //});
 
+            services.AddCors();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
             services.AddScoped<IValidator<Usuario>, ValidarUsuario>();
 
@@ -60,6 +61,7 @@ namespace CRUD.WebApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

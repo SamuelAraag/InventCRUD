@@ -4,41 +4,44 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form">
+	xmlns:f="sap.ui.layout.form"
+	displayBlock="true">
+
+<Page title="{i18n>homePageTitle}">
 	<Panel accessibleRole="Region">
 		<headerToolbar>
 			<Toolbar>
-				<Title text="{i18n>invoiceListTitle}"/>
+				<Title 
+				text="{i18n>invoiceListTitle}"/>
 				<ToolbarSpacer/>
 				<SearchField
-					width="50%"
+					width="20%"
 					search=".onFilterInvoices"/>
 			</Toolbar>
 		</headerToolbar>
 
-		<!-- Colocar os campos de preenchimento antes dos botões -->
 		<Button
 		id="carregarUsuarios"
-      	text="Carregar usuarios"
-      	press="carregarUsuariosDoBanco"/>
+      	text="Recarregar usuarios"
+      	press=".carregarUsuariosDoBanco"/>
     	<Button
     	id="botaoCriar"
-    	text="Criar"
-    	press=""/>
-    	<Button
+    	text="{i18n>buttonCreate}"
+    	press=".aoClicarEmCriar"/>
+    	<!-- <Button
     	id="botaoAtualizar"
     	text="Atualizar"
     	press=""/>
     	<Button
     	id="botaoDeletar"
     	text="Deletar"
-    	press=""/>    
+    	press=""/>     -->
 		<Table
 			id="invoiceList"
 			class="sapUiResponsiveMargin"
 			width="auto"
 			items="{
-				path : 'invoice>/Invoices',
+				path : 'listaDeUsuarios>/',
 				sorter : {
 					path : 'id',
 					group : true
@@ -50,25 +53,25 @@
 					minScreenWidth="Small"
 					demandPopin="true"
 					width="5em">
-					<Text text="{i18n>Id}"/>
+					<Text text="{i18n>id}"/>
 				</Column>
 				<Column>
-					<Text text="{i18n>Nome}"/>
+					<Text text="{i18n>nome}"/>
 				</Column>
 				<Column
 					minScreenWidth="Small"
 					demandPopin="true">
-					<Text text="{i18n>Email}"/>
+					<Text text="{i18n>email}"/>
 				</Column>
 				<Column
 					minScreenWidth="Tablet"
 					demandPopin="false">
-					<Text text="{i18n>Data Nascimento}"/>
+					<Text text="{i18n>dataNascimento}"/>
 				</Column>
 				<Column
 					minScreenWidth="Tablet"
 					demandPopin="false">
-					<Text text="{i18n>Data Criacao}"/>
+					<Text text="{i18n>dataCriacao}"/>
 				</Column>
 			</columns>
 			<items>
@@ -76,18 +79,17 @@
 					type="Navigation"
 					press=".onPress">
 					<cells>
-						<ObjectNumber number="{invoice>id}" emphasized="false"/>
-						<ObjectIdentifier title="{invoice>nome}"/>
-						<Text text="{
-							path: 'invoice>email',
-							formatter: '.formatter.statusText'
-						}"/>
-						<Text text="{invoice>dataNascimento}"/>
-						<Text text="{invoice>dataCriacao}"/>
+						<ObjectNumber number="{listaDeUsuarios>id}" emphasized="false"/>
+						<ObjectIdentifier title="{listaDeUsuarios>nome}"/>
+						<Text text="{listaDeUsuarios>email}"/>
+						<Text text="{listaDeUsuarios>dataNascimento}"/>
+						<Text text="{listaDeUsuarios>dataCriacao}"/>
 					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>
 		
 	</Panel>
+
+	</Page>
 </mvc:View>
