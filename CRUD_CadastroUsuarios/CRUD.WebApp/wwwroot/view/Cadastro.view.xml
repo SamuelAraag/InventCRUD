@@ -1,0 +1,46 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.Cadastro"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	displayBlock="true">
+
+<Page title="{i18n>telaDeCadastro}">
+	<Panel accessibleRole="Region">
+	</Panel>
+</Page>
+
+<l:VerticalLayout class="sapUiContentPadding" width="50%">
+		<Label text="Nome Completo" labelFor="input-nome" />
+		<Input id="input-nome" required="true" />
+        
+        <Label text="Senha" labelFor="input-senha" />
+		<Input id="input-senha" required="true" />
+
+        <Label text="Email" labelFor="input-email" />
+		<Input id="input-email" required="true" />
+        
+        <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
+        <DateTimePicker
+			id="input-dataNascimento"
+			showCurrentDateButton="true"
+			showCurrentTimeButton="true"
+			value="2016-02-18-10-32-30" valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="short"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"
+            required="true"/>
+        <!--data de criação -->
+        <Label text="Data de Criação" labelFor="input-dataCriacao" />
+        <DateTimePicker
+			id="input-datacriacao"
+			showCurrentDateButton="true"
+			showCurrentTimeButton="true"
+			value="2016-02-18-10-32-30" valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="short"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/>
+
+
+	</l:VerticalLayout>
+</mvc:View>

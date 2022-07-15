@@ -29,9 +29,9 @@
     },
     "sap.ui5": {
         "rootView": {
-            "viewName": "sap.ui.demo.walkthrough.view.App",
+            "viewName": "sap.ui.demo.walkthrough.view.Cadastro",
             "type": "XML",
-            "id": "app"
+            "id": "cadastro"
         },
         "dependencies": {
             "minUI5Version": "1.93",
@@ -66,7 +66,7 @@
             "type": "View",
             "viewType": "XML",
             "path": "sap.ui.demo.walkthrough.view",
-            "controlId": "app",
+            "controlId": "cadastro",
             "controlAggregation": "pages"
           },
           "routes": [

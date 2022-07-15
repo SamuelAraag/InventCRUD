@@ -13,7 +13,8 @@ sap.ui.define([
 		},
 
 		buscarUsuariosDoBanco : async function (){
-            var usuariosObtidos = await fetch('https://localhost:7137/api/Usuario')
+            var usuariosObtidos = await fetch('https://localhost:7137/api/Usuario',
+			{mode: 'no-cors'})
             .then((resposta) => resposta.json())
 			return (usuariosObtidos)
         },
@@ -30,14 +31,6 @@ sap.ui.define([
 		aoClicarEmCriar: function(){
 			return MessageToast.show("botão criar funcionando!")
 
-
 		}
-
-
-
-
-		//criar novo usuario, abrir tela de criação com campos para input
-
-
 	});
 });
