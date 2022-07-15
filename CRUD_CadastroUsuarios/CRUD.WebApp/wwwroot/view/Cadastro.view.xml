@@ -13,34 +13,39 @@
 </Page>
 
 <l:VerticalLayout class="sapUiContentPadding" width="50%">
+
+        <Label text="Id" labelFor="input-id" />
+		<Input id="input-id" width="10%"/>
+
 		<Label text="Nome Completo" labelFor="input-nome" />
-		<Input id="input-nome" required="true" />
-        
-        <Label text="Senha" labelFor="input-senha" />
-		<Input id="input-senha" required="true" />
+		<Input id="input-nome" required="true" placeholder="Digite seu nome" />
+
+        <Label text="Senha" labelFor="senhaInput" />
+		<Input id="senhaInput" type="Password" required="true" placeholder="Digite sua senha" />
 
         <Label text="Email" labelFor="input-email" />
-		<Input id="input-email" required="true" />
+		<Input id="input-email" required="true" placeholder="Digite seu E-mail" />
         
         <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
         <DateTimePicker
 			id="input-dataNascimento"
 			showCurrentDateButton="true"
 			showCurrentTimeButton="true"
-			value="2016-02-18-10-32-30" valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="short"
+			value="2000-02-18-10-32-30" valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="short"
 			change="handleChange"
 			class="sapUiSmallMarginBottom"
             required="true"/>
-        <!--data de criação -->
+        <!--data de criação
+		Criar uma controler para pegar data atual -->
         <Label text="Data de Criação" labelFor="input-dataCriacao" />
         <DateTimePicker
 			id="input-datacriacao"
 			showCurrentDateButton="true"
 			showCurrentTimeButton="true"
-			value="2016-02-18-10-32-30" valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="short"
+			value="{path:'/dateValue', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"
 			change="handleChange"
-			class="sapUiSmallMarginBottom"/>
-
-
+            editable="false"
+			class="sapUiSmallMarginBottom"
+            disable="true"/>
 	</l:VerticalLayout>
 </mvc:View>

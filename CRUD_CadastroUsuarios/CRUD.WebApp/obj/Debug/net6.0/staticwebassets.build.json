@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6b9s9qUctGGnKTdSDiC0DGMRxXDQhkU2xDh6/U6xG4o=",
+  "Hash": "/Gfj/uk0y8iIl2UAk51arNzAzJYYxtPTgBGW3KClXSw=",
   "Source": "CRUD.WebApp",
   "BasePath": "_content/CRUD.WebApp",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Cadastro.controller.js",
+      "SourceId": "CRUD.WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
+      "BasePath": "_content/CRUD.WebApp",
+      "RelativePath": "controller/Cadastro.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\Cadastro.controller.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\css\\style.css",
@@ -423,6 +440,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Cadastro.view.xml",
+      "SourceId": "CRUD.WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
+      "BasePath": "_content/CRUD.WebApp",
+      "RelativePath": "view/Cadastro.view.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\view\\Cadastro.view.xml"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Overview.view.xml",
