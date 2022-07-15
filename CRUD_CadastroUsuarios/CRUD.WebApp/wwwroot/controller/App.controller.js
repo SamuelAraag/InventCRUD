@@ -12,9 +12,8 @@ sap.ui.define([
 			this.carregarUsuariosDoBanco();
 		},
 
-		buscarUsuariosDoBanco : async function (){
-            var usuariosObtidos = await fetch('https://localhost:7137/api/Usuario',
-			{mode: 'no-cors'})
+		buscarUsuariosDoBanco : function (){
+            var usuariosObtidos = fetch('https://localhost:7137/api/Usuario')
             .then((resposta) => resposta.json())
 			return (usuariosObtidos)
         },
