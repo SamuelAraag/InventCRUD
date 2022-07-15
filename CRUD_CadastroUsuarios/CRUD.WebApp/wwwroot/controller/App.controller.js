@@ -28,8 +28,23 @@ sap.ui.define([
 		},
 
 		aoClicarEmCriar: function(){
-			return MessageToast.show("botão criar funcionando!")
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("cadastro")
 
+			// return MessageToast.show("botão criar funcionando!")
+			// var teste = this.
+			// 	getView().
+			// 	getModel("listaDeUsuarios").
+			// 	getData()
+			// console.log(teste)
 		}
+
+
+
+		//Botão funcionando
+		// aoClicarEmCriar: function(){
+		// 	return MessageToast.show("botão criar funcionando!")
+
+		// }
 	});
 });
