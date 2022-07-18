@@ -10,14 +10,14 @@
 <Page title="{i18n>telaDeCadastro}">
 <headerContent>
 	<Button 
-		type="Ghost"
+		type="Emphasized"
 		text="Salvar"
 		press="aoClicarEmSalvar"
 		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
 	</Button>
 	<Button 
-		type="Emphasized"
-		text="Cancelar"
+		type="Ghost"
+		text="Cancelar / Voltar"
 		press="aoClicarEmCancelar"
 		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
 	</Button>
@@ -38,20 +38,17 @@
 			id="emailInput"
 			class="sapUiSmallMarginBottom"
 			type="Email"
-			placeholder="Insira seu E-mail"
+			placeholder="Digite seu E-mail"
 			valueStateText="E-mail must be a valid email address."/>
         
         <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
 
-		<DateTimePicker
+		<DatePicker
 			value="{usuario>/dataNascimento}"
 			id="input-dataNascimento"
-			showCurrentDateButton="true"
-			showCurrentTimeButton="true"
-			valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="short"
+			valueFormat="yyyy-MM-dd" displayFormat="short"
 			change="handleChange"
-			class="sapUiSmallMarginBottom"
-            required="false"/>
+			class="sapUiSmallMarginBottom"/>
 	</l:VerticalLayout>
 </Page>
 

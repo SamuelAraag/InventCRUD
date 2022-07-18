@@ -63,9 +63,14 @@
               "target": "overview"
             },
             {
-                "pattern": "cadastro",
+                "pattern": "usuario/cadastro",
                 "name": "cadastro",
                 "target": "cadastro"
+            },
+            {
+                "pattern": "usuario/{id}/atualizar",
+                "name": "atualizar",
+                "target": "atualizar"
             }
           ],
           "targets": {
@@ -76,6 +81,10 @@
             "cadastro": {
                 "id": "cadastro",
                 "name": "Cadastro"
+            },
+            "atualizar": {
+                "id": "atualizar",
+                "name": "Atualizar"
             }
           }
         },

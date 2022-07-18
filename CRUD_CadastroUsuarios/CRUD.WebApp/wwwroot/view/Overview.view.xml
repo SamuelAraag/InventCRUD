@@ -69,7 +69,7 @@
 			<items>
 				<ColumnListItem
 					type="Navigation"
-					press=".onPress">
+					press=".aoClicarNoUsuario">
 					<cells>
 						<ObjectNumber number="{listaDeUsuarios>id}" emphasized="false"/>
 						<ObjectIdentifier title="{listaDeUsuarios>nome}"/>

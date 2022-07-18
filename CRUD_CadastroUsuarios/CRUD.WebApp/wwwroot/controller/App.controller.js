@@ -8,8 +8,8 @@ sap.ui.define([
 	return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
 
 		onInit: function(){
-			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 			this.carregarUsuariosDoBanco();
+			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		},
 
 		buscarUsuariosDoBanco : function (){
@@ -30,21 +30,11 @@ sap.ui.define([
 		aoClicarEmCriar: function(){
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("cadastro")
+		},
 
-			// return MessageToast.show("botão criar funcionando!")
-			// var teste = this.
-			// 	getView().
-			// 	getModel("listaDeUsuarios").
-			// 	getData()
-			// console.log(teste)
+		aoClicarNoUsuario: function(){
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("atualizar")
 		}
-
-
-
-		//Botão funcionando
-		// aoClicarEmCriar: function(){
-		// 	return MessageToast.show("botão criar funcionando!")
-
-		// }
 	});
 });

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/Gfj/uk0y8iIl2UAk51arNzAzJYYxtPTgBGW3KClXSw=",
+  "Hash": "Y1iG0q2eZrwTdQngFNMCrvfhkuvxDwP7TPQHiKACh2I=",
   "Source": "CRUD.WebApp",
   "BasePath": "_content/CRUD.WebApp",
   "Mode": "Default",
@@ -151,23 +151,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.js"
-    },
-    {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\Invoices.json",
-      "SourceId": "CRUD.WebApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
-      "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "Invoices.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Invoices.json"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\localService\\metadata.xml",

@@ -19,13 +19,7 @@ sap.ui.define([
 		},
 
 		aoClicarEmSalvar: function(){
-			//não está formatando a data, para datetime
 			var usuarioTela = this.getView().getModel("usuario")
-			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYY/MM/DD" });   
-			var dataFormatada = dateFormat.format(usuarioTela.dataNascimento);
-			usuarioTela.dataNascimento = dataFormatada;
-			console.log(usuarioTela);
-
 
 			fetch('https://localhost:7137/api/Usuario', {
 				method: 'POST',
@@ -35,7 +29,7 @@ sap.ui.define([
 				body: JSON.stringify(usuarioTela.getData())
 			})
 			.then((resposta) => resposta.json())
-			.then((data) => console.log(data))
+			alert("Usuário cadastrado")
 		},
 
 		aoClicarEmCancelar: function(){
@@ -48,7 +42,6 @@ sap.ui.define([
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("overview", {}, true);
 			}
-		}
-
+		},
 	});
 });
