@@ -1,21 +1,21 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/routing/History"
 
-], function (Controller, History, JSONModel) {
+], function (Controller, JSONModel, History) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.walkthrough.controller.Cadastro", {
+	return Controller.extend("sap.ui.demo.walkthrough.controller.Lista", {
 
         onInit: function(){
-			
-			this.getView().getRouter();
+			this.getOwnerComponent()
+			.getRouter()
+			.getRoute("lista")
+			.attachPatternMatched(this.aoCoincidirComRota, this)
 		},
 
-        aoCoincidirComRota: function(){
-
-            //corrigir metodo, ao coincidir com a rota, executa esse metodo e carrega a lista
+        aoCoincidirComRota: function(evento){
             this.carregarUsuariosDoBanco();
         },
 
@@ -31,33 +31,35 @@ sap.ui.define([
 				var oModel = new JSONModel(lista);
 				this.getView().setModel(oModel, "listaDeUsuarios")
 			})
-			return MessageToast.show("Usuarios carregados")
+		},
+		aoClicarEmCriar: function(){
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("cadastro")
 		},
 
-		aoClicarEmSalvar: function(){
-			var usuarioTela = this.getView().getModel("usuario")
-
-			fetch('https://localhost:7137/api/Usuario', {
-				method: 'POST',
-				headers: {
-					'content-type': 'application/json'
-				},
-				body: JSON.stringify(usuarioTela.getData())
-			})
-			.then((resposta) => resposta.json())
-			alert("Usuário cadastrado")
-		},
-
-		aoClicarEmCancelar: function(){
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
+		modelo: function(nome, modelo){
+			var view = this.getView();
+			if(!modelo){
+				view.setModel(modelo, nome);
 			}
+			return view.getModel(nome);
+		},
+
+		modeloListaDeUsuarios: function(modelo){
+			const nome = "listaDeUsuarios";
+			return this.modelo(nome, modelo);
+		},
+
+
+		//Preciso passar o id quando clicado no usuario da tela, lista
+		aoClicarNoUsuario: function(oEvent){
+			var eventoCapturado = oEvent.getSource();
+
+			// var oRouter = this.getOwnerComponent().getRouter();
+			// oRouter.navTo("detalhes", {
+			// 	//id deve receber a propriedade que indica qual usuario/id foi clicado na tela
+			// 	id: window.encodeURIComponent(oItem.getBindingContext("listaDeUsuarios"))
+			// });
 		},
 	});
 });

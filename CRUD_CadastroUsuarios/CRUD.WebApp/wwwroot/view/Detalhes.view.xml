@@ -1,0 +1,50 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.Detalhes"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	displayBlock="true">
+
+<Page title="{i18n>telaDeDetalhes}">
+<headerContent>
+	<Button 
+		type="Emphasized"
+		text="Editar"
+		press="aoClicarEmEditar"
+		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+	</Button>
+    <Button 
+		type="Reject"
+		text="Deletar"
+		press="aoClicarEmDeletar"
+		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+	</Button>
+	<Button 
+		type="Ghost"
+		text="Cancelar / Voltar"
+		press="aoClicarEmCancelar"
+		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+	</Button>
+</headerContent>
+	<Panel accessibleRole="Region">
+	</Panel>
+	<l:VerticalLayout class="sapUiContentPadding" width="50%">
+
+		<Label text="Nome Completo" labelFor="input-nome" />
+		<Label text="SAMUEL SANTOS DE JESUS" labelFor="nome-usarioAqui" />
+
+        <Label text="Senha" labelFor="senhaInput" />
+        <Label text="***********" labelFor="senha-usuarioAqui" />
+
+        <Label text="E-mail" labelFor="emailInput" />
+		<Label text="samuel.santos@inventsoftware.com.br" labelFor="email-usuarioAqui" />
+        
+        <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
+        <Label text="11/12/1995" labelFor="input-usuarioAqui" />
+
+	</l:VerticalLayout>
+</Page>
+
+</mvc:View>

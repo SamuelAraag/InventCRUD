@@ -10,26 +10,21 @@ sap.ui.define([
 			manifest: "json"
 		},
 		init: function () {
-			// call the init function of the parent
 			UIComponent.prototype.init.apply(this, arguments);
-
-			// set data model
 			var oData = {
 				recipient: {
 					name: "Mundo"
 				}
 			};
 			var oModel = new JSONModel(oData);
-			this.setModel(oModel);
 
-			// set device model
+			this.setModel(oModel);
 			var oDeviceModel = new JSONModel(Device);
 			oDeviceModel.setDefaultBindingMode("OneWay");
 			this.setModel(oDeviceModel, "device");
-
-			// create the views based on the url/hash
 			this.getRouter().initialize();
 		},
+
 		getContentDensityClass : function(){
 			if(!this._sContentDensityClass){
 				if(!Device.support.touch){
@@ -40,6 +35,5 @@ sap.ui.define([
 			}
 			return this._sContentDensityClass;
 		}
-
 	});
 });

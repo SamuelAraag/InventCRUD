@@ -10,7 +10,7 @@ sap.ui.define([
 
 		onInit: function(){
 			this.getView().setModel(new JSONModel({
-				
+			
 			nome: "",
 			senha: "",
 			email: "",
@@ -40,7 +40,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
+				oRouter.navTo("lista", {}, true);
 			}
 		},
 	});
