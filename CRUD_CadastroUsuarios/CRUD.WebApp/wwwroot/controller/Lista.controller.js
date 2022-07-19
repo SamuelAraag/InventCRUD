@@ -53,13 +53,13 @@ sap.ui.define([
 
 		//Preciso passar o id quando clicado no usuario da tela, lista
 		aoClicarNoUsuario: function(oEvent){
-			var eventoCapturado = oEvent.getSource();
-
-			// var oRouter = this.getOwnerComponent().getRouter();
-			// oRouter.navTo("detalhes", {
-			// 	//id deve receber a propriedade que indica qual usuario/id foi clicado na tela
-			// 	id: window.encodeURIComponent(oItem.getBindingContext("listaDeUsuarios"))
-			// });
+			var idEvento = oEvent
+				.getSource()
+				.oBindingContexts
+				.listaDeUsuarios
+				.getObject("id");
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("detalhes", {id: idEvento});
 		},
 	});
 });
