@@ -207,6 +207,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "I18N": {
+              "target": "Package",
+              "version": "[2.1.17, )"
+            },
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[6.3.1, )"

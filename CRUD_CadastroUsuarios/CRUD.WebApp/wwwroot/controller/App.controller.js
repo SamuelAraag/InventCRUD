@@ -1,5 +1,6 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"sap/ui/core/mvc/Controller",
+
 ], function (Controller) {
 	"use strict";
 
@@ -9,5 +10,4 @@ sap.ui.define([
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		}
 	});
-
 });

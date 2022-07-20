@@ -1,6 +1,7 @@
 ﻿using CRUD.Dominio;
 using FluentValidation;
 using LinqToDB;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

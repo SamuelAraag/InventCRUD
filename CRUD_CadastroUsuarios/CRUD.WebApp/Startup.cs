@@ -1,6 +1,7 @@
 ﻿using CRUD.Dominio;
 using CRUD.Infra;
 using FluentValidation;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.OpenApi.Models;
 
 namespace CRUD.WebApp
@@ -17,6 +18,14 @@ namespace CRUD.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(services =>
+            {
+                services.AddPolicy("CorsPolicy", build => build
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+            });
+
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorioComLinqToDb>();
             services.AddScoped<IValidator<Usuario>, ValidarUsuario>();
 
@@ -38,13 +47,21 @@ namespace CRUD.WebApp
 
             app.UseHttpsRedirection();
 
-            //Procura o arquivo base para inicializar primeiro index.html
             app.UseDefaultFiles();
-            //Abre o index ou arquivo principal
-            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ContentTypeProvider = new FileExtensionContentTypeProvider
+                {
+                    Mappings = { [".properties"] = "application/x-msdownload"}
+                }
+            });
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

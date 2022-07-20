@@ -1,0 +1,50 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.Detalhes"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	displayBlock="true">
+
+<Page title="{i18n>telaDeDetalhes}">
+<headerContent>
+	<Button 
+		type="Emphasized"
+		text="Editar"
+		press="aoClicarEmEditar"
+		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+	</Button>
+    <Button 
+		type="Reject"
+		text="Deletar"
+		press="aoClicarEmDeletar"
+		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+	</Button>
+	<Button 
+		type="Ghost"
+		text="Cancelar / Voltar"
+		press="aoClicarEmCancelar"
+		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+	</Button>
+</headerContent>
+	<Panel accessibleRole="Region">
+	</Panel>
+	<l:VerticalLayout class="sapUiContentPadding" width="50%">
+
+		<Label text="Nome Completo" labelFor="input-nome" />
+		<Label text="{usuario>/nome}" labelFor="nome-usarioAqui" />
+
+        <Label text="E-mail" labelFor="emailInput" />
+		<Label text="{usuario>/email}" labelFor="email-usuarioAqui" />
+        
+        <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
+        <Label text="{usuario>/dataNascimento}" labelFor="input-usuarioAqui" />
+			
+		<Label text="Data de Criação" labelFor="input-dataCriacao" />
+		<Label text="{usuario>/dataCriacao}" labelFor="input-usuarioAqui" />
+
+	</l:VerticalLayout>
+</Page>
+
+</mvc:View>

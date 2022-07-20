@@ -8,15 +8,6 @@
         "description": "{{appDescription}}",
         "applicationVersion": {
             "version": "1.0.0"
-        },
-        "dataSources": {
-            "invoiceRemote": {
-                "uri": "http://services.odata.org/V2/Northwind/Northwind.svc/",
-                "type": "OData",
-                "settings": {
-                    "odataVersion": "2.0"
-                }
-            }
         }
     },
     "sap.ui": {
@@ -54,10 +45,6 @@
                     ],
                     "fallbackLocale": ""
                 }
-            },
-            "invoice": {
-              "type": "sap.ui.model.json.JSONModel",
-              "uri": "Invoices.json"
             }
         },
         "routing": {
@@ -72,23 +59,44 @@
           "routes": [
             {
               "pattern": "",
-              "name": "overview",
-              "target": "overview"
+              "name": "lista",
+              "target": "lista"
             },
             {
-              "pattern": "detail/{invoicePath}",
-              "name": "detail",
-              "target": "detail"
+                "pattern": "usuario/cadastro",
+                "id": "cadastro",
+                "name": "cadastro",
+                "target": "cadastro"
+            },
+            {
+                "pattern": "usuario/{id}/atualizar",
+                "id": "atualizar",
+                "name": "atualizar",
+                "target": "atualizar"
+            },
+            {
+                "pattern": "usuario/{id}",
+                "id": "detalhes",
+                "name": "detalhes",
+                "target": "detalhes"
             }
           ],
           "targets": {
-            "overview": {
-              "id": "overview",
-              "name": "Overview"
+            "lista": {
+              "id": "lista",
+              "name": "Lista"
             },
-            "detail": {
-              "id": "detail",
-              "name": "Detail"
+            "detalhes": {
+                "id": "cadastro",
+                "name": "Detalhes"
+            },
+            "cadastro": {
+                "id": "cadastro",
+                "name": "Cadastro"
+            },
+            "atualizar": {
+                "id": "atualizar",
+                "name": "Atualizar"
             }
           }
         },

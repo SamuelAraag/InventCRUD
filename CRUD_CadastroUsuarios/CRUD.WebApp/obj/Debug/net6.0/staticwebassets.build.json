@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lG6YNlmGuCG3NqlgragyaFOI6JWgMiFSNYi3Xb+KQxk=",
+  "Hash": "NhOO4G3V2lmP7oLzudUr9xNtRxmpMO/aRmlvcGzlb94=",
   "Source": "CRUD.WebApp",
   "BasePath": "_content/CRUD.WebApp",
   "Mode": "Default",
@@ -68,12 +68,12 @@
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Detail.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Atualizar.controller.js",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "controller/Detail.controller.js",
+      "RelativePath": "controller/Atualizar.controller.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,15 +82,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\controller\\Detail.controller.js"
+      "OriginalItemSpec": "wwwroot\\controller\\Atualizar.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\HelloPanel.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Cadastro.controller.js",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "controller/HelloPanel.controller.js",
+      "RelativePath": "controller/Cadastro.controller.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,15 +99,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\controller\\HelloPanel.controller.js"
+      "OriginalItemSpec": "wwwroot\\controller\\Cadastro.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\InvoiceList.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Detalhes.controller.js",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "controller/InvoiceList.controller.js",
+      "RelativePath": "controller/Detalhes.controller.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,7 +116,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\controller\\InvoiceList.controller.js"
+      "OriginalItemSpec": "wwwroot\\controller\\Detalhes.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\controller\\Lista.controller.js",
+      "SourceId": "CRUD.WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
+      "BasePath": "_content/CRUD.WebApp",
+      "RelativePath": "controller/Lista.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\Lista.controller.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\css\\style.css",
@@ -185,23 +202,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.js"
-    },
-    {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\Invoices.json",
-      "SourceId": "CRUD.WebApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
-      "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "Invoices.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Invoices.json"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\localService\\metadata.xml",
@@ -476,12 +476,12 @@
       "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Detail.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Atualizar.view.xml",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "view/Detail.view.xml",
+      "RelativePath": "view/Atualizar.view.xml",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -490,15 +490,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\view\\Detail.view.xml"
+      "OriginalItemSpec": "wwwroot\\view\\Atualizar.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\HelloDialog.fragment.xml",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Cadastro.view.xml",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "view/HelloDialog.fragment.xml",
+      "RelativePath": "view/Cadastro.view.xml",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -507,15 +507,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\view\\HelloDialog.fragment.xml"
+      "OriginalItemSpec": "wwwroot\\view\\Cadastro.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\HelloPanel.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Detalhes.view.xml",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "view/HelloPanel.view.xml",
+      "RelativePath": "view/Detalhes.view.xml",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -524,15 +524,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\view\\HelloPanel.view.xml"
+      "OriginalItemSpec": "wwwroot\\view\\Detalhes.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\InvoiceList.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Lista.view.xml",
       "SourceId": "CRUD.WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
       "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "view/InvoiceList.view.xml",
+      "RelativePath": "view/Lista.view.xml",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -541,24 +541,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\view\\InvoiceList.view.xml"
-    },
-    {
-      "Identity": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\view\\Overview.view.xml",
-      "SourceId": "CRUD.WebApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Documents\\InventCRUD\\CRUD_CadastroUsuarios\\CRUD.WebApp\\wwwroot\\",
-      "BasePath": "_content/CRUD.WebApp",
-      "RelativePath": "view/Overview.view.xml",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\view\\Overview.view.xml"
+      "OriginalItemSpec": "wwwroot\\view\\Lista.view.xml"
     }
   ]
 }
