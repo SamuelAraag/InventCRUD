@@ -33,16 +33,16 @@
 	<l:VerticalLayout class="sapUiContentPadding" width="50%">
 
 		<Label text="Nome Completo" labelFor="input-nome" />
-		<Label text="SAMUEL SANTOS DE JESUS" labelFor="nome-usarioAqui" />
-
-        <Label text="Senha" labelFor="senhaInput" />
-        <Label text="***********" labelFor="senha-usuarioAqui" />
+		<Label text="{usuario>/nome}" labelFor="nome-usarioAqui" />
 
         <Label text="E-mail" labelFor="emailInput" />
-		<Label text="samuel.santos@inventsoftware.com.br" labelFor="email-usuarioAqui" />
+		<Label text="{usuario>/email}" labelFor="email-usuarioAqui" />
         
         <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
-        <Label text="11/12/1995" labelFor="input-usuarioAqui" />
+        <Label text="{usuario>/dataNascimento}" labelFor="input-usuarioAqui" />
+			
+		<Label text="Data de Criação" labelFor="input-dataCriacao" />
+		<Label text="{usuario>/dataCriacao}" labelFor="input-usuarioAqui" />
 
 	</l:VerticalLayout>
 </Page>

@@ -32,6 +32,7 @@ sap.ui.define([
 				this.getView().setModel(oModel, "listaDeUsuarios")
 			})
 		},
+
 		aoClicarEmCriar: function(){
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("cadastro")
@@ -50,8 +51,6 @@ sap.ui.define([
 			return this.modelo(nome, modelo);
 		},
 
-
-		//Preciso passar o id quando clicado no usuario da tela, lista
 		aoClicarNoUsuario: function(oEvent){
 			var idEvento = oEvent
 				.getSource()
