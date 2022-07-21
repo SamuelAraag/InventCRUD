@@ -4,47 +4,62 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
-	displayBlock="true">
+	xmlns:f="sap.ui.layout.form">
 
-<Page title="{i18n>telaDeDetalhes}">
-<headerContent>
-	<Button 
-		type="Emphasized"
-		text="Editar"
-		press="aoClicarEmEditar"
-		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
-	</Button>
-    <Button 
-		type="Reject"
-		text="Deletar"
-		press="aoClicarEmDeletar"
-		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
-	</Button>
-	<Button 
-		type="Ghost"
-		text="Cancelar / Voltar"
-		press="aoClicarEmCancelar"
-		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
-	</Button>
-</headerContent>
+<Page title="{i18n>telaDeDetalhes}" showNavButton="true" navButtonPress="aoClicarEmCancelar">
+	<Panel accessibleRole="Region">
+<headerToolbar>
+	<Toolbar>
+		<Title text="Teste" />
+		<ToolbarSpacer />
+			<Button
+				class="sapUiSmallMarginBottom sapUiSmallMarginTop" 
+				type="Emphasized"
+				text="Editar"
+				press="aoClicarEmEditar"
+				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+			</Button>
+			<Button
+				class="sapUiSmallMarginBottom sapUiSmallMarginTop" 
+				type="Reject"
+				text="Deletar"
+				value="{usuario>/id}"
+				press="aoClicarEmDeletar"
+				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+			</Button>
+			<Button 
+				class="sapUiSmallMarginBottom sapUiSmallMarginTop" 
+				type="Ghost"
+				text="Cancelar / Voltar"
+				press="aoClicarEmCancelar"
+				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+			</Button>
+		<ToolbarSpacer/>
+	</Toolbar>
+</headerToolbar>
+
 	<Panel accessibleRole="Region">
 	</Panel>
 	<l:VerticalLayout class="sapUiContentPadding" width="50%">
-
-		<Label text="Nome Completo" labelFor="input-nome" />
-		<Label text="{usuario>/nome}" labelFor="nome-usarioAqui" />
-
-        <Label text="E-mail" labelFor="emailInput" />
-		<Label text="{usuario>/email}" labelFor="email-usuarioAqui" />
-        
-        <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
-        <Label text="{usuario>/dataNascimento}" labelFor="input-usuarioAqui" />
-			
-		<Label text="Data de Criação" labelFor="input-dataCriacao" />
-		<Label text="{usuario>/dataCriacao}" labelFor="input-usuarioAqui" />
-
+		<VBox class="sapUiMediumMarginBegin">
+		<VBox class="sapUiMediumMarginBottom">
+			<Label text="Nome Completo" />
+			<Text text="{usuario>/nome}"/>
+		</VBox>
+		<VBox class="sapUiMediumMarginBottom">
+			<Label text="E-mail" labelFor="emailInput" />
+			<Text text="{usuario>/email}"/>
+		</VBox>
+		<VBox class="sapUiMediumMarginBottom">
+			<Label text="Data de Nascimento" labelFor="input-dataNascimento" />
+			<Text text="{usuario>/dataNascimento}"/>
+		</VBox>
+		<VBox class="sapUiMediumMarginBottom">
+			<Label text="Data de Criação" labelFor="input-dataCriacao" />
+			<Text text="{usuario>/dataCriacao}"/>
+		</VBox>	
+		</VBox>
 	</l:VerticalLayout>
+</Panel>
 </Page>
-
 </mvc:View>

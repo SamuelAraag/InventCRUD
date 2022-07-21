@@ -30,6 +30,7 @@ sap.ui.define([
 			})
 			.then((resposta) => resposta.json())
 			alert("Usuário cadastrado")
+			this.aoClicarEmCancelar();
 		},
 
 		aoClicarEmCancelar: function(){

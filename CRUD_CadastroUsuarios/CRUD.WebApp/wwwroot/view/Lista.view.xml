@@ -11,14 +11,23 @@ displayBlock="true">
 		<Panel accessibleRole="Region">
 			<headerToolbar>
 				<Toolbar>
-					<Title text="{i18n>invoiceListTitle}" />
+					<Title text="{i18n>invoiceListTitle}"/>
 					<ToolbarSpacer />
-					<SearchField width="20%" search=".onFilterInvoices" />
+					<SearchField width="20%" search=".onFilterInvoices"/>
 				</Toolbar>
 			</headerToolbar>
-
-			<Button id="carregarUsuarios" text="Recarregar usuarios" press=".carregarUsuariosDoBanco" />
-			<Button id="botaoCriar" text="{i18n>buttonCreate}" press=".aoClicarEmCriar" />
+			<Button 
+				class="sapUiSmallMarginBottom sapUiSmallMarginEnd" 
+				type="Ghost"
+				text="Atualizar lista"
+				press=".carregarUsuariosDoBanco"
+				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+			</Button>
+			<Button 
+				text="{i18n>buttonCreate}"
+				type="Emphasized"
+				press=".aoClicarEmCriar"
+				ariaDescribedBy="acceptButtonDescription genericButtonDescription"/>
 			<Table id="invoiceList" class="sapUiResponsiveMargin" width="auto" items="{
 				path : 'listaDeUsuarios>/',
 				sorter : {
