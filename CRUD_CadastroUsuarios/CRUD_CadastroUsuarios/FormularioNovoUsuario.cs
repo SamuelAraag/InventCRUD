@@ -46,7 +46,8 @@ namespace CRUD_CadastroUsuarios
             try
             { 
                 const string dataVazia = "  /  /";
-                if (caixaDataNascimento.Text == dataVazia && !DesejaSalvarSemData())
+                const string stringVazia = "";
+                if (caixaDataNascimento.Text == dataVazia || caixaDataNascimento.Text == stringVazia && !DesejaSalvarSemData())
                 {
                     return;
                 }

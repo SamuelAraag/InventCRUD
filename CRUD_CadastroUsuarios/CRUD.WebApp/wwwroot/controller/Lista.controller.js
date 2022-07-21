@@ -20,7 +20,7 @@ sap.ui.define([
         },
 
 		buscarUsuariosDoBanco : function (){
-            var usuariosObtidos = fetch('https://localhost:7137/api/Usuario')
+            let usuariosObtidos = fetch('https://localhost:7137/api/Usuario')
             .then((resposta) => resposta.json())
 			return (usuariosObtidos)
         },
@@ -33,9 +33,10 @@ sap.ui.define([
 			})
 		},
 
-		aoClicarEmCriar: function(){
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("cadastro")
+		aoClicarEmCriar: function(id){
+			let idUsuario = 0;
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("cadastro", {id: idUsuario})
 		},
 
 		modelo: function(nome, modelo){

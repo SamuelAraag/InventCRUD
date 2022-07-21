@@ -39,11 +39,16 @@ sap.ui.define([
 		},
 
         aoClicarEmEditar: function(){
+			let idDoUsuario = this.getView().getModel("usuario").getData().id;
             let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("lista")
+            oRouter.navTo("cadastro", {id: idDoUsuario})
         },
 
         aoClicarEmCancelar: function(){
+			this.voltarNavegacao();
+		},
+
+		voltarNavegacao: function(){
 			let oHistory = History.getInstance();
 			let sPreviousHash = oHistory.getPreviousHash();
 
@@ -60,12 +65,14 @@ sap.ui.define([
 			fetch(`https://localhost:7137/api/Usuario/${id}`, {
 				method: 'DELETE'
 			})
-			alert("Usuário deletado")
-			this.aoClicarEmCancelar();
+			.then(() => this.mostrarMensagem("Usuário deletado")) 
+			.then(() => this.voltarNavegacao());
 		},
 
-		onCloseDialog : function () {
-			this.byId("helloDialog").close();
+		mostrarMensagem: function(mensagem){
+			return new Promise((resolve, reject) => 
+				MessageToast.show(mensagem, { onClose: () => resolve(), duration: 300 } ) 
+			);
 		}
 	});
 });

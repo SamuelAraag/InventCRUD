@@ -63,7 +63,7 @@
               "target": "lista"
             },
             {
-                "pattern": "usuario/cadastro",
+                "pattern": "usuario/{id}/cadastro",
                 "id": "cadastro",
                 "name": "cadastro",
                 "target": "cadastro"

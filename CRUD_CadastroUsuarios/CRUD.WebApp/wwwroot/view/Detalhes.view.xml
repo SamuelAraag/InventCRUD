@@ -1,65 +1,36 @@
-<mvc:View
-	controllerName="sap.ui.demo.walkthrough.controller.Detalhes"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form">
+<mvc:View controllerName="sap.ui.demo.walkthrough.controller.Detalhes" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
 
-<Page title="{i18n>telaDeDetalhes}" showNavButton="true" navButtonPress="aoClicarEmCancelar">
-	<Panel accessibleRole="Region">
-<headerToolbar>
-	<Toolbar>
-		<Title text="Teste" />
-		<ToolbarSpacer />
-			<Button
-				class="sapUiSmallMarginBottom sapUiSmallMarginTop" 
-				type="Emphasized"
-				text="Editar"
-				press="aoClicarEmEditar"
-				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
-			</Button>
-			<Button
-				class="sapUiSmallMarginBottom sapUiSmallMarginTop" 
-				type="Reject"
-				text="Deletar"
-				value="{usuario>/id}"
-				press="aoClicarEmDeletar"
-				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
-			</Button>
-			<Button 
-				class="sapUiSmallMarginBottom sapUiSmallMarginTop" 
-				type="Ghost"
-				text="Cancelar / Voltar"
-				press="aoClicarEmCancelar"
-				ariaDescribedBy="acceptButtonDescription genericButtonDescription">
-			</Button>
-		<ToolbarSpacer/>
-	</Toolbar>
-</headerToolbar>
-
-	<Panel accessibleRole="Region">
-	</Panel>
-	<l:VerticalLayout class="sapUiContentPadding" width="50%">
-		<VBox class="sapUiMediumMarginBegin">
-		<VBox class="sapUiMediumMarginBottom">
-			<Label text="Nome Completo" />
-			<Text text="{usuario>/nome}"/>
-		</VBox>
-		<VBox class="sapUiMediumMarginBottom">
-			<Label text="E-mail" labelFor="emailInput" />
-			<Text text="{usuario>/email}"/>
-		</VBox>
-		<VBox class="sapUiMediumMarginBottom">
-			<Label text="Data de Nascimento" labelFor="input-dataNascimento" />
-			<Text text="{usuario>/dataNascimento}"/>
-		</VBox>
-		<VBox class="sapUiMediumMarginBottom">
-			<Label text="Data de Criação" labelFor="input-dataCriacao" />
-			<Text text="{usuario>/dataCriacao}"/>
-		</VBox>	
-		</VBox>
-	</l:VerticalLayout>
-</Panel>
-</Page>
+	<Page title="{i18n>telaDeDetalhes}" showNavButton="true" navButtonPress="aoClicarEmCancelar">
+		<Panel accessibleRole="Region">
+			<headerToolbar>
+				<Toolbar>
+					<ToolbarSpacer />
+					<Button type="Emphasized" text="Editar" press="aoClicarEmEditar"></Button>
+					<Button type="Reject" text="Deletar" value="{usuario>/id}" press="aoClicarEmDeletar"></Button>
+					<Button type="Ghost" text="Cancelar / Voltar" press="aoClicarEmCancelar"></Button>
+				</Toolbar>
+			</headerToolbar>
+ 
+			<l:VerticalLayout class="sapUiContentPadding" width="50%">	
+				<VBox class="sapUiMediumMarginBegin">
+					<VBox class="sapUiMediumMarginBottom">
+						<Label text="Nome Completo" />
+						<Text text="{usuario>/nome}"/>
+					</VBox>
+					<VBox class="sapUiMediumMarginBottom">
+						<Label text="E-mail" labelFor="emailInput" />
+						<Text text="{usuario>/email}" />
+					</VBox>
+					<VBox class="sapUiMediumMarginBottom">
+						<Label text="Data de Nascimento" labelFor="input-dataNascimento" />
+						<Text text="{usuario>/dataNascimento}" />
+					</VBox>
+					<VBox class="sapUiMediumMarginBottom">
+						<Label text="Data de Criação" labelFor="input-dataCriacao" />
+						<Text text="{usuario>/dataCriacao}" />
+					</VBox>
+				</VBox>
+			</l:VerticalLayout>
+		</Panel>
+	</Page>
 </mvc:View>

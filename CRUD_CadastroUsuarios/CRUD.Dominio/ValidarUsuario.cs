@@ -34,7 +34,8 @@ namespace CRUD.Dominio
                 .LessThanOrEqualTo(DateTime.Now)
                 .WithMessage("Data invalida!")
                 .GreaterThan(DateTime.Parse(dataMinimaValida))
-                .WithMessage("Data invalida!");
+                .WithMessage("Data invalida!")
+                .Equals("");
         }
 
         private static bool EmailEstaNoPadraoCorreto(string email)

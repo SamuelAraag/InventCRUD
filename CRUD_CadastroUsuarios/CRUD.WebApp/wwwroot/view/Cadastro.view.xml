@@ -22,30 +22,26 @@
 		ariaDescribedBy="acceptButtonDescription genericButtonDescription">
 	</Button>
 </headerContent>
-	<Panel accessibleRole="Region">
-	</Panel>
 	<l:VerticalLayout class="sapUiContentPadding" width="50%">
 
-		<Label text="Nome Completo" labelFor="input-nome" />
-		<Input value="{usuario>/nome}" id="input-nome" required="true" placeholder="Digite seu nome" />
+		<Label text="Nome Completo" labelFor="input-nome" required="true"/>
+		<Input value="{usuario>/nome}" required="true" placeholder="Digite seu nome" />
 
-        <Label text="Senha" labelFor="senhaInput" />
-		<Input value="{usuario>/senha}" id="senhaInput" type="Password" required="true" placeholder="Digite sua senha" />
+        <Label text="Senha" labelFor="senhaInput" required="true"/>
+		<Input value="{usuario>/senha}" type="Password"  placeholder="Digite sua senha" />
 
-		<Label text="E-mail" labelFor="emailInput" />
+		<Label text="E-mail" labelFor="emailInput" required="true"/>
 		<Input
 			value="{usuario>/email}"
-			id="emailInput"
 			class="sapUiSmallMarginBottom"
 			type="Email"
 			placeholder="Digite seu E-mail"
-			valueStateText="E-mail must be a valid email address."/>
+			required="true"/>
         
-        <Label text="Data de Nascimento" labelFor="input-dataNascimento" />
+        <Label text="Data de Nascimento" labelFor="input-dataNascimento"/>
 
 		<DatePicker
 			value="{usuario>/dataNascimento}"
-			id="input-dataNascimento"
 			valueFormat="yyyy-MM-dd" displayFormat="short"
 			change="handleChange"
 			class="sapUiSmallMarginBottom"/>
